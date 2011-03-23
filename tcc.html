@@ -1,0 +1,144 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" /> 
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/> 
+<link href="style/style.css" rel="stylesheet" type="text/css" /> 
+<title>Google Maps JavaScript API v3 Example: Map Simple</title> 
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+
+	<script type="text/javascript" src="libs/jquery-1.4.2.min.js"></script> 
+	<script type="text/javascript" src="libs/polygon.min.js"></script> 
+
+<script>
+	var pontos = Array();
+
+	pontos['x'] = Array(23.544534535140183,-23.542252642463442,-23.540993650243763,-23.541701834850397,-23.543354250768434,-23.548311373934236,-23.554055108283155,-23.554605864143006,-23.55366170982741,-23.551930742633726,-23.547524541465737);
+
+
+	pontos['y'] = Array(-46.644814010620166,
+-46.6410374603272,
+-46.63580178833013,
+-46.62996530151372,
+-46.62653207397466,
+-46.6260170898438,
+-46.62790536499028,
+-46.63451432800298,
+-46.64000749206548,
+-46.64318322753911,
+-46.644814010620166);
+
+
+	
+	var polyX = new Array();
+	var polyY = new Array();
+	
+
+	function pointInPolygon(x, y)
+	{
+		var polySides = polyY.length;
+		var	i, j=polySides-1 ;
+		var  oddNodes = false;
+
+		for (i=0; i<polySides; i++) 
+		{
+			if (polyY[i] < y && polyY[j] >= y ||  polyY[j] < y && polyY[i] >= y) 
+			{
+				if (polyX[i]+(y-polyY[i])/(polyY[j]-polyY[i])*(polyX[j]-polyX[i])<x) 
+				{
+					oddNodes=!oddNodes; 
+				}
+			}
+			j=i; 
+		}
+
+		return oddNodes; 
+	}
+</script>
+
+<script type="text/javascript"> 
+
+Array.max = function( array ){
+    return Math.max.apply( Math, array );
+};
+Array.min = function( array ){
+    return Math.min.apply( Math, array );
+};
+
+var map;
+var creator = "";
+var markersArray = new Array();
+
+
+
+$(document).ready(function() {
+  var myLatlng = new google.maps.LatLng(-23.5556631, -46.6903586);
+    var myOptions = {
+      zoom: 10,
+      center: myLatlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+ 	creator = new PolygonCreator(map);
+
+	$("#show_filter").click(function() {  
+		var t = creator.pen.polygon.getPlots();
+		t.getAt(0).forEach(function(value, index){
+			polyX[polyX.length] = value.lat();
+			polyY[polyY.length] = value.lng();
+	
+		});
+		
+		var k = 0;
+		for(var i = 0; i<=pontos.x.length;i++)
+		{
+			if(pointInPolygon(pontos.x[i],pontos.y[i]))
+			{
+				k++;
+ 				var marker = new google.maps.Marker({
+				      position: new google.maps.LatLng(pontos.x[i],pontos.y[i]),
+				      map: map
+				     
+				  });  
+				markersArray.push(marker);
+			}
+		}
+
+
+	});
+	
+	$("#clear").click(function() {
+		creator.destroy();
+ 		creator=null;
+ 		
+ 		creator=new PolygonCreator(map);
+
+
+
+	  if (markersArray) {
+		for (i in markersArray) {
+		  markersArray[i].setMap(null);
+		}
+		markersArray.length = 0;
+	  }
+
+		polyX = new Array();
+		polyY = new Array();
+
+	});
+
+	
+});
+
+</script> 
+</head> 
+<body> 
+
+	<div id="show_filter" class="bt_filter bt_roxo">Exibir filtrados</div>
+	<div id="clear">Limpar tudo</div>
+  <div id="map_canvas"></div> 
+
+
+</body> 
+</html> 
