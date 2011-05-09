@@ -1,5 +1,5 @@
-c:\users\petto\documents\visual studio 2010\Projects\Tcc_Imoveis\Tcc_Imoveis\bin\Tcc_Imoveis.dll
-c:\users\petto\documents\visual studio 2010\Projects\Tcc_Imoveis\Tcc_Imoveis\bin\Tcc_Imoveis.pdb
-c:\users\petto\documents\visual studio 2010\Projects\Tcc_Imoveis\Tcc_Imoveis\obj\Debug\ResolveAssemblyReference.cache
-c:\users\petto\documents\visual studio 2010\Projects\Tcc_Imoveis\Tcc_Imoveis\obj\Debug\Tcc_Imoveis.dll
-c:\users\petto\documents\visual studio 2010\Projects\Tcc_Imoveis\Tcc_Imoveis\obj\Debug\Tcc_Imoveis.pdb
+C:\tcc_imoveis\Tcc_Imoveis\bin\Tcc_Imoveis.dll
+C:\tcc_imoveis\Tcc_Imoveis\bin\Tcc_Imoveis.pdb
+C:\tcc_imoveis\Tcc_Imoveis\obj\Debug\ResolveAssemblyReference.cache
+C:\tcc_imoveis\Tcc_Imoveis\obj\Debug\Tcc_Imoveis.dll
+C:\tcc_imoveis\Tcc_Imoveis\obj\Debug\Tcc_Imoveis.pdb

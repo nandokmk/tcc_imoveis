@@ -1,0 +1,90 @@
+﻿@model Tcc_Imoveis.Models.imovel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>imovel</legend>
+
+        <div class="editor-label">
+           IDentificação
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.idImovel)
+            @Html.ValidationMessageFor(model => model.idImovel)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.descricao)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.descricao)
+            @Html.ValidationMessageFor(model => model.descricao)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.data_inclusao)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.data_inclusao)
+            @Html.ValidationMessageFor(model => model.data_inclusao)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.data_atualizacao)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.data_atualizacao)
+            @Html.ValidationMessageFor(model => model.data_atualizacao)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.data_exclusao)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.data_exclusao)
+            @Html.ValidationMessageFor(model => model.data_exclusao)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.latitude)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.latitude)
+            @Html.ValidationMessageFor(model => model.latitude)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.longitude)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.longitude)
+            @Html.ValidationMessageFor(model => model.longitude)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.idBairro)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.idBairro)
+            @Html.ValidationMessageFor(model => model.idBairro)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="tcc_imoveisModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="tcc_imoveisEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="bairro" EntityType="tcc_imoveisModel.bairro" />
+    <EntitySet Name="imovel" EntityType="tcc_imoveisModel.imovel" />
+    <EntitySet Name="imovelatributo" EntityType="tcc_imoveisModel.imovelatributo" />
+    <EntitySet Name="imovelatributostipo" EntityType="tcc_imoveisModel.imovelatributostipo" />
+    <EntitySet Name="tipo_usuario" EntityType="tcc_imoveisModel.tipo_usuario" />
+    <EntitySet Name="uf" EntityType="tcc_imoveisModel.uf" />
+    <EntitySet Name="usuario" EntityType="tcc_imoveisModel.usuario" />
+    <AssociationSet Name="idBairro" Association="tcc_imoveisModel.idBairro">
+      <End Role="bairro" EntitySet="bairro" />
+      <End Role="imovel" EntitySet="imovel" />
+    </AssociationSet>
+    <AssociationSet Name="idUF" Association="tcc_imoveisModel.idUF">
+      <End Role="uf" EntitySet="uf" />
+      <End Role="bairro" EntitySet="bairro" />
+    </AssociationSet>
+    <AssociationSet Name="idImovelAtributoTipo" Association="tcc_imoveisModel.idImovelAtributoTipo">
+      <End Role="imovelatributostipo" EntitySet="imovelatributostipo" />
+      <End Role="imovelatributo" EntitySet="imovelatributo" />
+    </AssociationSet>
+    <AssociationSet Name="idTipo_Usuario" Association="tcc_imoveisModel.idTipo_Usuario">
+      <End Role="tipo_usuario" EntitySet="tipo_usuario" />
+      <End Role="usuario" EntitySet="usuario" />
+    </AssociationSet>
+    <AssociationSet Name="usuario_imovel" Association="tcc_imoveisModel.usuario_imovel">
+      <End Role="imovel" EntitySet="imovel" />
+      <End Role="usuario" EntitySet="usuario" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="bairro">
+    <Key>
+      <PropertyRef Name="idBairro" />
+    </Key>
+    <Property Name="idBairro" Type="Int32" Nullable="false" />
+    <Property Name="nome" Type="String" />
+    <Property Name="idUF" Type="String" />
+    <NavigationProperty Name="imovel" Relationship="tcc_imoveisModel.idBairro" FromRole="bairro" ToRole="imovel" />
+    <NavigationProperty Name="uf" Relationship="tcc_imoveisModel.idUF" FromRole="bairro" ToRole="uf" />
+  </EntityType>
+  <EntityType Name="imovel">
+    <Key>
+      <PropertyRef Name="idImovel" />
+    </Key>
+    <Property Name="idImovel" Type="Int32" Nullable="false" />
+    <Property Name="descricao" Type="String" />
+    <Property Name="data_inclusao" Type="DateTime" />
+    <Property Name="data_atualizacao" Type="DateTime" />
+    <Property Name="data_exclusao" Type="DateTime" />
+    <Property Name="latitude" Type="Single" />
+    <Property Name="longitude" Type="Single" />
+    <Property Name="idBairro" Type="Int32" />
+    <NavigationProperty Name="bairro" Relationship="tcc_imoveisModel.idBairro" FromRole="imovel" ToRole="bairro" />
+    <NavigationProperty Name="usuario" Relationship="tcc_imoveisModel.usuario_imovel" FromRole="imovel" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="imovelatributo">
+    <Key>
+      <PropertyRef Name="idImovelAtributo" />
+    </Key>
+    <Property Name="idImovelAtributo" Type="Int32" Nullable="false" />
+    <Property Name="valor_varchar" Type="String" />
+    <Property Name="valor_boolean" Type="Boolean" />
+    <Property Name="valor_datetime" Type="DateTime" />
+    <Property Name="valor_numeric" Type="Decimal" />
+    <Property Name="idImovelAtributoTipo" Type="String" />
+    <Property Name="data_exclusao" Type="DateTime" />
+    <NavigationProperty Name="imovelatributostipo" Relationship="tcc_imoveisModel.idImovelAtributoTipo" FromRole="imovelatributo" ToRole="imovelatributostipo" />
+  </EntityType>
+  <EntityType Name="imovelatributostipo">
+    <Key>
+      <PropertyRef Name="idImovelAtributoTipo" />
+    </Key>
+    <Property Name="idImovelAtributoTipo" Type="String" Nullable="false" />
+    <Property Name="descricao" Type="String" />
+    <Property Name="observacao" Type="String" />
+    <Property Name="data_exclusao" Type="DateTime" />
+    <NavigationProperty Name="imovelatributo" Relationship="tcc_imoveisModel.idImovelAtributoTipo" FromRole="imovelatributostipo" ToRole="imovelatributo" />
+  </EntityType>
+  <EntityType Name="tipo_usuario">
+    <Key>
+      <PropertyRef Name="idTipo_Usuario" />
+    </Key>
+    <Property Name="idTipo_Usuario" Type="String" Nullable="false" />
+    <Property Name="descricao" Type="String" />
+    <NavigationProperty Name="usuario" Relationship="tcc_imoveisModel.idTipo_Usuario" FromRole="tipo_usuario" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="uf">
+    <Key>
+      <PropertyRef Name="idUF" />
+    </Key>
+    <Property Name="idUF" Type="String" Nullable="false" />
+    <Property Name="descricao" Type="String" />
+    <NavigationProperty Name="bairro" Relationship="tcc_imoveisModel.idUF" FromRole="uf" ToRole="bairro" />
+  </EntityType>
+  <EntityType Name="usuario">
+    <Key>
+      <PropertyRef Name="idUsuario" />
+    </Key>
+    <Property Name="idUsuario" Type="Int32" Nullable="false" />
+    <Property Name="login" Type="String" />
+    <Property Name="email" Type="String" />
+    <Property Name="senha" Type="String" />
+    <Property Name="nome" Type="String" />
+    <Property Name="cep" Type="Decimal" />
+    <Property Name="data_exclusao" Type="DateTime" />
+    <Property Name="idTipo_Usuario" Type="String" />
+    <NavigationProperty Name="tipo_usuario" Relationship="tcc_imoveisModel.idTipo_Usuario" FromRole="usuario" ToRole="tipo_usuario" />
+    <NavigationProperty Name="imovel" Relationship="tcc_imoveisModel.usuario_imovel" FromRole="usuario" ToRole="imovel" />
+  </EntityType>
+  <Association Name="idBairro">
+    <End Role="bairro" Type="tcc_imoveisModel.bairro" Multiplicity="0..1" />
+    <End Role="imovel" Type="tcc_imoveisModel.imovel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bairro">
+        <PropertyRef Name="idBairro" />
+      </Principal>
+      <Dependent Role="imovel">
+        <PropertyRef Name="idBairro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="idUF">
+    <End Role="uf" Type="tcc_imoveisModel.uf" Multiplicity="0..1" />
+    <End Role="bairro" Type="tcc_imoveisModel.bairro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="uf">
+        <PropertyRef Name="idUF" />
+      </Principal>
+      <Dependent Role="bairro">
+        <PropertyRef Name="idUF" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="idImovelAtributoTipo">
+    <End Role="imovelatributostipo" Type="tcc_imoveisModel.imovelatributostipo" Multiplicity="0..1" />
+    <End Role="imovelatributo" Type="tcc_imoveisModel.imovelatributo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="imovelatributostipo">
+        <PropertyRef Name="idImovelAtributoTipo" />
+      </Principal>
+      <Dependent Role="imovelatributo">
+        <PropertyRef Name="idImovelAtributoTipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="idTipo_Usuario">
+    <End Role="tipo_usuario" Type="tcc_imoveisModel.tipo_usuario" Multiplicity="0..1" />
+    <End Role="usuario" Type="tcc_imoveisModel.usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipo_usuario">
+        <PropertyRef Name="idTipo_Usuario" />
+      </Principal>
+      <Dependent Role="usuario">
+        <PropertyRef Name="idTipo_Usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="usuario_imovel">
+    <End Role="imovel" Type="tcc_imoveisModel.imovel" Multiplicity="*" />
+    <End Role="usuario" Type="tcc_imoveisModel.usuario" Multiplicity="*" />
+  </Association>
+</Schema>

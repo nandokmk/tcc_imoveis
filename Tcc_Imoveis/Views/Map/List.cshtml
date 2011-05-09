@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Tcc_Imoveis.Models.imovel>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>
+            descricao
+        </th>
+        <th>
+            data_inclusao
+        </th>
+        <th>
+            data_atualizacao
+        </th>
+        <th>
+            data_exclusao
+        </th>
+        <th>
+            latitude
+        </th>
+        <th>
+            longitude
+        </th>
+        <th>
+            idBairro
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idImovel }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idImovel }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idImovel })
+        </td>
+        <td>
+            @item.descricao
+        </td>
+        <td>
+            @String.Format("{0:g}", item.data_inclusao)
+        </td>
+        <td>
+            @String.Format("{0:g}", item.data_atualizacao)
+        </td>
+        <td>
+            @String.Format("{0:g}", item.data_exclusao)
+        </td>
+        <td>
+            @item.latitude
+        </td>
+        <td>
+            @item.longitude
+        </td>
+        <td>
+            @item.bairro.nome | @item.bairro.uf.descricao
+        </td>
+    </tr>
+}
+
+</table>
+

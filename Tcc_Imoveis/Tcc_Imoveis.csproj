@@ -34,7 +34,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.WebPages" />
     <Reference Include="System.Web.Helpers" />
@@ -60,17 +64,180 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MapController.cs" />
+    <Compile Include="Controllers\ImovelController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\bairro.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\cidade.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\imovel.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\imovel_anuncio.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\imovel_atributo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\imovel_atributo_tipo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\imovel_imagens.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\imovel_tipo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\mensagem.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pesquisa_condicoes.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tipo_dado.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tipo_usuario.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\uf.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usuario.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usuario_lista.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usuario_lista_imovel.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usuario_pesquisa.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usuario_pesquisa_imovel_atributo_tipo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usuario_pesquisa_posicao.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\view_imoveis_atendem_pelo_menos_uma_condicao_pesquisa.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\view_imoveis_atendem_tipo_atributo_pesquisa.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\view_imoveis_atendem_todas_condicoes_pesquisa.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\view_imoveis_seus_tipos_atributos.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\view_pesquisa_usuario_tipos_atributos_imovel.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\themes\base_admin\css\1col.css" />
+    <Content Include="Content\themes\base_admin\css\2col.css" />
+    <Content Include="Content\themes\base_admin\design\arrow-01.gif" />
+    <Content Include="Content\themes\base_admin\design\btn-02-bottom.gif" />
+    <Content Include="Content\themes\base_admin\design\btn-02-top.gif" />
+    <Content Include="Content\themes\base_admin\design\btn-02.gif" />
+    <Content Include="Content\themes\base_admin\design\btn-create-left.gif" />
+    <Content Include="Content\themes\base_admin\design\btn-create-right.gif" />
+    <Content Include="Content\themes\base_admin\design\btn-create.gif" />
+    <Content Include="Content\themes\base_admin\design\btn-delete.gif" />
+    <Content Include="Content\themes\base_admin\design\btn-info.gif" />
+    <Content Include="Content\themes\base_admin\design\btn-left.gif" />
+    <Content Include="Content\themes\base_admin\design\btn-list.gif" />
+    <Content Include="Content\themes\base_admin\design\btn-right.gif" />
+    <Content Include="Content\themes\base_admin\design\content-h1.gif" />
+    <Content Include="Content\themes\base_admin\design\content.gif" />
+    <Content Include="Content\themes\base_admin\design\dot.gif" />
+    <Content Include="Content\themes\base_admin\design\ico-arrow-left.gif" />
+    <Content Include="Content\themes\base_admin\design\ico-arrow-right.gif" />
+    <Content Include="Content\themes\base_admin\design\ico-blank.gif" />
+    <Content Include="Content\themes\base_admin\design\ico-delete.gif" />
+    <Content Include="Content\themes\base_admin\design\ico-done.gif" />
+    <Content Include="Content\themes\base_admin\design\ico-drop.gif" />
+    <Content Include="Content\themes\base_admin\design\ico-edit.gif" />
+    <Content Include="Content\themes\base_admin\design\ico-folder.gif" />
+    <Content Include="Content\themes\base_admin\design\ico-info.gif" />
+    <Content Include="Content\themes\base_admin\design\ico-list.gif" />
+    <Content Include="Content\themes\base_admin\design\ico-settings.gif" />
+    <Content Include="Content\themes\base_admin\design\ico-show.gif" />
+    <Content Include="Content\themes\base_admin\design\ico-template.gif" />
+    <Content Include="Content\themes\base_admin\design\ico-user-01.gif" />
+    <Content Include="Content\themes\base_admin\design\ico-user-02.gif" />
+    <Content Include="Content\themes\base_admin\design\ico-user-03.gif" />
+    <Content Include="Content\themes\base_admin\design\ico-warning.gif" />
+    <Content Include="Content\themes\base_admin\design\label.gif" />
+    <Content Include="Content\themes\base_admin\design\login-bottom.gif" />
+    <Content Include="Content\themes\base_admin\design\login-box.gif" />
+    <Content Include="Content\themes\base_admin\design\login-top.gif" />
+    <Content Include="Content\themes\base_admin\design\menu-left.gif" />
+    <Content Include="Content\themes\base_admin\design\menu-right.gif" />
+    <Content Include="Content\themes\base_admin\design\menu.gif" />
+    <Content Include="Content\themes\base_admin\design\orderby-asc.gif" />
+    <Content Include="Content\themes\base_admin\design\orderby-desc.gif" />
+    <Content Include="Content\themes\base_admin\design\orderby.gif" />
+    <Content Include="Content\themes\base_admin\design\separator.gif" />
+    <Content Include="Content\themes\base_admin\design\slimbox-closelabel.gif" />
+    <Content Include="Content\themes\base_admin\design\slimbox-loading.gif" />
+    <Content Include="Content\themes\base_admin\design\slimbox-nextlabel.gif" />
+    <Content Include="Content\themes\base_admin\design\slimbox-prevlabel.gif" />
+    <Content Include="Content\themes\base_admin\design\submenu-active.gif" />
+    <Content Include="Content\themes\base_admin\design\submenu-sub.gif" />
+    <Content Include="Content\themes\base_admin\design\switcher-1col.gif" />
+    <Content Include="Content\themes\base_admin\design\switcher-2col.gif" />
+    <Content Include="Content\themes\base_admin\design\tabs-l.gif" />
+    <Content Include="Content\themes\base_admin\design\tabs-r.gif" />
+    <Content Include="Content\themes\base_admin\design\tray-logout.gif" />
+    <Content Include="Content\themes\base_admin\design\tray.gif" />
+    <Content Include="Content\themes\base_admin\design\ul-ul.gif" />
+    <Content Include="Content\themes\base_admin\design\ul.gif" />
+    <Content Include="Content\themes\base_admin\css\main-ie6.css" />
+    <Content Include="Content\themes\base_admin\css\main.css" />
+    <Content Include="Content\themes\base_admin\css\mystyle.css" />
+    <Content Include="Content\themes\base_admin\css\reset.css" />
+    <Content Include="Content\themes\base_admin\css\slimbox2.css" />
+    <Content Include="Content\themes\base_admin\css\style.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\base_admin\js\jquery.js" />
+    <Content Include="Scripts\base_admin\js\jquery.slimbox2.js" />
+    <Content Include="Scripts\base_admin\js\jquery.switcher.js" />
+    <Content Include="Scripts\base_admin\js\jquery.tablesorter.js" />
+    <Content Include="Scripts\base_admin\js\jquery.validate.js" />
+    <Content Include="Scripts\base_admin\js\toggle.js" />
+    <Content Include="Scripts\base_admin\js\ui.core.js" />
+    <Content Include="Scripts\base_admin\js\ui.tabs.js" />
     <Content Include="Scripts\LibMaps\polygon.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -127,6 +294,36 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Map\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Map\List.cshtml" />
+    <Content Include="Views\Map\Create.cshtml" />
+    <Content Include="Views\Shared\_Layout_Admin.cshtml" />
+    <Content Include="Views\Map\Denis.cshtml" />
+    <Content Include="Views\Map\Menu.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Search\Fernando.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Models\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Models\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </None>
+    <Content Include="Views\Imovel\Create.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

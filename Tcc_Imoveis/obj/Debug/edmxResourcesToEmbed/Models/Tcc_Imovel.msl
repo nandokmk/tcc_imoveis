@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="tcc_imoveisModelStoreContainer" CdmEntityContainer="tcc_imoveisEntities">
+    <EntitySetMapping Name="bairro">
+      <EntityTypeMapping TypeName="tcc_imoveisModel.bairro">
+        <MappingFragment StoreEntitySet="bairro">
+          <ScalarProperty Name="idBairro" ColumnName="idBairro" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="idUF" ColumnName="idUF" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="imovel">
+      <EntityTypeMapping TypeName="tcc_imoveisModel.imovel">
+        <MappingFragment StoreEntitySet="imovel">
+          <ScalarProperty Name="idImovel" ColumnName="idImovel" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="data_inclusao" ColumnName="data_inclusao" />
+          <ScalarProperty Name="data_atualizacao" ColumnName="data_atualizacao" />
+          <ScalarProperty Name="data_exclusao" ColumnName="data_exclusao" />
+          <ScalarProperty Name="latitude" ColumnName="latitude" />
+          <ScalarProperty Name="longitude" ColumnName="longitude" />
+          <ScalarProperty Name="idBairro" ColumnName="idBairro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="imovelatributo">
+      <EntityTypeMapping TypeName="tcc_imoveisModel.imovelatributo">
+        <MappingFragment StoreEntitySet="imovelatributo">
+          <ScalarProperty Name="idImovelAtributo" ColumnName="idImovelAtributo" />
+          <ScalarProperty Name="valor_varchar" ColumnName="valor_varchar" />
+          <ScalarProperty Name="valor_boolean" ColumnName="valor_boolean" />
+          <ScalarProperty Name="valor_datetime" ColumnName="valor_datetime" />
+          <ScalarProperty Name="valor_numeric" ColumnName="valor_numeric" />
+          <ScalarProperty Name="idImovelAtributoTipo" ColumnName="idImovelAtributoTipo" />
+          <ScalarProperty Name="data_exclusao" ColumnName="data_exclusao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="imovelatributostipo">
+      <EntityTypeMapping TypeName="tcc_imoveisModel.imovelatributostipo">
+        <MappingFragment StoreEntitySet="imovelatributostipo">
+          <ScalarProperty Name="idImovelAtributoTipo" ColumnName="idImovelAtributoTipo" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="observacao" ColumnName="observacao" />
+          <ScalarProperty Name="data_exclusao" ColumnName="data_exclusao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipo_usuario">
+      <EntityTypeMapping TypeName="tcc_imoveisModel.tipo_usuario">
+        <MappingFragment StoreEntitySet="tipo_usuario">
+          <ScalarProperty Name="idTipo_Usuario" ColumnName="idTipo_Usuario" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="uf">
+      <EntityTypeMapping TypeName="tcc_imoveisModel.uf">
+        <MappingFragment StoreEntitySet="uf">
+          <ScalarProperty Name="idUF" ColumnName="idUF" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuario">
+      <EntityTypeMapping TypeName="tcc_imoveisModel.usuario">
+        <MappingFragment StoreEntitySet="usuario">
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="senha" ColumnName="senha" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="cep" ColumnName="cep" />
+          <ScalarProperty Name="data_exclusao" ColumnName="data_exclusao" />
+          <ScalarProperty Name="idTipo_Usuario" ColumnName="idTipo_Usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="usuario_imovel" TypeName="tcc_imoveisModel.usuario_imovel" StoreEntitySet="usuario_imovel">
+      <EndProperty Name="imovel">
+        <ScalarProperty Name="idImovel" ColumnName="idImovel" />
+      </EndProperty>
+      <EndProperty Name="usuario">
+        <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

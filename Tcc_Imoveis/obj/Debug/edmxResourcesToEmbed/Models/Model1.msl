@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="tcc_imoveisModelStoreContainer" CdmEntityContainer="tcc_imoveisEntities1">
+    <EntitySetMapping Name="bairro">
+      <EntityTypeMapping TypeName="tcc_imoveisModel.bairro">
+        <MappingFragment StoreEntitySet="bairro">
+          <ScalarProperty Name="idBairro" ColumnName="idBairro" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="idCidade" ColumnName="idCidade" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cidade">
+      <EntityTypeMapping TypeName="tcc_imoveisModel.cidade">
+        <MappingFragment StoreEntitySet="cidade">
+          <ScalarProperty Name="idCidade" ColumnName="idCidade" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="idUF" ColumnName="idUF" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="imovel">
+      <EntityTypeMapping TypeName="tcc_imoveisModel.imovel">
+        <MappingFragment StoreEntitySet="imovel">
+          <ScalarProperty Name="idImovel" ColumnName="idImovel" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="data_inclusao" ColumnName="data_inclusao" />
+          <ScalarProperty Name="data_exclusao" ColumnName="data_exclusao" />
+          <ScalarProperty Name="latitude" ColumnName="latitude" />
+          <ScalarProperty Name="longitude" ColumnName="longitude" />
+          <ScalarProperty Name="idBairro" ColumnName="idBairro" />
+          <ScalarProperty Name="num_acessos" ColumnName="num_acessos" />
+          <ScalarProperty Name="imagem" ColumnName="imagem" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="imovel_anuncio">
+      <EntityTypeMapping TypeName="tcc_imoveisModel.imovel_anuncio">
+        <MappingFragment StoreEntitySet="imovel_anuncio">
+          <ScalarProperty Name="idImovel_Anuncio" ColumnName="idImovel_Anuncio" />
+          <ScalarProperty Name="idImovel" ColumnName="idImovel" />
+          <ScalarProperty Name="data_inicial" ColumnName="data_inicial" />
+          <ScalarProperty Name="data_final" ColumnName="data_final" />
+          <ScalarProperty Name="imagem" ColumnName="imagem" />
+          <ScalarProperty Name="prioridade" ColumnName="prioridade" />
+          <ScalarProperty Name="texto" ColumnName="texto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="imovel_atributo">
+      <EntityTypeMapping TypeName="tcc_imoveisModel.imovel_atributo">
+        <MappingFragment StoreEntitySet="imovel_atributo">
+          <ScalarProperty Name="idImovel_Atributo" ColumnName="idImovel_Atributo" />
+          <ScalarProperty Name="idImovel" ColumnName="idImovel" />
+          <ScalarProperty Name="idImovel_Atributo_Tipo" ColumnName="idImovel_Atributo_Tipo" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="prioridade" ColumnName="prioridade" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="imovel_atributo_tipo">
+      <EntityTypeMapping TypeName="tcc_imoveisModel.imovel_atributo_tipo">
+        <MappingFragment StoreEntitySet="imovel_atributo_tipo">
+          <ScalarProperty Name="idImovel_Atributo_Tipo" ColumnName="idImovel_Atributo_Tipo" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="observacao" ColumnName="observacao" />
+          <ScalarProperty Name="data_exclusao" ColumnName="data_exclusao" />
+          <ScalarProperty Name="idTipo_Dado" ColumnName="idTipo_Dado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="imovel_imagens">
+      <EntityTypeMapping TypeName="tcc_imoveisModel.imovel_imagens">
+        <MappingFragment StoreEntitySet="imovel_imagens">
+          <ScalarProperty Name="idImovel_Imagens" ColumnName="idImovel_Imagens" />
+          <ScalarProperty Name="idImovel" ColumnName="idImovel" />
+          <ScalarProperty Name="Imagem" ColumnName="Imagem" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="imovel_tipo">
+      <EntityTypeMapping TypeName="tcc_imoveisModel.imovel_tipo">
+        <MappingFragment StoreEntitySet="imovel_tipo">
+          <ScalarProperty Name="idImovel_Tipo" ColumnName="idImovel_Tipo" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mensagem">
+      <EntityTypeMapping TypeName="tcc_imoveisModel.mensagem">
+        <MappingFragment StoreEntitySet="mensagem">
+          <ScalarProperty Name="idMensagem" ColumnName="idMensagem" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="texto" ColumnName="texto" />
+          <ScalarProperty Name="idUsuarioDestino" ColumnName="idUsuarioDestino" />
+          <ScalarProperty Name="data_envio" ColumnName="data_envio" />
+          <ScalarProperty Name="data_recebimento" ColumnName="data_recebimento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pesquisa_condicoes">
+      <EntityTypeMapping TypeName="tcc_imoveisModel.pesquisa_condicoes">
+        <MappingFragment StoreEntitySet="pesquisa_condicoes">
+          <ScalarProperty Name="idPesquisa_Condicoes" ColumnName="idPesquisa_Condicoes" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipo_dado">
+      <EntityTypeMapping TypeName="tcc_imoveisModel.tipo_dado">
+        <MappingFragment StoreEntitySet="tipo_dado">
+          <ScalarProperty Name="idTipo_Dado" ColumnName="idTipo_Dado" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipo_usuario">
+      <EntityTypeMapping TypeName="tcc_imoveisModel.tipo_usuario">
+        <MappingFragment StoreEntitySet="tipo_usuario">
+          <ScalarProperty Name="idTipo_Usuario" ColumnName="idTipo_Usuario" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="uf">
+      <EntityTypeMapping TypeName="tcc_imoveisModel.uf">
+        <MappingFragment StoreEntitySet="uf">
+          <ScalarProperty Name="idUF" ColumnName="idUF" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuario">
+      <EntityTypeMapping TypeName="tcc_imoveisModel.usuario">
+        <MappingFragment StoreEntitySet="usuario">
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="senha" ColumnName="senha" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="idTipo_Usuario" ColumnName="idTipo_Usuario" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuario_lista">
+      <EntityTypeMapping TypeName="tcc_imoveisModel.usuario_lista">
+        <MappingFragment StoreEntitySet="usuario_lista">
+          <ScalarProperty Name="idUsuario_Lista" ColumnName="idUsuario_Lista" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuario_lista_imovel">
+      <EntityTypeMapping TypeName="tcc_imoveisModel.usuario_lista_imovel">
+        <MappingFragment StoreEntitySet="usuario_lista_imovel">
+          <ScalarProperty Name="idusuario_lista" ColumnName="idusuario_lista" />
+          <ScalarProperty Name="idImovel" ColumnName="idImovel" />
+          <ScalarProperty Name="visualizar" ColumnName="visualizar" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuario_pesquisa">
+      <EntityTypeMapping TypeName="tcc_imoveisModel.usuario_pesquisa">
+        <MappingFragment StoreEntitySet="usuario_pesquisa">
+          <ScalarProperty Name="idUsuario_Pesquisa" ColumnName="idUsuario_Pesquisa" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuario_pesquisa_imovel_atributo_tipo">
+      <EntityTypeMapping TypeName="tcc_imoveisModel.usuario_pesquisa_imovel_atributo_tipo">
+        <MappingFragment StoreEntitySet="usuario_pesquisa_imovel_atributo_tipo">
+          <ScalarProperty Name="idUsuario_Pesquisa_Imovel_Atributo_Tipo" ColumnName="idUsuario_Pesquisa_Imovel_Atributo_Tipo" />
+          <ScalarProperty Name="idUsuario_Pesquisa" ColumnName="idUsuario_Pesquisa" />
+          <ScalarProperty Name="idImovel_Atributo_Tipo" ColumnName="idImovel_Atributo_Tipo" />
+          <ScalarProperty Name="idCondicao" ColumnName="idCondicao" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="prioridade" ColumnName="prioridade" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuario_pesquisa_posicao">
+      <EntityTypeMapping TypeName="tcc_imoveisModel.usuario_pesquisa_posicao">
+        <MappingFragment StoreEntitySet="usuario_pesquisa_posicao">
+          <ScalarProperty Name="idUsuario_Pesquisa_Posicao" ColumnName="idUsuario_Pesquisa_Posicao" />
+          <ScalarProperty Name="idUsuario_Pesquisa" ColumnName="idUsuario_Pesquisa" />
+          <ScalarProperty Name="latitude" ColumnName="latitude" />
+          <ScalarProperty Name="longitude" ColumnName="longitude" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="view_imoveis_atendem_pelo_menos_uma_condicao_pesquisa">
+      <EntityTypeMapping TypeName="tcc_imoveisModel.view_imoveis_atendem_pelo_menos_uma_condicao_pesquisa">
+        <MappingFragment StoreEntitySet="view_imoveis_atendem_pelo_menos_uma_condicao_pesquisa">
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="idusuario_Pesquisa" ColumnName="idusuario_Pesquisa" />
+          <ScalarProperty Name="idImovel" ColumnName="idImovel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="view_imoveis_atendem_tipo_atributo_pesquisa">
+      <EntityTypeMapping TypeName="tcc_imoveisModel.view_imoveis_atendem_tipo_atributo_pesquisa">
+        <MappingFragment StoreEntitySet="view_imoveis_atendem_tipo_atributo_pesquisa">
+          <ScalarProperty Name="idImovel_atributo" ColumnName="idImovel_atributo" />
+          <ScalarProperty Name="idImovel" ColumnName="idImovel" />
+          <ScalarProperty Name="idImovel_Atributo_tipo" ColumnName="idImovel_Atributo_tipo" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="Prioridade" ColumnName="Prioridade" />
+          <ScalarProperty Name="idCondicao" ColumnName="idCondicao" />
+          <ScalarProperty Name="valor_pesquisado" ColumnName="valor_pesquisado" />
+          <ScalarProperty Name="prioridade_pesquisado" ColumnName="prioridade_pesquisado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="view_imoveis_atendem_todas_condicoes_pesquisa">
+      <EntityTypeMapping TypeName="tcc_imoveisModel.view_imoveis_atendem_todas_condicoes_pesquisa">
+        <MappingFragment StoreEntitySet="view_imoveis_atendem_todas_condicoes_pesquisa">
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="idusuario_Pesquisa" ColumnName="idusuario_Pesquisa" />
+          <ScalarProperty Name="idImovel" ColumnName="idImovel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="view_imoveis_seus_tipos_atributos">
+      <EntityTypeMapping TypeName="tcc_imoveisModel.view_imoveis_seus_tipos_atributos">
+        <MappingFragment StoreEntitySet="view_imoveis_seus_tipos_atributos">
+          <ScalarProperty Name="idImovel" ColumnName="idImovel" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="data_inclusao" ColumnName="data_inclusao" />
+          <ScalarProperty Name="data_exclusao" ColumnName="data_exclusao" />
+          <ScalarProperty Name="latitude" ColumnName="latitude" />
+          <ScalarProperty Name="longitude" ColumnName="longitude" />
+          <ScalarProperty Name="idBairro" ColumnName="idBairro" />
+          <ScalarProperty Name="num_acessos" ColumnName="num_acessos" />
+          <ScalarProperty Name="imagem" ColumnName="imagem" />
+          <ScalarProperty Name="idImovel_Atributo" ColumnName="idImovel_Atributo" />
+          <ScalarProperty Name="idImovel_Atributo_Tipo" ColumnName="idImovel_Atributo_Tipo" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="prioridade" ColumnName="prioridade" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="view_pesquisa_usuario_tipos_atributos_imovel">
+      <EntityTypeMapping TypeName="tcc_imoveisModel.view_pesquisa_usuario_tipos_atributos_imovel">
+        <MappingFragment StoreEntitySet="view_pesquisa_usuario_tipos_atributos_imovel">
+          <ScalarProperty Name="idUsuario_Pesquisa" ColumnName="idUsuario_Pesquisa" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="idUsuario_Pesquisa_Imovel_Atributo_Tipo" ColumnName="idUsuario_Pesquisa_Imovel_Atributo_Tipo" />
+          <ScalarProperty Name="idImovel_Atributo_Tipo" ColumnName="idImovel_Atributo_Tipo" />
+          <ScalarProperty Name="idCondicao" ColumnName="idCondicao" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="prioridade" ColumnName="prioridade" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="imovel_atributo_tipo_imovel_tipo" TypeName="tcc_imoveisModel.imovel_atributo_tipo_imovel_tipo" StoreEntitySet="imovel_atributo_tipo_imovel_tipo">
+      <EndProperty Name="imovel_atributo_tipo">
+        <ScalarProperty Name="idImovel_Atributo_Tipo" ColumnName="idimovel_atributo_tipo" />
+      </EndProperty>
+      <EndProperty Name="imovel_tipo">
+        <ScalarProperty Name="idImovel_Tipo" ColumnName="idimovel_tipo" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="usuario_compartilhado" TypeName="tcc_imoveisModel.usuario_compartilhado" StoreEntitySet="usuario_compartilhado">
+      <EndProperty Name="usuario">
+        <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+      </EndProperty>
+      <EndProperty Name="usuario1">
+        <ScalarProperty Name="idUsuario" ColumnName="idUsuarioCompartilhado" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="usuario_imovel" TypeName="tcc_imoveisModel.usuario_imovel" StoreEntitySet="usuario_imovel">
+      <EndProperty Name="imovel">
+        <ScalarProperty Name="idImovel" ColumnName="idImovel" />
+      </EndProperty>
+      <EndProperty Name="usuario">
+        <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
