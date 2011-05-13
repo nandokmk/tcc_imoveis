@@ -1,0 +1,153 @@
+/* Pesquisa do Usuario e os Varios Atributos do Imovel */
+CREATE VIEW `tcc_imoveis`.`view_pesquisa_usuario_tipos_atributos_imovel` AS
+select UP.*, 
+       UA.idUsuario_Pesquisa_Imovel_Atributo_Tipo,
+       UA.idImovel_Atributo_Tipo,
+       UA.idCondicao,
+       UA.valor,
+       UA.prioridade
+from usuario_pesquisa UP 
+inner join usuario_pesquisa_imovel_atributo_tipo UA
+  on UA.idUsuario_Pesquisa = UP.idUsuario_Pesquisa
+order by UP.idUsuario_Pesquisa, UA.idImovel_Atributo_Tipo
+
+
+/* Pesquisa Imoveis e seus atributos*/
+CREATE VIEW `tcc_imoveis`.`view_imoveis_seus_tipos_atributos` AS
+select 
+       IM.idImovel,
+       IM.descricao,
+       IM.data_inclusao,
+       IM.data_exclusao,
+       IM.latitude,
+       IM.longitude,
+       IM.idBairro,
+       IM.num_acessos,
+       IM.imagem,
+       IA.idImovel_Atributo,
+       IA.idImovel_Atributo_Tipo,
+       IA.valor,
+       IA.prioridade
+from imovel IM  
+inner join imovel_Atributo IA
+  on IA.idImovel= IM.idImovel
+order by 
+       IM.idImovel,
+       IA.idImovel_Atributo_Tipo
+
+/* imoveis invalidos */
+CREATE VIEW `tcc_imoveis`.`view_imoveis_invalidos` AS
+select DISTINCT NIA.idImovel from imovel_Atributo NIA
+inner join Usuario_Pesquisa_Imovel_Atributo_Tipo NUA
+  on NUA.idImovel_Atributo_Tipo = NIA.idImovel_Atributo_Tipo 
+where
+   (
+--     NUA.idusuario_Pesquisa = UP.idusuario_Pesquisa AND NIA.idImovel = IM.IdImovel and 
+   ((NUA.idCondicao='=' and NiA.valor <> NuA.valor)
+ OR (NUA.idCondicao='>' and NiA.valor <= NuA.valor)
+ OR (NUA.idCondicao='<' and NiA.valor >= NuA.valor)
+ OR (NUA.idCondicao='>=' and NiA.valor < NuA.valor)
+ OR (NUA.idCondicao='<=' and NiA.valor > NuA.valor)
+ OR (NUA.idCondicao='<>' and NiA.valor = NuA.valor)
+      ))
+order by Nia.idImovel
+          
+/* atributos que atendem pelo menos o tipo de atributo na busca*/
+CREATE VIEW `tcc_imoveis`.`view_imoveis_atendem_tipo_atributo_pesquisa` AS
+select NIA.idImovel_atributo,
+       NIA.idImovel,
+       NIA.idImovel_Atributo_tipo,
+       NIA.valor,
+       NIA.Prioridade,
+       NUA.idCondicao,
+       NUA.valor as valor_pesquisado,
+       NUA.prioridade as prioridade_pesquisado
+
+from imovel_Atributo NIA
+inner join Usuario_Pesquisa_Imovel_Atributo_Tipo NUA
+  on NUA.idImovel_Atributo_Tipo = NIA.idImovel_Atributo_Tipo
+order by Nia.idImovel
+
+/* imoveis que atendem pelo menos uma das condicoes de busca*/
+CREATE VIEW `tcc_imoveis`.`view_imoveis_atendem_pelo_menos_uma_condicao_pesquisa` AS
+select distinct 
+   UP.idUsuario,
+   UP.nome,
+   UP.idusuario_Pesquisa,
+   IM.idImovel
+from usuario_pesquisa UP 
+
+inner join usuario_pesquisa_imovel_atributo_tipo UA
+  on UA.idUsuario_Pesquisa = UP.idUsuario_Pesquisa
+
+inner join imovel_Atributo_Tipo IAT 
+  on IAT.idImovel_Atributo_Tipo = UA.idImovel_Atributo_Tipo
+   
+inner join imovel_Atributo IA
+  on IA.idImovel_Atributo_Tipo = UA.idImovel_Atributo_Tipo
+
+inner join  imovel IM  
+  on IA.idImovel = IM.idImovel
+ 
+and (
+    (UA.idCondicao='=' and IA.valor = UA.valor)
+ or (UA.idCondicao='>' and IA.valor > UA.valor)
+ or (UA.idCondicao='<' and IA.valor < UA.valor)
+ or (UA.idCondicao='>=' and IA.valor >= UA.valor)
+ or (UA.idCondicao='<=' and IA.valor <= UA.valor)
+ or (UA.idCondicao='<>' and IA.valor <> UA.valor)
+      )
+order by 
+UP.idUsuario,
+IM.idImovel 
+	 
+	   
+/*busca  imoveis atende todas condicoes*/
+CREATE VIEW `tcc_imoveis`.`view_imoveis_atendem_todas_condicoes_pesquisa` AS
+select distinct 
+   UP.idUsuario,
+   UP.nome,
+   UP.idusuario_Pesquisa,
+   IM.idImovel
+from usuario_pesquisa UP 
+
+inner join usuario_pesquisa_imovel_atributo_tipo UA
+  on UA.idUsuario_Pesquisa = UP.idUsuario_Pesquisa
+
+inner join imovel_Atributo_Tipo IAT 
+  on IAT.idImovel_Atributo_Tipo = UA.idImovel_Atributo_Tipo
+   
+inner join imovel_Atributo IA
+  on IA.idImovel_Atributo_Tipo = UA.idImovel_Atributo_Tipo
+
+inner join  imovel IM  
+  on IA.idImovel = IM.idImovel
+
+where 
+(
+    (UA.idCondicao='=' and IA.valor = UA.valor)
+ or (UA.idCondicao='>' and IA.valor > UA.valor)
+ or (UA.idCondicao='<' and IA.valor < UA.valor)
+ or (UA.idCondicao='>=' and IA.valor >= UA.valor)
+ or (UA.idCondicao='<=' and IA.valor <= UA.valor)
+ or (UA.idCondicao='<>' and IA.valor <> UA.valor)
+)
+and IM.idImovel not in (
+select DISTINCT NIA.idImovel from imovel_Atributo NIA
+inner join Usuario_Pesquisa_Imovel_Atributo_Tipo NUA
+  on NUA.idImovel_Atributo_Tipo = NIA.idImovel_Atributo_Tipo 
+where
+   (
+     NUA.idusuario_Pesquisa = UP.idusuario_Pesquisa AND NIA.idImovel = IM.IdImovel
+and 
+   ((NUA.idCondicao='=' and NiA.valor <> NuA.valor)
+ OR (NUA.idCondicao='>' and NiA.valor <= NuA.valor)
+ OR (NUA.idCondicao='<' and NiA.valor >= NuA.valor)
+ OR (NUA.idCondicao='>=' and NiA.valor < NuA.valor)
+ OR (NUA.idCondicao='<=' and NiA.valor > NuA.valor)
+ OR (NUA.idCondicao='<>' and NiA.valor = NuA.valor)
+      ))
+)
+order by 
+UP.idUsuario,
+IM.idImovel 

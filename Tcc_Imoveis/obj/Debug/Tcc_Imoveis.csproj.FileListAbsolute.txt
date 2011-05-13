@@ -1,5 +1,10 @@
-C:\tcc_imoveis\Tcc_Imoveis\bin\Tcc_Imoveis.dll
-C:\tcc_imoveis\Tcc_Imoveis\bin\Tcc_Imoveis.pdb
-C:\tcc_imoveis\Tcc_Imoveis\obj\Debug\ResolveAssemblyReference.cache
-C:\tcc_imoveis\Tcc_Imoveis\obj\Debug\Tcc_Imoveis.dll
-C:\tcc_imoveis\Tcc_Imoveis\obj\Debug\Tcc_Imoveis.pdb
+\\vmware-host\Shared Folders\Desktop\tcc_imoveis\Tcc_Imoveis\bin\Tcc_Imoveis.dll
+\\vmware-host\Shared Folders\Desktop\tcc_imoveis\Tcc_Imoveis\bin\Tcc_Imoveis.pdb
+\\vmware-host\Shared Folders\Desktop\tcc_imoveis\Tcc_Imoveis\obj\Debug\ResolveAssemblyReference.cache
+\\vmware-host\Shared Folders\Desktop\tcc_imoveis\Tcc_Imoveis\obj\Debug\Tcc_Imoveis.dll
+\\vmware-host\Shared Folders\Desktop\tcc_imoveis\Tcc_Imoveis\obj\Debug\Tcc_Imoveis.pdb
+C:\VisualStudio\tcc_imoveis\Tcc_Imoveis\bin\Tcc_Imoveis.dll
+C:\VisualStudio\tcc_imoveis\Tcc_Imoveis\bin\Tcc_Imoveis.pdb
+C:\VisualStudio\tcc_imoveis\Tcc_Imoveis\obj\Debug\ResolveAssemblyReference.cache
+C:\VisualStudio\tcc_imoveis\Tcc_Imoveis\obj\Debug\Tcc_Imoveis.dll
+C:\VisualStudio\tcc_imoveis\Tcc_Imoveis\obj\Debug\Tcc_Imoveis.pdb

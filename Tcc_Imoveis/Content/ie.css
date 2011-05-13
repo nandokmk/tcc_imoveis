@@ -1,0 +1,16 @@
+@charset "utf-8";
+/*** CSS Modifier for IE7 and IE6 ***/
+/** ----------------------------------------------------- **/
+#contact_page #contact_form .bg_input_text input { margin-left: -112px; }
+#contact_page #contact_form .bg_textarea textarea { margin-left: -112px; }
+.image_desc { bottom: 3px; }
+/**/
+
+/*** CSS Modifier for IE6 Only ***/
+/** ----------------------------------------------------- **/
+
+* html #featured_buttons li.clicked { background: inherit; }
+* html .wp-pagenavi a,
+* html .wp-pagenavi span { width: 38px; }
+* html .wp-pagenavi .pages { width: 100px; }
+/**/

@@ -1,0 +1,110 @@
+/* INSERE OS REGISTROS TABELAS APOIO */
+
+INSERT INTO `tcc_imoveis`.`pesquisa_condicoes` (`idPesquisa_Condicoes`, `descricao`) VALUES ('>', 'Maior');
+INSERT INTO `tcc_imoveis`.`pesquisa_condicoes` (`idPesquisa_Condicoes`, `descricao`) VALUES ('<', 'Menor');
+INSERT INTO `tcc_imoveis`.`pesquisa_condicoes` (`idPesquisa_Condicoes`, `descricao`) VALUES ('=', 'Igual');
+INSERT INTO `tcc_imoveis`.`pesquisa_condicoes` (`idPesquisa_Condicoes`, `descricao`) VALUES ('<>', 'Diferente');
+INSERT INTO `tcc_imoveis`.`pesquisa_condicoes` (`idPesquisa_Condicoes`, `descricao`) VALUES ('>=', 'Maior Igual');
+INSERT INTO `tcc_imoveis`.`pesquisa_condicoes` (`idPesquisa_Condicoes`, `descricao`) VALUES ('<=', 'Menor Igual');
+
+INSERT INTO `tcc_imoveis`.`tipo_dado` (`idTipo_Dado`, `nome`) VALUES ('ST', 'String');
+INSERT INTO `tcc_imoveis`.`tipo_dado` (`idTipo_Dado`, `nome`) VALUES ('NU', 'Numérico');
+INSERT INTO `tcc_imoveis`.`tipo_dado` (`idTipo_Dado`, `nome`) VALUES ('BO', 'Boleano');
+INSERT INTO `tcc_imoveis`.`tipo_dado` (`idTipo_Dado`, `nome`) VALUES ('DT', 'Data');
+
+INSERT INTO `tcc_imoveis`.`tipo_usuario` (`idTipo_Usuario`, `descricao`) VALUES ('AD', 'Administrador ');
+INSERT INTO `tcc_imoveis`.`tipo_usuario` (`idTipo_Usuario`, `descricao`) VALUES ('UC', 'Usuario Comum');
+INSERT INTO `tcc_imoveis`.`tipo_usuario` (`idTipo_Usuario`, `descricao`) VALUES ('RC', 'Responsavel Comum');
+INSERT INTO `tcc_imoveis`.`tipo_usuario` (`idTipo_Usuario`, `descricao`) VALUES ('U1', 'Usuario Assinante');
+INSERT INTO `tcc_imoveis`.`tipo_usuario` (`idTipo_Usuario`, `descricao`) VALUES ('R2', 'Responsavel Assinante');
+
+INSERT INTO `tcc_imoveis`.`imovel_tipo` (`idImovel_Tipo`, `descricao`) VALUES ('RS', 'Residencia');
+INSERT INTO `tcc_imoveis`.`imovel_tipo` (`idImovel_Tipo`, `descricao`) VALUES ('CR', 'Condominio de Residencia');
+INSERT INTO `tcc_imoveis`.`imovel_tipo` (`idImovel_Tipo`, `descricao`) VALUES ('AP', 'Apartamento');
+INSERT INTO `tcc_imoveis`.`imovel_tipo` (`idImovel_Tipo`, `descricao`) VALUES ('TE', 'Terreno');
+INSERT INTO `tcc_imoveis`.`imovel_tipo` (`idImovel_Tipo`, `descricao`) VALUES ('IC', 'Imovel Comercial');
+
+INSERT INTO `tcc_imoveis`.`imovel_atributo_tipo` (`idImovel_Atributo_Tipo`, `descricao`, `observacao`, `idTipo_Dado`) VALUES ('QT', 'Quartos', 'Quantidade de Quartos Simples', 'NU');
+INSERT INTO `tcc_imoveis`.`imovel_atributo_tipo` (`idImovel_Atributo_Tipo`, `descricao`, `observacao`, `idTipo_Dado`) VALUES ('PS', 'Piscinas', 'Quantidade de Piscinas', 'NU');
+INSERT INTO `tcc_imoveis`.`imovel_atributo_tipo` (`idImovel_Atributo_Tipo`, `descricao`, `observacao`, `idTipo_Dado`) VALUES ('VC', 'Vagas Cobertas Garagem', 'Quantidade de Vagas Cobertas de Garagem', 'NU');
+INSERT INTO `tcc_imoveis`.`imovel_atributo_tipo` (`idImovel_Atributo_Tipo`, `descricao`, `observacao`, `idTipo_Dado`) VALUES ('VD', 'Vagas Descobertas Garagem', 'Quantidade de Vagas Descobertas de Garamge', 'NU');
+INSERT INTO `tcc_imoveis`.`imovel_atributo_tipo` (`idImovel_Atributo_Tipo`, `descricao`, `observacao`, `idTipo_Dado`) VALUES ('CH', 'Churrasqueira', 'Possui Churrasqueira', 'BO');
+INSERT INTO `tcc_imoveis`.`imovel_atributo_tipo` (`idImovel_Atributo_Tipo`, `descricao`, `observacao`, `idTipo_Dado`) VALUES ('VL', 'Valor', 'Valor do Imovel', 'NU');
+
+INSERT INTO `tcc_imoveis`.`imovel_atributo_tipo_imovel_tipo` (`idimovel_atributo_tipo`, `idimovel_tipo`) VALUES ('QT', 'RS');
+INSERT INTO `tcc_imoveis`.`imovel_atributo_tipo_imovel_tipo` (`idimovel_atributo_tipo`, `idimovel_tipo`) VALUES ('QT', 'AP');
+INSERT INTO `tcc_imoveis`.`imovel_atributo_tipo_imovel_tipo` (`idimovel_atributo_tipo`, `idimovel_tipo`) VALUES ('PS', 'AP');
+
+
+/* INSERE OS REGISTROS DE TESTE */
+
+INSERT INTO `tcc_imoveis`.`uf` (`idUF`, `descricao`) VALUES ('SP', 'SÃO PAULO');
+INSERT INTO `tcc_imoveis`.`uf` (`idUF`, `descricao`) VALUES ('RJ', 'RIO DE JANEIRO');
+INSERT INTO `tcc_imoveis`.`uf` (`idUF`, `descricao`) VALUES ('MG', 'MINAS GERAIS');
+
+INSERT INTO `tcc_imoveis`.`cidade` (`idCidade`, `nome`, `idUF`) VALUES (1, 'São Paulo - Capital', 'SP');
+INSERT INTO `tcc_imoveis`.`cidade` (`idCidade`, `nome`, `idUF`) VALUES (2, 'Rio de Janeiro - Capital', 'RJ');
+INSERT INTO `tcc_imoveis`.`cidade` (`idCidade`, `nome`, `idUF`) VALUES (3, 'Campinas', 'SP');
+
+INSERT INTO `tcc_imoveis`.`bairro` (`idBairro`, `nome`, `idCidade`) VALUES (1, 'Vila Matilde', 1);
+INSERT INTO `tcc_imoveis`.`bairro` (`idBairro`, `nome`, `idCidade`) VALUES (2, 'Vila Carrão', 1);
+INSERT INTO `tcc_imoveis`.`bairro` (`idBairro`, `nome`, `idCidade`) VALUES (3, 'Tatuape', 1);
+INSERT INTO `tcc_imoveis`.`bairro` (`idBairro`, `nome`, `idCidade`) VALUES (4, 'Copacabana', 2);
+
+
+/* INSERE OS REGISTROS DE USUARIO TESTE */
+
+INSERT INTO `tcc_imoveis`.`usuario` (`idUsuario`, `email`, `senha`, `nome`) VALUES (1, 'fulano1@email.do.cara', '1', 'Usuario1');
+INSERT INTO `tcc_imoveis`.`usuario` (`idUsuario`, `email`, `senha`, `nome`) VALUES (2, 'ciclano2@emaildo.cara', '2', 'Ciclano2');
+INSERT INTO `tcc_imoveis`.`usuario` (`idUsuario`, `email`, `senha`, `nome`) VALUES (3, 'beltrano3@gmail.com', '3', 'Beltrano3');
+
+INSERT INTO `tcc_imoveis`.`usuario_compartilhado` (`idUsuario`, `idUsuarioCompartilhado`) VALUES (1, 2);
+INSERT INTO `tcc_imoveis`.`usuario_compartilhado` (`idUsuario`, `idUsuarioCompartilhado`) VALUES (1, 3);
+INSERT INTO `tcc_imoveis`.`usuario_compartilhado` (`idUsuario`, `idUsuarioCompartilhado`) VALUES (2, 3);
+
+INSERT INTO `tcc_imoveis`.`mensagem` (`idMensagem`, `idUsuario`, `texto`, `idUsuarioDestino`, `data_envio`, `data_recebimento`) VALUES (1, 1, 'Oi tudo bem?', 2, '2011/01/01', '2011/01/01');
+INSERT INTO `tcc_imoveis`.`mensagem` (`idMensagem`, `idUsuario`, `texto`, `idUsuarioDestino`, `data_envio`, `data_recebimento`) VALUES (2, 2, 'sim tudo', 1, '2011/01/02', '2011/01/02');
+INSERT INTO `tcc_imoveis`.`mensagem` (`idMensagem`, `idUsuario`, `texto`, `idUsuarioDestino`, `data_envio`) VALUES (3, 1, 'ok', 2, '2011/01/03');
+
+/* INSERE OS REGISTROS DE LISTA DO USUARIO TESTE */
+INSERT INTO `tcc_imoveis`.`usuario_lista` (`idUsuario_Lista`, `idUsuario`, `nome`) VALUES (1, 1, 'LISTA 1 usuario1 ');
+INSERT INTO `tcc_imoveis`.`usuario_lista` (`idUsuario_Lista`, `idUsuario`, `nome`) VALUES (2, 1, 'LISTA 2 usuario1');
+INSERT INTO `tcc_imoveis`.`usuario_lista` (`idUsuario_Lista`, `idUsuario`, `nome`) VALUES (3, 2, 'LISTA 1 usuario2');
+
+INSERT INTO `tcc_imoveis`.`usuario_lista_imovel` (`idusuario_lista`, `idImovel`, `visualizar`) VALUES (1, 1, 1);
+INSERT INTO `tcc_imoveis`.`usuario_lista_imovel` (`idusuario_lista`, `idImovel`, `visualizar`) VALUES (1, 2, 0);
+INSERT INTO `tcc_imoveis`.`usuario_lista_imovel` (`idusuario_lista`, `idImovel`, `visualizar`) VALUES (2, 1, 0);
+
+INSERT INTO `tcc_imoveis`.`usuario_pesquisa` (`idUsuario_Pesquisa`, `idUsuario`, `nome`) VALUES (1, 1, 'Residencia');
+INSERT INTO `tcc_imoveis`.`usuario_pesquisa` (`idUsuario_Pesquisa`, `idUsuario`, `nome`) VALUES (2, 1, 'Apartamento');
+INSERT INTO `tcc_imoveis`.`usuario_pesquisa` (`idUsuario_Pesquisa`, `idUsuario`, `nome`) VALUES (3, 2, 'Residencia');
+
+INSERT INTO `tcc_imoveis`.`usuario_pesquisa_imovel_atributo_tipo` (`idUsuario_Pesquisa_Imovel_Atributo_Tipo`, `idUsuario_Pesquisa`, `idImovel_Atributo_Tipo`, `idCondicao`, `valor`) VALUES (1, 1, 'QT', '=', '3');
+INSERT INTO `tcc_imoveis`.`usuario_pesquisa_imovel_atributo_tipo` (`idUsuario_Pesquisa_Imovel_Atributo_Tipo`, `idUsuario_Pesquisa`, `idImovel_Atributo_Tipo`, `idCondicao`, `valor`) VALUES (2, 1, 'PS', '>', '0');
+INSERT INTO `tcc_imoveis`.`usuario_pesquisa_imovel_atributo_tipo` (`idUsuario_Pesquisa_Imovel_Atributo_Tipo`, `idUsuario_Pesquisa`, `idImovel_Atributo_Tipo`, `idCondicao`, `valor`) VALUES (3, 2, 'PS', '=', '0');
+INSERT INTO `tcc_imoveis`.`usuario_pesquisa_imovel_atributo_tipo` (`idUsuario_Pesquisa_Imovel_Atributo_Tipo`, `idUsuario_Pesquisa`, `idImovel_Atributo_Tipo`, `idCondicao`, `valor`) VALUES (4, 3, 'CH', '=', 'NAO');
+
+
+
+/* INSERE OS REGISTROS DE IMOVEIS TESTE */
+
+INSERT INTO `tcc_imoveis`.`imovel` (`idImovel`, `descricao`, `idBairro`, `num_acessos`) VALUES (1, 'Imovel1', 1, 1);
+INSERT INTO `tcc_imoveis`.`imovel` (`idImovel`, `descricao`, `idBairro`, `num_acessos`) VALUES (2, 'Imovel2', 1, 2);
+INSERT INTO `tcc_imoveis`.`imovel` (`idImovel`, `descricao`, `idBairro`, `num_acessos`) VALUES (3, 'Imovel3', 2, 3);
+
+INSERT INTO `tcc_imoveis`.`imovel_atributo` (`idImovel_Atributo`, `idImovel`, `idImovel_Atributo_Tipo`, `valor`) VALUES (1, 1, 'QT', '3');
+INSERT INTO `tcc_imoveis`.`imovel_atributo` (`idImovel_Atributo`, `idImovel`, `idImovel_Atributo_Tipo`, `valor`) VALUES (2, 1, 'PS', '1');
+INSERT INTO `tcc_imoveis`.`imovel_atributo` (`idImovel_Atributo`, `idImovel`, `idImovel_Atributo_Tipo`, `valor`) VALUES (3, 1, 'CH', 'SIM');
+INSERT INTO `tcc_imoveis`.`imovel_atributo` (`idImovel_Atributo`, `idImovel`, `idImovel_Atributo_Tipo`, `valor`) VALUES (4, 2, 'QT', '2');
+INSERT INTO `tcc_imoveis`.`imovel_atributo` (`idImovel_Atributo`, `idImovel`, `idImovel_Atributo_Tipo`, `valor`) VALUES (5, 2, 'PS', '0');
+INSERT INTO `tcc_imoveis`.`imovel_atributo` (`idImovel_Atributo`, `idImovel`, `idImovel_Atributo_Tipo`, `valor`) VALUES (6, 3, 'CH', 'NAO');
+
+
+INSERT INTO `tcc_imoveis`.`usuario_imovel` (`idUsuario`, `idImovel`) VALUES (2, 1);
+INSERT INTO `tcc_imoveis`.`usuario_imovel` (`idUsuario`, `idImovel`) VALUES (3, 2);
+INSERT INTO `tcc_imoveis`.`usuario_imovel` (`idUsuario`, `idImovel`) VALUES (3, 3);
+
+
+
+
+

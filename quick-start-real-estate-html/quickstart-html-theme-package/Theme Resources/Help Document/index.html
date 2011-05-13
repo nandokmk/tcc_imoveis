@@ -1,0 +1,464 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Quick Start Real Estate HTML Theme Help File</title>
+
+<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+
+<link rel="stylesheet" href="css/prettyPhoto.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+
+<script type="text/javascript" src="js/jquery.scripts.js"></script>
+
+<script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
+
+<script type="text/javascript" src="js/shCore.js"></script>
+
+<script type="text/javascript" src="js/shBrushJScript.js"></script>
+
+<script type="text/javascript" src="js/shBrushXml.js"></script>
+
+<script type="text/javascript" src="js/shBrushPhp.js"></script>
+
+<script type="text/javascript" src="js/shBrushCss.js"></script>
+
+<script type="text/javascript">
+	SyntaxHighlighter.config.clipboardSwf = 'scripts/clipboard.swf';
+	SyntaxHighlighter.all();
+</script>
+
+<link href="css/shCore.css" rel="stylesheet" type="text/css" />
+
+<link href="css/shThemeRDsCustom.css" rel="stylesheet" type="text/css" />
+
+
+<!--[if IE 6]>
+<style type="text/css">
+* html #back_to_top {
+position: absolute;
+top: expression((0 + (ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop)) + 'px');
+left: expression((15 + (ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft)) + 'px');
+}
+</style>
+<![endif]--> 
+
+</head>
+
+<body>
+
+	<div id="header">
+      <div id="back_to_top"><a href="#header">TOP</a></div>
+   	<h1 id="page_title"><a href="http://www.designspike.ca/"><span><img src="images/designspike-logo.gif" width="151" height="33" alt="Designspike" border="0" /></span></a></h1>
+      <div id="side_header_nav">
+         <p><a href="http://www.designspike.ca/" target="_blank">Visit the Design Spike Website</a></p>
+         <p><a href="http://themeforest.net/user/designspike" target="_blank">View All Design Spike Files</a></p>
+      </div>
+   </div>
+
+	<div id="wrapper">
+   
+   	<div id="doc_info">
+      	<div id="doc_info_row1">
+         	<h2>Quick Start Real Estate Theme</h2>
+            <p id="doc_info_type">Type: XHTM Template</p>
+         </div>
+         <div id="doc_info_row2">
+         	<p id="doc_info_version">Version: 1.0</p>
+            <p id="doc_info_demo_links"><a href="http://themes.designspike.ca/quickstart-real-estate-html/" target="_blank">View Demo</a> | <a href="#" target="_blank">Buy This Template</a></p>
+         </div>
+      </div>
+      
+      <div id="main_content">
+
+      <p>Thank you for purchasing the theme. If you have any questions that are beyond the scope of this document, please feel free to email <a href="mailto:themes@designspike.ca">themes@designspike.ca</a>. Thanks so much!</p>
+
+      <h3>In This Document</h3>	
+
+      <ul class="toc">
+      <li><a href="#theme_features">Theme Features</a></li>
+      <li><a href="#javascript_libraries_used">JavaScript Libraries and PHP Scripts Used</a></li>
+      <li>
+      	<a href="#getting_started_customization">Getting You Started To Customize The Template</a>
+         <ul>
+         	<li><a href="#sub_custom_a">The HTML Structure</a></li>
+         	<li><a href="#sub_custom_b">The CSS Structure</a></li>
+            <li><a href="#sub_custom_0">How to edit the logo and header section of the template</a></li>
+         	<li><a href="#sub_custom_1">The navigation/menu of the template</a></li>
+         	<li><a href="#sub_custom_2">The featured slider (Image slider part)</a></li>
+            <li><a href="#sub_custom_3">The featured slider (Description slider part)</a></li>
+            <li><a href="#sub_custom_4">Change the animation effects of the sliders</a></li>
+            <li><a href="#sub_custom_5">Change the email recipient of the readymade contact forms</a></li>
+            <li><a href="#sub_custom_6">Change the email confirmation message</a></li>
+         </ul>
+      </li>
+		<li><a href="#frequently_asked_questions">Frequently Asked Questions</a></li>
+		<li><a href="#technical_support">Technical Support</a></li>
+      </ul>
+      
+      <hr />
+   
+      <h2 id="theme_features">Theme Features</h2>
+      
+      <ul>
+         <li>PSD layout Included</li>
+         <li>Comments Template</li>
+         <li>Readymade Contact Forms</li>
+         <li>Works in all major browsers including IE6 (PNG fix also added)</li>
+         <li>Home page feature slider (jquery driven)</li>
+      </ul>
+
+		<h2 id="javascript_libraries_used">JavaScript Libraries Used</h2>
+
+		<ul>
+		   <li>jQuery Library</li>
+		   <li>jQuery Superfish</li>
+		   <li>jCarousel</li>
+		   <li>jQuery Easing</li>
+         <li>jQuery Form</li>
+         <li>jQuery Validation</li>
+		   <li>DD Belated PNG fix for IE6</li>
+		   <li>Cufon</li>
+		</ul>
+
+      <hr />
+      
+      <h2 id="getting_started_customization">Getting You Started To Customize The Template</h2>
+      
+      <h3 id="sub_custom_a">HTML Structure</h3>
+      
+      <p>File : All .html files</p>
+      
+		<script type="syntaxhighlighter" class="brush: xhtml; gutter: false;"><![CDATA[
+			<!-- begin: header -->
+			<div id="header">
+				<h1>
+					<a href="index.html"><span class="hide_this">Quick Start HTML Template</span></a>
+					<span class="hide_this">Professional Real Estate Theme</span>
+				</h1>
+				<!-- begin: quick_info -->
+				<p class="quick_info">
+					<strong class="font_sansation">Contact an Agent!</strong><br />
+					If you would like to speak with one of our real estate agents immediately please call<br />
+					<strong class="font_sansation">1-888-555-1212</strong> any of our qualified agents will be happy to assist...
+				</p>
+				<!-- end: quick_info -->
+			</div>
+			<!-- end: header -->
+		]]></script>
+      
+      <ul>
+         <li>this is an example of a block of code in an HTML template file, notice that a particular section of a template is first commented with <code>&lt;!-- begin: header --&gt;</code> and ends with <code>&lt;!-- end: header --&gt;</code>, the <code>&quot;header&quot;</code> is the ID or CLASS of an HTML tag</li>
+      </ul>
+      
+      <h3 id="sub_custom_b">CSS Structure</h3>
+      
+      <p>File : style.css</p>
+      
+		<script type="syntaxhighlighter" class="brush: css; gutter: false;"><![CDATA[
+			/******************* Quick Start Real Estate Theme ********************************/
+			/*
+				
+				00. General Style
+				01. Navigation
+				02. Featured Slider
+				03. Sidebar
+				04. Map Background
+				05. Home Widget Preview Style
+				06. Single Page
+				07. Post List
+				08. Pagination Style
+				09. Contact Page
+				10. Footer Part
+				11. Comments Section
+				12. Typhography Set
+				
+			*/
+			/************************************************************************/
+			
+			/*** 00. General Style ***/
+			/** ----------------------------------------------------- **/
+			body { background: url(images/bg.gif) repeat-x center top; }
+			#wrapper { width: 960px; margin: 0 auto; }
+			#header { position: relative; min-height: 110px; height: auto !important; height: 110px; }
+			#header h1 { position: absolute; left: 18px; top: 30px; height: 36px; }
+			#header h1 a { display: block; width: 298px; height: 63px; background: url(images/logo.gif) no-repeat left top; }
+			#header p.quick_info { padding: 45px 15px 0 0; color: #6a6b6b; text-align: right; font: 11px/14px Verdana, Geneva, sans-serif; }
+			#header p.quick_info strong { color: #222; font-size: 12px; }
+			#main_content { padding: 15px 8px; }
+			#column_left { width: 720px; float: left; }
+			#column_right { width: 211px; float: right; }
+			/**/
+		]]></script>
+      
+      <ul>
+         <li>on the top portion of the CSS file "style.css" there is a table of contents so it can easily track the CSS of each section of the template</li>
+      </ul>
+      
+      <h3 id="sub_custom_0">How to edit the logo and header section of the template</h3>
+      
+      <p>File : All .html files</p>
+      
+		<script type="syntaxhighlighter" class="brush: xhtml; gutter: false;"><![CDATA[
+			<h1>
+				<a href="index.html"><span class="hide_this">Quick Start HTML Template</span></a>
+				<span class="hide_this">Professional Real Estate Theme</span>
+			</h1>																		 
+		]]></script>
+      
+      <ul>
+         <li>Locate this block of code, in between the first <code>&lt;span&gt;</code> tag, this is going to be your website title or the title of your company</li>
+         <li>The second <code>&lt;span&gt;</code> tag would be your company slogan. You can safely delete this current line if you don't want to put any text or words below your website title</li>
+         <li>Next is go to your template package, under theme resources folder, unzip the PSDs.zip and open up quick start logo template.psd with Photoshop or any of your favourite image editor that supports .psd file type</li>
+         <li>Set up your logo using that psd template and then save it as logo.gif</li>
+         <li>Now back to your .html files, locate the images folder and overwrite the logo.gif, and you're good to go</li>
+      </ul>
+      
+      <p><strong>Optional steps to tweak the logo section</strong></p>
+      
+		<script type="syntaxhighlighter" class="brush: css; gutter: false;"><![CDATA[
+			#header { position: relative; min-height: 110px; height: auto !important; height: 110px; }
+			#header h1 { position: absolute; left: 18px; top: 30px; height: 36px; }
+			#header h1 a { display: block; width: 298px; height: 63px; background: url(images/logo.gif) no-repeat left top; }
+		]]></script>
+      
+      <ul>
+      	<li>Take note that the default size of the logo.gif is 298 pixels width and 63 pixels in height. To change the CSS code of the logo section, you will need to edit the style.css file</li>
+      	<li>Open up style.css, under &quot;General Style&quot; locate the block of code like what we have above</li>
+      	<li>Here you can edit the height of the main header as well as the width and height of the default logo dimensions</li>
+      </ul>
+      
+      <h3 id="sub_custom_1">The navigation/menu of the template</h3>
+      
+      <p>File : All .html files</p>
+      
+		<script type="syntaxhighlighter" class="brush: xhtml; gutter: false;"><![CDATA[
+         <ul id="main_menu">
+            <li class="current_page_item"><a href="index.html"><span>Home</span></a></li>
+            <li><a href="single.html"><span>About Us</span></a>
+               <ul>
+                  <li><a href="#"><span>Sub Nav Button 1</span></a></li>
+                  <li><a href="#"><span>Sub Nav Button 2</span></a>
+                     <ul>
+                        <li><a href="#"><span>Sub Nav Button 1</span></a></li>
+                        <li><a href="#"><span>Sub Nav Button 2</span></a></li>
+                        <li><a href="#"><span>Sub Nav Button 3</span></a></li>
+                        <li><a href="#"><span>Sub Nav Button 4</span></a></li>
+                        <li><a href="#"><span>Sub Nav Button 5</span></a></li>
+                     </ul>
+                  </li>
+                  <li><a href="#"><span>Sub Nav Button 3</span></a></li>
+               </ul>
+            </li>
+            <li><a href="post-list.html"><span>Blog</span></a></li>
+            <li><a href="news-list.html"><span>News</span></a></li>
+            <li><a href="contact-us.html"><span>Contact Us</span></a></li>
+         </ul>
+		]]></script>
+      
+      <ul>
+         <li>Change the text between the <code>&lt;a&gt;</code> tag to change a particular menu button for example About Us to Lear More</li>
+         <li>Change the property <code>href="single.html"</code> and link it to a desired webpage</li>
+         <li>Cut and paste <code>class="current_page_item"</code> and move it in a different <code>&lt;li&gt;</code> tag to specify a current page/link</li>
+         <li>Just copy or delete a single line if you want to add or remove a particular button</li>
+      </ul>
+      
+      <h3 id="sub_custom_2">The featured slider (Image slider part)</h3>
+      
+      <p>File : index.html</p>
+      
+		<script type="syntaxhighlighter" class="brush: xhtml; gutter: false;"><![CDATA[
+			<ul id="featured_images" class="jcarousel-list">
+				<li><img src="images/featured-banner-image1.jpg" width="708" height="367" alt="Sample Image 1" /></li>
+				<li><img src="images/featured-banner-image2.jpg" width="708" height="367" alt="Sample Image 1" /></li>
+				<li><img src="images/featured-banner-image3.jpg" width="708" height="367" alt="Sample Image 1" /></li>
+				<li><img src="images/featured-banner-image4.jpg" width="708" height="367" alt="Sample Image 1" /></li>
+				<li><img src="images/featured-banner-image5.jpg" width="708" height="367" alt="Sample Image 1" /></li>
+				<li><img src="images/featured-banner-image6.jpg" width="708" height="367" alt="Sample Image 1" /></li>
+				<li><img src="images/featured-banner-image7.jpg" width="708" height="367" alt="Sample Image 1" /></li>
+			</ul>
+		]]></script>
+      
+      <ul>      
+         <li>You can edit the img src property to change the image</li>
+         <li>Images should not exceed 708 pixels in width and 367 pixels in height</li>
+         <li>Just duplicate the &lt;li&gt; block of code to add another featured item</li>
+      </ul>
+      
+      <h3 id="sub_custom_3">The featured slider (Description slider part)</h3>
+      
+		<script type="syntaxhighlighter" class="brush: xhtml; gutter: false;"><![CDATA[
+			<ul id="featured_desc" class="jcarousel-list">
+				<li>
+					<div>
+						<h2>The Title 1</h2>
+						<p>Nunc quis nibh mi. Quisque nisl tellus, condimentum non suscipit eget, sagittis et dui. Sed erat ante, sodales vitae faucibus in, elementum eu libero. Aliquam erat volutpat.</p>
+						<h3>$ 10,000</h3>
+					</div>
+				</li>
+			</ul>
+		]]></script>
+      
+      <ul>      
+         <li>Edit the content of <code>&lt;h2&gt;</code> tag for the title of the featured item</li>
+         <li>you can edit the contents of <code>&lt;p&gt;</code> for the description of the featured item</li>
+         <li>just duplicate this block of code to add another featured item</li>
+      </ul>
+      
+      <h3 id="sub_custom_4">Change the animation effects of the sliders</h3>
+      
+      <p>Open up <code>theme-assets/js/jquery.scripts.js</code> and locate this block of code</p>
+      
+		<script type="syntaxhighlighter" class="brush: javascript; gutter: false;"><![CDATA[
+			jQuery('#featured_images').jcarousel({
+				scroll: 1,
+				auto: 5,
+				wrap: 'both',
+				animation: 1500,
+				initCallback: feature_carousel_initCallback,
+				itemVisibleInCallback: {onBeforeAnimation: images_itemVisibleInCallback},
+				buttonNextHTML: null,
+				buttonPrevHTML: null,
+				easing: 'easeInOutExpo'
+			});
+		]]></script>
+      
+      <ul>
+         <li>Change the sliding effect by replacing the value of <code>easing</code> property</li>
+      </ul>
+      
+      <p><strong>Predefined easing values</strong></p>
+      
+      <div class="clear_fix">
+      <ul style="float: left; width: 15%;">
+         <li>swing</li>
+         <li>easeInQuad</li>
+         <li>easeOutQuad</li>
+         <li>easeInOutQuad</li>
+         <li>easeInCubic</li>
+         <li>easeOutCubic</li>
+         <li>easeInOutCubic</li>
+      </ul>
+      <ul style="float: left; width: 15%;">
+         <li>easeInQuart</li>
+         <li>easeOutQuart</li>
+         <li>easeInOutQuart</li>
+         <li>easeInQuint</li>
+         <li>easeOutQuint</li>
+         <li>easeInOutQuint</li>
+         <li>easeInSine</li>
+      </ul>
+      <ul style="float: left; width: 15%;">
+         <li>easeOutSine</li>
+         <li>easeInOutSine</li>
+         <li>easeInExpo</li>
+         <li>easeOutExpo</li>
+         <li>easeInOutExpo</li>
+         <li>easeInCirc</li>
+         <li>easeOutCirc</li>
+      </ul>
+      <ul style="float: left; width: 15%;">
+         <li>easeInOutCirc</li>
+         <li>easeInElastic</li>
+         <li>easeOutElastic</li>
+         <li>easeInOutElastic</li>
+         <li>easeInBack</li>
+         <li>easeOutBack</li>
+         <li>easeInOutBack</li>
+      </ul>
+      <ul style="float: left; width: 15%;">
+         <li>easeInBounce</li>
+         <li>easeOutBounce</li>
+         <li>easeInOutBounce</li>
+      </ul>
+      </div>
+      
+      <h3 id="sub_custom_5">Change the email recipient of the readymade contact forms</h3>
+      
+      <p>Open up <code>theme-assets/php/contact-processor.php</code> and locate this line of code</p>
+      
+		<script type="syntaxhighlighter" class="brush: php; gutter: false;"><![CDATA[
+			$to = "sample@sample.com"; //your email
+		]]></script>
+      
+      <h3 id="sub_custom_6">Change the email confirmation message</h3>
+      
+      <p>Open up <code>theme-assets/php/contact-processor.php</code> and locate this block of code</p>
+      
+		<script type="syntaxhighlighter" class="brush: php; gutter: false;"><![CDATA[
+			// return results
+			if ($success) :
+				echo '<h3>Message Sent!</h3>';
+				echo '<p>Thank you for taking the time to contact us. We value your opinions and appreciate your concerns. A customer service representative will be contacting you soon.</p>';
+			else :
+				echo '<br /><h4>Message Sending Failed!</h4>';
+			endif;
+		]]></script>
+      
+      <ul>
+         <li>Change the text inside the &lt;h3&gt; tag for the title of the confirmation message</li>
+         <li>Change the text inside the &lt;p&gt; tag for the message body</li>
+      </ul>
+      
+      <h3 id="sub_custom_6">How to change the google map</h3>
+      
+      <p>Open up <code>contact-us.html</code> and locate this block of code</p>
+      
+		<script type="syntaxhighlighter" class="brush: javascript; gutter: false;"><![CDATA[
+			jQuery(document).ready(function(){
+				if (GBrowserIsCompatible()) {
+				
+					var map = new GMap2(document.getElementById('map_holder'));
+					map.setCenter(new GLatLng(44.797916, -93.278046), 8);
+					var point = new GLatLng(44.797916, -93.278046);
+					map.addOverlay(new GMarker(point));
+					
+				}
+			});
+		]]></script>
+      
+      <ul>
+         <li>Try this <a href="http://itouchmap.com/latlong.html">website</a>, this will help you locate the latitude and longitude of your address</li>
+         <li>Copy your new latitude numbers and change this numbers <code style="color: #900">44.797916</code> on the code</li>
+         <li>Copy your new longitude numbers and change this numbers <code style="color: #900">-93.278046</code> on the code</li>
+      </ul>
+      
+      http://itouchmap.com/latlong.html
+      
+      <hr />
+
+      <h2 id="frequently_asked_questions">Frequently Asked Questions</h2>
+      
+      <dl>
+      	<dt>Can I use this theme on my client's website?</dt>
+      	<dd>Yes. Your license includes the rights to use the template on any one website at a time. If you'd like to use the template as part of a service, please consider purchasing an Extended License.</dd>
+
+      	<dt>Can I make modifications to this theme?</dt>
+      	<dd>Feel free to make any modifications you need to the theme. Also feel free to blog about it and show your friends, but please do not redistribute the theme with your changes.</dd>
+      </dl>
+      
+      <hr />
+      
+      <h2 id="technical_support">Technical Support</h2>
+
+      <h3>Other Problems</h3>
+
+      <p>If you have any questions or are having trouble getting the theme working properly please send us an email at <a href="mailto:themes@designspike.ca">themes@designspike.ca</a></p>
+
+
+      </div> <!-- end: main_content -->
+      
+</div> <!-- end: wrapper -->
+   
+   <div id="footer">
+      <p>Copyright &copy; Design Spike</p>
+   </div>
+   
+</body>
+
+</html>

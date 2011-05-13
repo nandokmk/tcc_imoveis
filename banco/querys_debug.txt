@@ -1,0 +1,63 @@
+/* validacoes para pesquisa de atendimento de todas condicoes de busca */
+SELECT * FROM `tcc_imoveis`.`view_pesquisa_usuario_tipos_atributos_imovel`;
+SELECT * FROM `tcc_imoveis`.`view_imoveis_seus_tipos_atributos`;
+SELECT * FROM `tcc_imoveis`.`view_imoveis_atendem_todas_condicoes_pesquisa`;
+
+select distinct 
+   UP.idUsuario,
+   UP.nome,
+   UP.idusuario_Pesquisa,
+   IM.idImovel
+from usuario_pesquisa UP 
+
+inner join usuario_pesquisa_imovel_atributo_tipo UA
+  on UA.idUsuario_Pesquisa = UP.idUsuario_Pesquisa
+
+inner join imovel_Atributo_Tipo IAT 
+  on IAT.idImovel_Atributo_Tipo = UA.idImovel_Atributo_Tipo
+   
+inner join imovel_Atributo IA
+  on IA.idImovel_Atributo_Tipo = UA.idImovel_Atributo_Tipo
+
+inner join  imovel IM  
+  on IA.idImovel = IM.idImovel
+
+where 
+-- UP.idusuario_Pesquisa=1 AND
+
+(
+(UA.idCondicao='=' and IA.valor = UA.valor)
+ or (UA.idCondicao='>' and IA.valor > UA.valor)
+ or (UA.idCondicao='<' and IA.valor < UA.valor)
+ or (UA.idCondicao='>=' and IA.valor >= UA.valor)
+ or (UA.idCondicao='<=' and IA.valor <= UA.valor)
+ or (UA.idCondicao='<>' and IA.valor <> UA.valor)
+)
+and IM.idImovel not in (
+select DISTINCT NIA.idImovel from imovel_Atributo NIA
+inner join Usuario_Pesquisa_Imovel_Atributo_Tipo NUA
+  on NUA.idImovel_Atributo_Tipo = NIA.idImovel_Atributo_Tipo 
+where
+   (
+     NUA.idusuario_Pesquisa = UP.idusuario_Pesquisa
+and 
+(NUA.idCondicao='=' and NiA.valor <> NuA.valor)
+ OR (NUA.idCondicao='>' and NiA.valor <= NuA.valor)
+ OR (NUA.idCondicao='<' and NiA.valor >= NuA.valor)
+ OR (NUA.idCondicao='>=' and NiA.valor < NuA.valor)
+ OR (NUA.idCondicao='<=' and NiA.valor > NuA.valor)
+ OR (NUA.idCondicao='<>' and NiA.valor = NuA.valor)
+      )
+)
+order by 
+UP.idUsuario,
+IM.idImovel 
+
+/* edicao dos atributos de busca*/
+EDIT `tcc_imoveis`.`usuario_pesquisa_imovel_atributo_tipo` ORDER BY idusuario_pesquisa, idimovel_atributo_tipo;
+
+/* edicao dos atributos do imovel*/
+EDIT `tcc_imoveis`.`imovel_atributo` order by idimovel,idimovel_atributo_tipo;
+
+
+
