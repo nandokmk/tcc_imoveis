@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "PolygonResult";
+}
+
+<h2>PolygonResult</h2>
+
+@foreach (Tcc_Imoveis.Models.Imovel_Result i in ViewBag.imoveis)
+{
+    
+    @i.x.ToString()
+
+}

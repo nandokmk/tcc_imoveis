@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Tcc_Imoveis.Models;
+using System.Data.Objects;
+using System.Data.Objects.DataClasses;
+using System.Data.EntityClient;
 
 namespace Tcc_Imoveis.Controllers
 {
@@ -22,7 +25,36 @@ namespace Tcc_Imoveis.Controllers
 
         public ActionResult Details(int id)
         {
+
+            tcc_imoveisEntities tcc = new tcc_imoveisEntities();
+
+            ObjectResult<GetImovel_Result> imovel = tcc.get_imovel(id);
+
+            ViewBag.imovel = imovel.ElementAt(0);
+            imovel.Dispose();
+                
+            ObjectResult<ImovelAtributo_Result> atributos = tcc.ListaAtributosImovel(id);
+
+            ViewBag.imovelAtributos = atributos.ToList();
+            atributos.Dispose();
+
+            ObjectResult<ImovelImagens_Result> imagens = tcc.ListaImagensImovel(id);
+
+            ViewBag.imovelImagens = imagens.ToList();
+            imagens.Dispose();
+
+
+       
+            
+
             return View();
+
+            
+
+               
+                
+            
+           
         }
 
         //
@@ -31,12 +63,7 @@ namespace Tcc_Imoveis.Controllers
         public ActionResult Create()
         {
             
-            using (var db = new tcc_imoveisEntities1())
-            {
-                List<bairro> bairros = db.bairro.ToList();
-                ViewBag.bairros = bairros;
-            }
-
+           
 
             return View();
         } 

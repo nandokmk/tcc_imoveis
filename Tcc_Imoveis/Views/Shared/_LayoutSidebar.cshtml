@@ -1,0 +1,104 @@
+﻿<ul id="sidebar">
+            <li class="clearFix widget">
+               <div id="search_widget">
+                  <h2 class="widget_title">Listas de Pesquisa</h2>
+                
+                     <input type="hidden" value="" class="s" id="s" name="s"/>
+                     <p>
+                        <label class="label_location" for="id_select_location">Endereço:</label>
+                     </p>
+                     <p>
+                        <input type="text" value="" id="id_input_search" class="input_price_low" name="search_location"/>
+                     </p>
+                     <p>
+                        <label class="label_type" for="for_sale">Tipo de Pesquisa:</label>
+                     </p>
+                     <ul>
+                        <li>
+                           <input type="radio" checked="checked" id="none_selected" name="listing_type" value="rbutton_none"/>
+                           <label for="none_selected">Indiferente</label>
+                        </li>
+                        <li>
+                           <input type="radio" id="for_sale" name="listing_type" value="rbutton_home_sale"/>
+                           <label for="for_sale">Casas à venda</label>
+                        </li>
+                        <li>
+                           <input type="radio" id="for_rent" name="listing_type" value="rbutton_for_rent"/>
+                           <label for="for_rent">Aluguel</label>
+                        </li>
+                        <li>
+                           <input type="radio" id="foreclosures" name="listing_type" value="rbutton_foreclosure"/>
+                           <label for="foreclosures">Coberturas</label>
+                        </li>
+                        <li>
+                           <input type="radio" id="new_homes" name="listing_type" value="rbutton_new_home"/>
+                           <label for="new_homes">Imóveis novos</label>
+                        </li>
+                     </ul>
+                     <p>
+                        <label class="label_price" for="id_input_price_low">Valor:</label>
+                     </p>
+                     <p>
+                        <input type="text" value="" id="id_input_price_low" class="input_price_low" name="price_min"/>
+                        <span>até</span>
+                        <input type="text" value="" id="id_input_price_high" class="input_price_high" name="price_max"/>
+                     </p>
+                     <p>
+                        <label class="label_bedrooms" for="id_select_bedrooms">Quartos:</label>
+                     </p>
+                     <p>
+                        <select id="id_select_bedrooms" class="select_bedrooms" name="bedrooms">
+                           <option selected="selected" value="0">Indiferente</option>
+                           <option value="1">1+</option>
+                           <option value="2">2+</option>
+                           <option value="3">3+</option>
+                           <option value="4">4+</option>
+                           <option value="5">5+</option>
+                        </select>
+                     </p>
+                     <p>
+                        <label class="label_bathrooms" for="id_select_bathrooms">Banheiros:</label>
+                     </p>
+                     <p>
+                        <select id="id_select_bathrooms" class="select_bathrooms" name="bathrooms">
+                           <option selected="selected" value="0">Indiferente</option>
+                           <option value="1">1+</option>
+                           <option value="2">2+</option>
+                           <option value="3">3+</option>
+                           <option value="4">4+</option>
+                        </select>
+                     </p>
+                     <p class="button_filter_listing">
+                        <button type="submit" value="Start Searching" id="start_search_button" class="searchButton png_fix" > <span>Iniciar Busca</span> </button>
+                     </p>
+                  
+               </div>
+            </li>
+            <li class="clearFix widget">
+               <div class="widget_wrapper">
+                  <h2 class="widget_title">Busca Rápida</h2>
+                  <ul>
+                     <li><a href="#">Abaixo de R$100.000</a></li>
+                     <li><a href="#">R$100,000 - R$150.000</a></li>
+                     <li><a href="#">R$150,000 - R$250.000</a></li>
+                     <li><a href="#">acima de R$250,000</a></li>
+                     <li><a href="#">2-3 Banheiros</a></li>
+                     <li><a href="#">4+ Banheiros</a></li>
+                     <li><a href="#">Terrenos</a></li>
+                  </ul>
+               </div>
+            </li>
+            <li class="clearFix widget">
+               <div class="widget_wrapper">
+                  <h2 class="widget_title">Dicas imobiliárias</h2>
+                  <ul>
+                     <li><a href="#">Como alugar um imóvel.</a></li>
+                     <li><a href="#">Como calcular o valor do seu imóvel.</a></li>
+                     <li><a href="#">Vantagens do imóvel na planta.</a></li>
+                     <li><a href="#">Como imobiliar seu imóvel com requinte.</a></li>
+                     <li><a href="#">Casa dos artistas.</a></li>
+                  </ul>
+               </div>
+            </li>
+         </ul>
+

@@ -3,45 +3,40 @@
 }
 
 <ul id="navigation" class="clear_fix roundify">
-      <li class="current_page_item">@Html.ActionLink("Home", "Index", "Home",new { @class="main_buttons"})</li>
-      <li> <a href="single.html" class="main_buttons" >@Html.ActionLink("About", "About", "Home", new { @class = "main_buttons" })</a>
+      <li class="current_page_item">@Html.ActionLink("Home", "Index", new {controller = "Home"},new { @class="main_buttons"})</li>
+      <li><a class="main_buttons">Institucional</a>
          <ul>
-            <li><a href="#"><span>Sub Nav Button 1</span></a></li>
-            <li> <a href="#"><span>Sub Nav Button 2</span></a>
-               <ul>
-                  <li><a href="#"><span>Sub Nav Button 1</span></a></li>
-                  <li><a href="#"><span>Sub Nav Button 2</span></a></li>
-                  <li><a href="#"><span>Sub Nav Button 3</span></a></li>
-                  <li><a href="#"><span>Sub Nav Button 4</span></a></li>
-                  <li class="last"><a href="#"><span>This is a long text to sample a wrap</span></a></li>
-               </ul>
-            </li>
-            <li><a href="#"><span>Sub Nav Button 3</span></a></li>
-            <li><a href="#"><span>Sub Nav Button 4</span></a></li>
-            <li class="last"><a href="#"><span>This is a long text to sample a wrap</span></a></li>
+            <li>@Html.ActionLink("Sobre nós", "SobreNos", new { controller = "Home" }, new { @class = "main_buttons" })</li>
+            <li class="last">@Html.ActionLink("Contato", "Contato", new { controller = "Home" }, new { @class = "main_buttons" })</li>
          </ul>
       </li>
-      <li><a href="buyers.html" class="main_buttons" >Buyers</a></li>
-      <li> <a href="sellers.html" class="main_buttons" >Sellers</a>
+      <li><a class="main_buttons">Busca</a>
          <ul>
-            <li><a href="#"><span>Sub Nav Button 1</span></a></li>
-            <li> <a href="#"><span>Sub Nav Button 2</span></a>
-               <ul>
-                  <li><a href="#"><span>Sub Nav Button 1</span></a></li>
-                  <li><a href="#"><span>Sub Nav Button 2</span></a></li>
-                  <li><a href="#"><span>Sub Nav Button 3</span></a></li>
-                  <li><a href="#"><span>Sub Nav Button 4</span></a></li>
-                  <li class="last"><a href="#"><span>This is a long text to sample a wrap</span></a></li>
-               </ul>
-            </li>
-            <li><a href="#"><span>Sub Nav Button 3</span></a></li>
-            <li><a href="#"><span>Sub Nav Button 4</span></a></li>
-            <li class="last"><a href="#"><span>This is a long text to sample a wrap</span></a></li>
+            <li>@Html.ActionLink("Busca Simples", "Simples", new { controller = "Busca" }, new { @class = "main_buttons" })</li>
+            <li>@Html.ActionLink("Busca Intermediária", "Intermediaria", new { controller = "Busca" }, new { @class = "main_buttons" })</li>
+            <li class="last">@Html.ActionLink("Busca Avançada", "Avancada", new { controller = "Busca" }, new { @class = "main_buttons" })</li>
          </ul>
       </li>
-      <li><a href="post-list.html" class="main_buttons" >Blog</a></li>
-      <li><a href="news-list.html" class="main_buttons" >News</a></li>
-      <li><a href="contact-us.html" class="main_buttons" >Contact Us</a></li>
+      <li>@Html.ActionLink("Anuncie", "Index", new { controller = "Novidades" }, new { @class = "main_buttons" })</li>
+      <li>@Html.ActionLink("Cadastre-se", "Index", new { controller = "Novidades" }, new { @class = "main_buttons" })</li>
+      <li><a class="main_buttons">Minha área</a>
+         <ul>
+            <li> <a href="/Map/Listas"><span>Minhas Listas</span></a>
+               <ul>
+                  <li><a href="#"><span>Compartilhadas</span></a></li>
+                  <li><a href="#"><span>Imóveis Escolhidos</span></a></li>
+                  <li class="last"><a href="#"><span>Imóveis Excluídos</span></a></li>
+               </ul>
+            </li>
+            <li> <a href="#"><span>Minhas Pesquisas</span></a>
+            <li class="last"><a href="#"><span>Meus dados</span></a></li>
+         </ul>
+      </li>
+      <li><a class="main_buttons">Glossário</a></li>
+      <!--
+      <li>@Html.ActionLink("Novidades", "Index", new { controller = "Novidades" }, new { @class = "main_buttons" })</li>
+      <li>@Html.ActionLink("Blog", "Index", new { controller = "Blog" }, new { @class = "main_buttons" })</li>
+      -->
    </ul>
    <!-- end: navigation -->
 

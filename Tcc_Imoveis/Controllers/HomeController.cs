@@ -10,12 +10,17 @@ namespace Tcc_Imoveis.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Welcome to ASP.NET MVC!";
+            ViewBag.Message = "Pagina principal!";
 
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult SobreNos()
+        {
+            return View();
+        }
+
+        public ActionResult Contato()
         {
             return View();
         }

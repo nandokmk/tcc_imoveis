@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Listas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Tcc_Imoveis.Models;
+@using System.Data.Objects;
+<h2>Listas</h2>
+
+<ul>
+@foreach (Pesquisa_Result pesquisa in ViewBag.pesquisas)
+{
+    <li>@Html.ActionLink(pesquisa.nome, "MostraBusca", new { id = pesquisa.idPesquisa })</li>
+}
+    
+</ul>

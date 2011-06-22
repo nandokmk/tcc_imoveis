@@ -14,7 +14,7 @@
     <AssemblyName>Tcc_Imoveis</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,6 +35,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
+    <Reference Include="Facebook">
+      <HintPath>..\packages\Facebook.5.0.35.0\lib\net40-client\Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Facebook.Web">
+      <HintPath>..\packages\FacebookWeb.5.0.35.0\lib\net40\Facebook.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Facebook.Web.Mvc">
+      <HintPath>..\packages\FacebookWebMvc.5.0.35.0\lib\net40\Facebook.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
@@ -63,103 +72,86 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\BuscaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImovelController.cs" />
+    <Compile Include="Controllers\MapController.cs" />
+    <Compile Include="Controllers\NovidadesController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\bairro.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\cidade.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\imovel.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\imovel_anuncio.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\imovel_atributo.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\imovel_atributo_tipo.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\imovel_imagens.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\imovel_tipo.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\mensagem.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\FacebookUser.cs" />
+    <Compile Include="Models\InMemoryUserStore.cs" />
     <Compile Include="Models\Model1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\pesquisa_condicoes.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tipo_dado.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tipo_usuario.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\uf.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usuario.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usuario_lista.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usuario_lista_imovel.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usuario_pesquisa.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usuario_pesquisa_imovel_atributo_tipo.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usuario_pesquisa_posicao.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\view_imoveis_atendem_pelo_menos_uma_condicao_pesquisa.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\view_imoveis_atendem_tipo_atributo_pesquisa.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\view_imoveis_atendem_todas_condicoes_pesquisa.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\view_imoveis_seus_tipos_atributos.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\view_pesquisa_usuario_tipos_atributos_imovel.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\tcc_imoveisEntities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\ie.css" />
+    <Content Include="Content\images\about-us-image.jpg" />
+    <Content Include="Content\images\ajax-loader.gif" />
+    <Content Include="Content\images\bg-error-button.gif" />
+    <Content Include="Content\images\bg-input-text.gif" />
+    <Content Include="Content\images\bg-strip-footer.gif" />
+    <Content Include="Content\images\bg-text-area-home.gif" />
+    <Content Include="Content\images\bg-text-field-home.gif" />
+    <Content Include="Content\images\bg-textarea-big.gif" />
+    <Content Include="Content\images\bg-textarea.gif" />
+    <Content Include="Content\images\bg.gif" />
+    <Content Include="Content\images\black-60-opacity.png" />
+    <Content Include="Content\images\blockquote-bg.gif" />
+    <Content Include="Content\images\blue-bullet.gif" />
+    <Content Include="Content\images\bullets-bg.gif" />
+    <Content Include="Content\images\button-comment-reply.png" />
+    <Content Include="Content\images\button-comment-submit.gif" />
+    <Content Include="Content\images\button-read-more.gif" />
+    <Content Include="Content\images\button-send.gif" />
+    <Content Include="Content\images\button-send2.gif" />
+    <Content Include="Content\images\button-start-searching.png" />
+    <Content Include="Content\images\button-start-searching2.png" />
+    <Content Include="Content\images\button-view-all.gif" />
+    <Content Include="Content\images\comment-avatar-big.gif" />
+    <Content Include="Content\images\comment-avatar-small.gif" />
+    <Content Include="Content\images\featured-banner-image1.jpg" />
+    <Content Include="Content\images\featured-banner-image2.jpg" />
+    <Content Include="Content\images\featured-banner-image3.jpg" />
+    <Content Include="Content\images\featured-banner-image4.jpg" />
+    <Content Include="Content\images\featured-banner-image5.jpg" />
+    <Content Include="Content\images\featured-banner-image6.jpg" />
+    <Content Include="Content\images\featured-banner-image7.jpg" />
+    <Content Include="Content\images\featured-button-off.png" />
+    <Content Include="Content\images\featured-button-on.png" />
+    <Content Include="Content\images\featured-desc-bg.png" />
+    <Content Include="Content\images\footer-bg.gif" />
+    <Content Include="Content\images\icon-categories.gif" />
+    <Content Include="Content\images\icon-graph.gif" />
+    <Content Include="Content\images\icon-money.gif" />
+    <Content Include="Content\images\icon-tag.gif" />
+    <Content Include="Content\images\logo.gif" />
+    <Content Include="Content\images\logo.jpg" />
+    <Content Include="Content\images\map-bg.gif" />
+    <Content Include="Content\images\maps_center_icon.png" />
+    <Content Include="Content\images\maps_ico_house.png" />
+    <Content Include="Content\images\nav-bg-middle.gif" />
+    <Content Include="Content\images\nav-bullet-hovered.gif" />
+    <Content Include="Content\images\nav-button-bg-active.gif" />
+    <Content Include="Content\images\nav-button-bg-normal.gif" />
+    <Content Include="Content\images\post-list-read-more.gif" />
+    <Content Include="Content\images\sample-image-1.jpg" />
+    <Content Include="Content\images\sample-image-2.jpg" />
+    <Content Include="Content\images\search-widget-bg.gif" />
+    <Content Include="Content\images\shadow.png" />
+    <Content Include="Content\images\sidebar-widget-bg.gif" />
+    <Content Include="Content\images\table-header-bg.gif" />
+    <Content Include="Content\reset.css" />
+    <Content Include="Content\style.css" />
     <Content Include="Content\themes\base_admin\css\1col.css" />
     <Content Include="Content\themes\base_admin\css\2col.css" />
     <Content Include="Content\themes\base_admin\design\arrow-01.gif" />
@@ -226,6 +218,7 @@
     <Content Include="Content\themes\base_admin\css\slimbox2.css" />
     <Content Include="Content\themes\base_admin\css\style.css" />
     <Content Include="Global.asax" />
+    <Compile Include="Models\Util.cs" />
     <Content Include="Scripts\base_admin\js\jquery.js" />
     <Content Include="Scripts\base_admin\js\jquery.slimbox2.js" />
     <Content Include="Scripts\base_admin\js\jquery.switcher.js" />
@@ -234,7 +227,12 @@
     <Content Include="Scripts\base_admin\js\toggle.js" />
     <Content Include="Scripts\base_admin\js\ui.core.js" />
     <Content Include="Scripts\base_admin\js\ui.tabs.js" />
+    <Content Include="Scripts\LibMaps\distancewidget.js" />
     <Content Include="Scripts\LibMaps\polygon.min.js" />
+    <Content Include="Scripts\Maps\acoes.js" />
+    <Content Include="Scripts\Maps\eventos.js" />
+    <Content Include="Scripts\Maps\marker.js" />
+    <Content Include="Scripts\Maps\widgets_mapa.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -280,14 +278,16 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
-    <Content Include="Views\Account\LogOn.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -309,22 +309,45 @@
     <Content Include="Views\Search\Fernando.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\Imovel\Create.cshtml" />
+    <Content Include="Views\Shared\_LayoutMenu.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Models\Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-    </None>
-    <None Include="Models\Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </None>
-    <Content Include="Views\Imovel\Create.cshtml" />
-    <Content Include="Views\Shared\_LayoutMenu.cshtml" />
+    <Content Include="Views\Map\PolygonResult.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Imovel\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Map\MostraBusca.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Map\ProfileInfo.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Map\Listas.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_LayoutSidebar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Contato.cshtml" />
+    <Content Include="Views\Home\SobreNos.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Map\BuscaGeral.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\FacebookInit.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
@@ -341,12 +364,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49284</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl>http://localhost:3434/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -27,7 +27,7 @@ body { background: url(/Content/images/bg.gif) repeat-x center top; }
 #wrapper { width: 960px; margin: 0 auto; }
 #header { position: relative; min-height: 110px; height: auto !important; height: 110px; }
 #header h1 { position: absolute; left: 18px; top: 30px; height: 36px; }
-#header h1 a { display: block; width: 298px; height: 63px; background: url(/Content/images/logo.gif) no-repeat left top; }
+#header h1 a { display: block; width: 298px; height: 63px; background: url(/Content/images/logo.jpg) no-repeat left top; }
 #header p.quick_info { padding: 45px 15px 0 0; color: #6a6b6b; text-align: right; font: 11px/14px Verdana, Geneva, sans-serif; }
 #header p.quick_info strong { color: #222; font-size: 12px; }
 #main_content { padding: 15px 8px; }
@@ -376,3 +376,38 @@ body { background: url(/Content/images/bg.gif) repeat-x center top; }
 .align_right { margin: 0 0 2px 7px; display: inline; float: right; }
 .align_left { margin: 0 7px 2px 0; display: inline; float: left; }
 /**/
+
+#area-site{width:550px;float:left;height:1000px; margin:0 auto; background-color:#FFF;font-family:Arial, Helvetica, sans-serif; }
+#area-site .titulo{color:#4d6b81; font-size:30px; margin:0px; border-bottom:1px dotted #bcbebf; padding-bottom:15px;}
+#area-site .bloco1{height:330px; border-bottom:1px dotted #bcbebf; padding:15px 0px 15px 0px;}
+#area-site .bloco1 .texto1{width:320px; height:330px; font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#000; float:left; text-align:justify; line-height:18px;}
+#area-site .bloco1 .texto1 h2{margin:0px 0px 10px 0px; font-size:16px;}
+#area-site .bloco1 .fotos1{width:331px; height:330px; font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#000; float:right; text-align:justify; }
+#area-site .bloco1 .fotos1 .foto-amplia img{border:1px solid #bcbebf; text-decoration:none; }
+#area-site .bloco2, #area-site .bloco3{width:682px; border-bottom:1px dotted #bcbebf; padding:15px 0px 15px 0px;}
+#area-site .bloco2 .titulo2, #area-site .bloco3 .titulo2{color:#4d6b81; font-size:18px; margin:0px; padding-bottom:15px;}
+#area-site .bloco3 .mapa{width:550px; height:342px; border:1px solid #4d6b81;}
+#area-site .bloco3 a.bt1 {width:151px; height:29px; display:block;  color:#FFF; background:url(/Content/images/bt1.jpg) 0 0 no-repeat; text-decoration:none; padding:5px 0px 0px 65px;}
+#area-site .bloco3 a:hover.bt1 {color: #FC0;}
+#area-site .bloco3 input, #area-site .bloco3 textarea{width:400px;}
+#area-site .topo-lista{height:30px; padding: 10px 0px 10px 0px;}
+#area-site a.bt2 {width:101px; height:29px; display:block; overflow:hidden; float:right;  color:#FFF; background:url(/Content/images/bt1.jpg) 0 0 no-repeat; text-decoration:none; padding: 8px 0px 0px 50px;}
+#area-site a:hover.bt2 {color: #FC0;}
+#area-site .resultado1{width:642px; height:114px; padding:20px; margin:5px 0px 5px 0px; display:block; overflow:hidden; background:url(/Content/images/bg-lista.jpg) 0 0 no-repeat; position:relative;}
+#area-site .resultado1 .thumb1{border:1px solid #ccc; float:left;}
+#area-site .resultado1 .texto2{height:112px; width:250px; float:left; font-size:12px; line-height:18px; margin-left:20px;}
+#area-site .resultado1 .texto2 strong{color:#4d6b81;}
+#area-site .resultado1 a.detalhes {position:absolute; color:#F00; font-weight:bold; font-size:14px; text-decoration:none; top:65px; right:30px;}
+#area-site .resultado1 a:hover.detalhes{color:#C00;}
+.cadastro strong{color:#F00;}
+.cadastro input, .cadastro select, .cadastro input{width:160px;}
+#area-site a.bt3 {width:91px; height:29px; display:block; overflow:hidden; margin:auto;  color:#FFF; background:url(/Content/images/bt1.jpg) 0 0 no-repeat; text-decoration:none; padding: 8px 0px 0px 60px;}
+#area-site a:hover.bt3 {color: #FC0;}
+
+/*** 12. Typhography Set ***/
+/** ----------------------------------------------------- **/
+
+#area-site .bloco2 table { width: 100%; margin-bottom: 15px; margin-top: 5px; }
+#area-site .bloco2 table th { padding: 5px; font: bold 12px Arial, Helvetica, sans-serif; color: #FFF; background: url(/Content/images/table-header-bg.gif) repeat-x; border: 1px solid #25547C; border-bottom: 1px solid #14354e; }
+#area-site .bloco2 table td { padding: 5px; border: 1px solid #25547C; border-collapse: collapse; font: 12px/18px Arial, Helvetica, sans-serif; color: #333; }
+#area-site .bloco2 table tr.odd td { background: #f0f0f0; }

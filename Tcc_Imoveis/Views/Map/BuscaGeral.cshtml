@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "BuscaGeral";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using Tcc_Imoveis.Models;
+@using System.Data.Objects;
+
+<h2>BuscaGeral</h2>
+
+<style>
+    .th_attr 
+    {
+        text-align:left;
+        text-transform:uppercase;
+    }
+</style>
+
+<div id="column_left">
+
+<form action="/Map/PesquisaTempoReal" method="post">
+<table class="tb_att">
+    <thead>
+        <tr>
+            <th class="th_attr">Atributo</th>
+            <th class="th_attr">Condição</th>
+            <th class="th_attr">Valor</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (AtributosGerais_Result atributos in ViewBag.atributos)
+    {
+        <tr>
+   
+        <td>@atributos.Descricao</td>
+        <td>
+        <select id="@("condicao_" + atributos.IdImovelAtributoTipo)" name="@("condicao_" + atributos.IdImovelAtributoTipo)">
+            @foreach (Condicoes_Result condicao in ViewBag.condicoes)
+            {
+                <option value="@condicao.IdCondicao">@condicao.Descricao</option>
+            }
+        </select>
+        </td>
+        <td>
+        @if (atributos.IdTipoDado == "NU")
+        {
+            <input type="text" name="@atributos.IdImovelAtributoTipo" id="@atributos.IdImovelAtributoTipo" />
+        }
+        else if (atributos.IdTipoDado == "BO")
+        {
+            <select id="@atributos.IdImovelAtributoTipo" name="@atributos.IdImovelAtributoTipo">
+                <option value="SIM">SIM</option>
+                <option value="NÂO">NÂO</option>
+            </select>
+        }
+        </td>
+    
+        </tr>
+                
+    }
+    </tbody>
+</table>
+<input type="submit" value="buscar" />
+</form>
+</div>

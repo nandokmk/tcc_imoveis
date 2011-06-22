@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "Contato";
+}
+
+ <div id="contact_page">
+		
+        <div class="basic_style_1">
+         <h1 class="font_sansation page_title">Contate-nos</h1>
+         <p>Lorem ipsum dolor sit amet, <strong>this is bold text</strong> consectetur adipiscing elit.
+         <em>This font is in italic</em> cras lacinia pellentesque elit nec sodales. Etiam vehicula egestas  interdum.
+         Nulla facilisi. In at lectus odio, quis iaculis dui. Praesent  et nisl nulla. Vestibulum eget turpis eu justo faucibus facilisis.
+         Quisque fringilla luctus lacus sit amet dictum. Aliquam scelerisque  iaculis velit quis ullamcorper.
+         Pellentesque et leo ante, at fringilla lorem. Vestibulum  imperdiet quam mi, sed feugiat purus
+         <a href="http://localhost/testbed/remix/single.html#">Proin condimentum</a>,  ante ut tincidunt varius, leo urna facilisis nisl,
+         sed malesuada erat  justo ut dolor. Mauris lectus est, iaculis id consequat sollicitudin,  mollis commodo augue. 
+         Curabitur auctor neque pharetra metus luctus  consectetur. Cras faucibus sem eget nunc accumsan consequat.
+         Cras  posuere ultrices eros eget placerat.</p>
+         <h6 class="font_sansation">Sample Contact Information and Map</h6>
+         
+         <div id="map_bg">
+            <div id="map_wrapper" class="clear_fix" >
+            
+            	<div class="map_info">
+               	<h2 class="font_sansation">Contact Information</h2>
+                  <h3>Office</h3>
+                  <p>Suite #300 - 123 Elm St.<br />
+						Chicago, Illionois 90210 </p>
+                  <h3>Phone</h3>
+                  <p>Toll Free : 1-800-555-1212</p>
+                  <p>Local Number : 1-905-555-1212</p>
+                  <p>Fax Number : 1-905-555-1234</p>
+                  <p>Email Address : tom@jones.com</p>
+               </div>
+            
+               <div id="map_holder"></div>
+            
+            </div>
+         </div>
+         
+         <br />
+         <h6 class="font_sansation">Sample Readymade Contact Form</h6>
+         <div id="form_result"></div>
+         <form action="/theme-assets/php/contact-processor.php" method="post" id="contact_form">
+            <p>
+               <label for="id_name">Name : </label>
+               <span class="bg_input_text"><input type="text" id="id_name" name="input_name" /></span>
+            </p>
+            
+            <p>
+               <label for="id_email">Email : </label>
+               <span class="bg_input_text"><input type="text" id="id_email" name="input_email" /></span>
+            </p>
+            
+            <p>
+               <label for="id_subject">Subject : </label>
+               <span class="bg_input_text"><input type="text" id="id_subject" name="input_subject" /></span>
+            </p>
+            
+            <p>
+               <label for="id_message">Message : </label>
+               <span class="bg_textarea"><textarea id="id_message" name="textarea_message" rows="" cols="" ></textarea></span>
+            </p>
+            
+            <p>
+               <button type="submit" id="id_send" name="button_send" >
+                  <span class="hide_this">Send</span>
+               </button>
+            </p>
+			</form>
+         </div>
+      </div>

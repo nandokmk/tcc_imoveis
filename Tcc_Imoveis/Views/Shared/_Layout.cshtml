@@ -39,13 +39,14 @@
    <div id="header">
       <h1>
          <a href="/"><span class="hide_this">@ViewBag.Subtitulo</span></a>
-         <span class="hide_this">Professional Real Estate Theme</span>
+         <span class="hide_this">TCC Imoveis</span>
       </h1>
+        
       <!-- login area @Html.Partial("_LogOnPartial") -->
       <!-- begin: quick_info -->
-      <p class="quick_info"> <strong class="font_sansation">Contact an Agent!</strong><br />
-         If you would like to speak with one of our real estate agents immediately please call<br />
-         <strong class="font_sansation">1-888-555-1212</strong> any of our qualified agents will be happy to assist you.
+      <p class="quick_info"> <strong class="font_sansation">Contate um corretor!</strong><br />
+         Se você gostaria de falar com um de nossos corretores da agência imediatamente nos ligue<br />
+         <strong class="font_sansation">11 1234-5678</strong> e alguns de nossos corretores qualificados estarao felizes em auxilia-lo.
       </p>
       <!-- end: quick_info -->
    </div>
@@ -59,118 +60,12 @@
 
         @RenderBody()
          
-      
+       
       <!-- end: column_left -->
       <!-- begin: column_right -->
       <div id="column_right">
-         <ul id="sidebar">
-            <li class="clearFix widget">
-               <div id="search_widget">
-                  <h2 class="widget_title">Search Listings</h2>
-                  <form action="" id="searchform" method="post">
-                     <input type="hidden" value="" class="s" id="s" name="s"/>
-                     <p>
-                        <label class="label_location" for="id_select_location">Location:</label>
-                     </p>
-                     <p>
-                        <select id="id_select_location" name="location" class="select_location">
-                           <option value="">None Selected</option>
-                           <option value="82">Category 1 (2)</option>
-                           <option value="83">Category 2 (2)</option>
-                           <option value="1">Uncategorized (1)</option>
-                        </select>
-                     </p>
-                     <p>
-                        <label class="label_type" for="for_sale">Listing Type:</label>
-                     </p>
-                     <ul>
-                        <li>
-                           <input type="radio" checked="checked" id="none_selected" name="listing_type" value="rbutton_none"/>
-                           <label for="none_selected">Any</label>
-                        </li>
-                        <li>
-                           <input type="radio" id="for_sale" name="listing_type" value="rbutton_home_sale"/>
-                           <label for="for_sale">Homes for Sale</label>
-                        </li>
-                        <li>
-                           <input type="radio" id="for_rent" name="listing_type" value="rbutton_for_rent"/>
-                           <label for="for_rent">Appartments for Rent</label>
-                        </li>
-                        <li>
-                           <input type="radio" id="foreclosures" name="listing_type" value="rbutton_foreclosure"/>
-                           <label for="foreclosures">Foreclosures</label>
-                        </li>
-                        <li>
-                           <input type="radio" id="new_homes" name="listing_type" value="rbutton_new_home"/>
-                           <label for="new_homes">New Homes</label>
-                        </li>
-                     </ul>
-                     <p>
-                        <label class="label_price" for="id_input_price_low">Price:</label>
-                     </p>
-                     <p>
-                        <input type="text" value="" id="id_input_price_low" class="input_price_low" name="price_min"/>
-                        <span>to</span>
-                        <input type="text" value="" id="id_input_price_high" class="input_price_high" name="price_max"/>
-                     </p>
-                     <p>
-                        <label class="label_bedrooms" for="id_select_bedrooms">Bedrooms:</label>
-                     </p>
-                     <p>
-                        <select id="id_select_bedrooms" class="select_bedrooms" name="bedrooms">
-                           <option selected="selected" value="0">Any</option>
-                           <option value="1">1+</option>
-                           <option value="2">2+</option>
-                           <option value="3">3+</option>
-                           <option value="4">4+</option>
-                           <option value="5">5+</option>
-                        </select>
-                     </p>
-                     <p>
-                        <label class="label_bathrooms" for="id_select_bathrooms">Bathrooms:</label>
-                     </p>
-                     <p>
-                        <select id="id_select_bathrooms" class="select_bathrooms" name="bathrooms">
-                           <option selected="selected" value="0">Any</option>
-                           <option value="1">1+</option>
-                           <option value="2">2+</option>
-                           <option value="3">3+</option>
-                           <option value="4">4+</option>
-                        </select>
-                     </p>
-                     <p class="button_filter_listing">
-                        <button type="submit" value="Start Searching" id="start_search_button" class="searchButton png_fix" > <span>Start Searching</span> </button>
-                     </p>
-                  </form>
-               </div>
-            </li>
-            <li class="clearFix widget">
-               <div class="widget_wrapper">
-                  <h2 class="widget_title">Quick Search</h2>
-                  <ul>
-                     <li><a href="#">Under $100,000</a></li>
-                     <li><a href="#">$100,000 - $150,000</a></li>
-                     <li><a href="#">$150,000 - $250,000</a></li>
-                     <li><a href="#">Over $250,000</a></li>
-                     <li><a href="#">2-3 Bedroom</a></li>
-                     <li><a href="#">4+ Bedroom</a></li>
-                     <li><a href="#">Acreages</a></li>
-                  </ul>
-               </div>
-            </li>
-            <li class="clearFix widget">
-               <div class="widget_wrapper">
-                  <h2 class="widget_title">Real Estate Tips</h2>
-                  <ul>
-                     <li><a href="#">Vivamus fermentum.</a></li>
-                     <li><a href="#">Justo et convallis.</a></li>
-                     <li><a href="#">Elementum erat est mattis diam.</a></li>
-                     <li><a href="#">Lacus leo auctor lacus.</a></li>
-                     <li><a href="#">Eget tincidunt eros.</a></li>
-                  </ul>
-               </div>
-            </li>
-         </ul>
+      	@Html.Partial("_LayoutSidebar")
+         
       </div>
       <!-- end: column_right -->
    </div>
@@ -182,41 +77,41 @@
 	<!-- begin: footer_content -->
    <ul id="footer_content" class="clear_fix">
       <li class="footer_widget widget_blog">
-         <h2 class="font_sansation">Recent Quick Start Blogs</h2>
+         <h2 class="font_sansation">Novidades Recentes</h2>
          <ul>
             <li class="clear_fix">
-               <p class="footer_blog_date"> <span class="blog_month">Dec</span> <span class="blog_day">10</span> </p>
+               <p class="footer_blog_date"> <span class="blog_month">Dez</span> <span class="blog_day">10</span> </p>
                <div class="footer_blog_desc">
-                  <h3 class="font_sansation"><a href="#">Tincidunt feugiat</a></h3>
-                  <p class="blog_author">Posted By: Convallis Grativa</p>
-                  <p>Etiam vel semper lorem. In vel tincidunt felis. Etiam nunc metus, euismod dictum convallis id, rutrum ac orci. Morbi nec ...</p>
-                  <p class="blog_read_more"><a href="#">Read More..</a></p>
+                  <h3 class="font_sansation"><a href="#">Alta em valor de imovel causada pela UE</a></h3>
+                  <p class="blog_author">Escrito por: Convallis Grativa</p>
+                  <p>Casas sao vendidas 15 x mais caro nos ultimos 3 meses devido a crise economica gerada na europa oriental, inflacionistas dizem ser culpa da nova carta de comercio imposta pela uniao europeia.</p>
+                  <p class="blog_read_more"><a href="#">Leia mais..</a></p>
                </div>
             </li>
             <li class="clear_fix">
-               <p class="footer_blog_date"> <span class="blog_month">Dec</span> <span class="blog_day">10</span> </p>
+               <p class="footer_blog_date"> <span class="blog_month">Dez</span> <span class="blog_day">10</span> </p>
                <div class="footer_blog_desc">
-                  <h3 class="font_sansation"><a href="#">Tincidunt feugiat</a></h3>
-                  <p class="blog_author">Posted By: Convallis Grativa</p>
-                  <p>Etiam vel semper lorem. In vel tincidunt felis. Etiam nunc metus, euismod dictum convallis id, rutrum ac orci. Morbi nec ...</p>
-                  <p class="blog_read_more"><a href="#">Read More..</a></p>
+                  <h3 class="font_sansation"><a href="#">Home Boat ganha novos ares</a></h3>
+                  <p class="blog_author">Escrito por: Convallis Grativa</p>
+                  <p>Ideia de casa boat ganha o mundo em 8 paises, Steven Ferrewl diz que ideia vem para ficar e promete entregar modelo para rios em 2017 com suporte a ABX.</p>
+                  <p class="blog_read_more"><a href="#">Leia mais..</a></p>
                </div>
             </li>
-            <li><a href="post-list.html" class="button_view_all"><span class="hide_this">View All</span></a></li>
+            <li><a href="post-list.html" class="button_view_all"><span class="hide_this">Ver Todos</span></a></li>
          </ul>
       </li>
       <li class="footer_widget widget_about">
-         <h2 class="font_sansation">About Quick Start</h2>
-         <img src="images/about-us-image.jpg" width="276" height="96" alt="" />
-         <p>Etiam vel semper lorem. In vel tincidunt felis. <a href="#">Etiam nunc metus</a>, euismod dictum convallis id, rutrum ac orci. Morbi nec sapien nulla. Proin ultrices dignissim elit non porta. Mauris quis euismod sem.</p>
-         <p>Rutrum ac orci. Morbi nec sapien nulla. Etiam vel semper lorem. In vel tincidunt felis. Proin ultrices dignissim elit non porta. Mauris quis euismod sem.</p>
+         <h2 class="font_sansation">Sobre TCC Imoveis</h2>
+         <img src="/Content/images/about-us-image.jpg" width="276" height="96" alt="" />
+         <p>Conheca mais sobre a empresa que vem revolucionando o setor de imoveis. <a href="#">Veja nossos cases</a>, ha mais de 15 anos no mercado imobiliario, sempre unindo voce de seu sonho. Nao perca tempo, ligue-nos ja</p>
+         <p>Assita alguns depoimentos de nossos clientes e va em busca de seu sonho. Aqui tornamos sonhos em realidade. Atendimento 24H, 7 dias por semana</p>
       </li>
       <li class="footer_widget last widget_contact">
-         <h2 class="font_sansation">Contact Us</h2>
+         <h2 class="font_sansation">Contate-nos</h2>
          <div id="form_result"></div>
          <form action="theme-assets/php/contact-processor.php" method="post" id="quick_contact">
             <p>
-               <label for="id_name">Name : </label>
+               <label for="id_name">Nome : </label>
             </p>
             <p class="input_name">
                <input type="text" id="id_name" name="input_name" />
@@ -228,13 +123,13 @@
                <input type="text" id="id_email" name="input_email" />
             </p>
             <p>
-               <label for="id_message">Message / Enquiry : </label>
+               <label for="id_message">Mensagem : </label>
             </p>
             <p class="input_message">
                <textarea id="id_message" name="textarea_message" rows="" cols="" ></textarea>
             </p>
             <button type="submit" id="id_send" name="button_send" class="button_send" >
-               <span class="hide_this">Send</span>
+               <span class="hide_this">Enviar</span>
             </button>
          </form>
       </li>
@@ -245,12 +140,11 @@
       <p>Copyright &copy; Quick Start Real Estate Theme</p>
       <ul>
          <li><a href="index.html">Home</a> &bull;</li>
-         <li><a href="single.html">About Us</a> &bull;</li>
-         <li><a href="buyers.html">Buyers</a> &bull;</li>
-         <li><a href="sellers.html">Sellers</a> &bull;</li>
-         <li><a href="post-list.html">Blog</a> &bull;</li>
-         <li><a href="news-list.html">News</a> &bull;</li>
-         <li><a href="contact-us">Contact Us</a></li>
+         <li><a href="single.html">Sobre Nós</a> &bull;</li>
+         <li><a href="buyers.html">Política de privacidade</a> &bull;</li>
+         <li><a href="sellers.html">Glossário</a> &bull;</li>
+         <li><a href="post-list.html">Anuncie</a> &bull;</li>
+         <li><a href="contact-us">Contato</a></li>
       </ul>
    </div>
    <!-- end: strip_footer -->
