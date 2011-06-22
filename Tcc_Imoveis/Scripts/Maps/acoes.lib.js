@@ -18,7 +18,7 @@ function init()
 //vai procurar o endereço, retornar uma latitude e longitude e centralizar o mapa neste ponto.
 function centralizar_mapa(endereco)
 {
-
+	var ponto = null;
  geocoder = new google.maps.Geocoder();
  geocoder.geocode({ address: endereco }, function (results, status) {
 		//verifica se encontrou o endereco
@@ -47,6 +47,9 @@ function centralizar_mapa(endereco)
 function exibir_pontos() 
 {       
            
+	var search_url; //sera usada para armazenar a url AJAX que fara consulta dos pontos
+	var search_query; //query string da busca por pontos
+
 	//verifica se existe um poligono criado.
 	//se existir configura a url e querystring para fazer uma consulta a busca poligonal.
 	if(creator)
@@ -116,67 +119,44 @@ function criar_botoes_mapa()
 function criar_botao_salvar_pesquisa()
 {
 	var btn = document.createElement("input");
-	var b = $(btn);
-	
-	b.attr("type", "button");	
-	b.attr("value", "Salvar Pesquisa");
-	b.attr("id", "btnSalvaPesquisa");
-	b.addClass("btn_mapa");
+	btn.setAttribute("type", "button");
+	btn.setAttribute("value", "Salvar pesquisa");
+	btn.setAttribute("id", "btnPesquisa");
 
 	google.maps.event.addDomListener(btn, 'click', function () {
 		$("#salvar_busca").show();
 		$("#nome_pesquisa").focus();
-		
+		  
 	});
-	map.controls[google.maps.ControlPosition.TOP_RIGHT].push(btn);
-
+	map.controls[google.maps.ControlPosition.TOP_RIGHT].push(save_button);
 }
 
 function criar_botao_desenhar_circunferencia()
 {
 	var btn = document.createElement("input");
-	var b = $(btn);
-	
-	b.attr("type", "button");	
-	b.attr("value", "Desenhar Raio");
-	b.attr("id", "btnRaio");
-	b.addClass("btn_mapa");
+	btn.setAttribute("type", "button");
+	btn.setAttribute("value", "Buscar Raio");
+	btn.setAttribute("id", "btnRaio");
 
 	google.maps.event.addDomListener(btn, 'click', function () {
-		$("#btnPoliogno").val("Desenhar Poligono");
-		if(b.val() == "Desenhar Raio"){
-			b.val("Remover Raio");
-			adicionar_busca_raio();
-		} else {
-			b.val("Desenhar Raio");
-			remover_circunferencia();
-		}
+		btn.setAttribute("value", "Remover Raio");
+		  
 	});
-	map.controls[google.maps.ControlPosition.TOP_RIGHT].push(btn);
+	map.controls[google.maps.ControlPosition.TOP_RIGHT].push(save_button);
 }
 
 function criar_botao_desenhar_poligono()
 {
 	var btn = document.createElement("input");
-	var b = $(btn);
-	
-	b.attr("type", "button");	
-	b.attr("value", "Desenhar Poligono");
-	b.attr("id", "btnPoliogno");
-	b.addClass("btn_mapa");
+	btn.setAttribute("type", "button");
+	btn.setAttribute("value", "Buscar Poligono");
+	btn.setAttribute("id", "btnPoliogno");
 
 	google.maps.event.addDomListener(btn, 'click', function () {
-		$("#btnRaio").val("Desenhar Raio");
-		if(b.val() == "Desenhar Poligono"){
-			b.val("Remover Poligono");
-			adicionar_busca_poligono();
-		} else {
-			b.val("Desenhar Poligono");
-			remover_poligono();
-		}
+		btn.setAttribute("value", "Remover Poligono");
+		  
 	});
-	
-	map.controls[google.maps.ControlPosition.TOP_RIGHT].push(btn);
+	map.controls[google.maps.ControlPosition.TOP_RIGHT].push(save_button);
 }
 
 
