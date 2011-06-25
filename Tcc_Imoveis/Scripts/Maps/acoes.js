@@ -18,7 +18,7 @@ function init()
 //vai procurar o endereço, retornar uma latitude e longitude e centralizar o mapa neste ponto.
 function centralizar_mapa(endereco)
 {
-	var ponto = null;
+
  geocoder = new google.maps.Geocoder();
  geocoder.geocode({ address: endereco }, function (results, status) {
 		//verifica se encontrou o endereco
@@ -47,9 +47,6 @@ function centralizar_mapa(endereco)
 function exibir_pontos() 
 {       
            
-	var search_url; //sera usada para armazenar a url AJAX que fara consulta dos pontos
-	var search_query; //query string da busca por pontos
-
 	//verifica se existe um poligono criado.
 	//se existir configura a url e querystring para fazer uma consulta a busca poligonal.
 	if(creator)
