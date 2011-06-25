@@ -98,7 +98,17 @@ function executar_busca(url, q)
 
 function salva_pesquisa()
 {
-    $.ajax({type: "POST", url: "/map/SavePesquisa", data: "nomePesquisa="+$("#nome_pesquisa").val() + "&polygon=" +creator.showData()});
+	//seta o nome da pesquisa.
+	var QS = Array();
+	QS["nomePesquisa"] = $("#nome_pesquisa").val();
+
+	
+	if(creator) 
+	{
+		QS["polygon"] = creator.showData();
+	}
+
+    $.ajax({type: "POST", url: "/map/SavePesquisa", data: "nomePesquisa="+$("#nome_pesquisa").val() + "&polygon=" +});
 }
 
 

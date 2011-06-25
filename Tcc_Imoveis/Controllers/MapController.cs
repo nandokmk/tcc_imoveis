@@ -121,7 +121,7 @@ namespace Tcc_Imoveis.Controllers
                 }
                 if(!string.IsNullOrEmpty(Request["polygon"])) {
                     string poligono = Util.ToPolygon(Request["polygon"]);
-                    tcc.InsereAtributoPesquisa(idPesquisa, "QT", ">=", "0");
+                    tcc.InsereAtributoPesquisa(idPesquisa, "PL", "=", "1");
                     tcc.InserePoligono(idPesquisa, Util.ToPolygon(poligono));
                 }
 
@@ -148,7 +148,7 @@ namespace Tcc_Imoveis.Controllers
                 if (id.ElementAt(0) != null)
                 {
                     int idPesquisa = Convert.ToInt32(id.ElementAt(0));
-                    tcc.InsereAtributoPesquisa(idPesquisa, "QT", ">=", "0");
+                    tcc.InsereAtributoPesquisa(idPesquisa, "PL", "=", "1");
                     tcc.InserePoligono(idPesquisa, Util.ToPolygon(polygon));
                 }
 
