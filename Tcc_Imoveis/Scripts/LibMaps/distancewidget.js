@@ -283,30 +283,18 @@ RadiusWidget.prototype.getSnappedPosition_ = function(pos) {
 };
 
 
-/**
- * Calculates the distance between two latlng points in km.
- * @see http://www.movable-type.co.uk/scripts/latlong.html
- *
- * @param {google.maps.LatLng} p1 The first lat lng point.
- * @param {google.maps.LatLng} p2 The second lat lng point.
- * @return {number} The distance between the two points in km.
- * @private
- */
+
 RadiusWidget.prototype.distanceBetweenPoints_ = function (p1, p2) {
     if (!p1 || !p2) {
         return 0;
     }
 
-    /* var R = 6371; // Radius of the Earth in km
-    var dLat = (p2.lat() - p1.lat()) * Math.PI / 180;
-    var dLon = (p2.lng() - p1.lng()) * Math.PI / 180;
-    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(p1.lat() * Math.PI / 180) * Math.cos(p2.lat() * Math.PI / 180) *
-    Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    var d = R * c;
-    return d;*/
-    
+    /*calculo aproximado. formulas utilizadas:
+		
+		distancia em graus = hipotenusa do triangulo de cateto a = latitude e cateto b = longitude.
+		distancia em km = ( 2 pi R (raio da terra) / 360 ) * (distancia em graus)
+
+		*/
 
     var dist = 111.318 * Math.sqrt(Math.pow(p2.lat() - p1.lat(),2) + Math.pow(p2.lng() - p1.lng(),2));
 
