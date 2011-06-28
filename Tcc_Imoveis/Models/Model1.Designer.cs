@@ -184,6 +184,14 @@ namespace Tcc_Imoveis.Models
         {
             return base.ExecuteFunction<Condicoes_Result>("ListaCondicoes");
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectResult<TipoDado_Result> ListaTipoDadoCondicoes()
+        {
+            return base.ExecuteFunction<TipoDado_Result>("ListaTipoDadoCondicoes");
+        }
 
         #endregion
     }
@@ -1085,6 +1093,81 @@ namespace Tcc_Imoveis.Models
         private global::System.Int32 _idPesquisa;
         partial void OnidPesquisaChanging(global::System.Int32 value);
         partial void OnidPesquisaChanged();
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="tcc_imoveisModel", Name="TipoDado_Result")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class TipoDado_Result : ComplexObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new TipoDado_Result object.
+        /// </summary>
+        /// <param name="idtipo_dado">Initial value of the idtipo_dado property.</param>
+        public static TipoDado_Result CreateTipoDado_Result(global::System.String idtipo_dado)
+        {
+            TipoDado_Result tipoDado_Result = new TipoDado_Result();
+            tipoDado_Result.idtipo_dado = idtipo_dado;
+            return tipoDado_Result;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String idpesquisa_condicoes
+        {
+            get
+            {
+                return _idpesquisa_condicoes;
+            }
+            set
+            {
+                Onidpesquisa_condicoesChanging(value);
+                ReportPropertyChanging("idpesquisa_condicoes");
+                _idpesquisa_condicoes = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("idpesquisa_condicoes");
+                Onidpesquisa_condicoesChanged();
+            }
+        }
+        private global::System.String _idpesquisa_condicoes;
+        partial void Onidpesquisa_condicoesChanging(global::System.String value);
+        partial void Onidpesquisa_condicoesChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String idtipo_dado
+        {
+            get
+            {
+                return _idtipo_dado;
+            }
+            set
+            {
+                Onidtipo_dadoChanging(value);
+                ReportPropertyChanging("idtipo_dado");
+                _idtipo_dado = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("idtipo_dado");
+                Onidtipo_dadoChanged();
+            }
+        }
+        private global::System.String _idtipo_dado;
+        partial void Onidtipo_dadoChanging(global::System.String value);
+        partial void Onidtipo_dadoChanged();
 
         #endregion
     }

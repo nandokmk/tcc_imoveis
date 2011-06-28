@@ -41,6 +41,7 @@
         <Function Name="ListaImovelAtributoTipoValido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="tcc_imoveis" />
         <Function Name="ListaOutrosAtributosImovel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="tcc_imoveis" />
         <Function Name="ListaPesquisaUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="tcc_imoveis" />
+        <Function Name="ListaTipoDadoCondicoes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="tcc_imoveis" />
         <Function Name="ListaUF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="tcc_imoveis" />
         <Function Name="ListaUsuario_compartilhado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="tcc_imoveis" />
         <Function Name="test" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="tcc_imoveis" />
@@ -64,6 +65,7 @@
           <FunctionImport Name="InsereAtributoPesquisa" />
           <FunctionImport Name="ListaAtributosGerais" ReturnType="Collection(tcc_imoveisModel.AtributosGerais_Result)" />
           <FunctionImport Name="ListaCondicoes" ReturnType="Collection(tcc_imoveisModel.Condicoes_Result)" />
+          <FunctionImport Name="ListaTipoDadoCondicoes" ReturnType="Collection(tcc_imoveisModel.TipoDado_Result)" />
         </EntityContainer>
         <ComplexType Name="Imovel_Result" >
           <Property Type="String" Name="x" Nullable="false" />
@@ -107,6 +109,10 @@
         <ComplexType Name="Condicoes_Result" >
           <Property Type="String" Name="IdCondicao" Nullable="false" />
           <Property Type="String" Name="Descricao" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="TipoDado_Result" >
+          <Property Type="String" Name="idpesquisa_condicoes" Nullable="true" />
+          <Property Type="String" Name="idtipo_dado" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -199,6 +205,14 @@
               <ComplexTypeMapping TypeName="tcc_imoveisModel.Condicoes_Result">
                 <ScalarProperty Name="IdCondicao" ColumnName="idPesquisa_Condicoes" />
                 <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ListaTipoDadoCondicoes" FunctionName="tcc_imoveisModel.Store.ListaTipoDadoCondicoes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="tcc_imoveisModel.TipoDado_Result">
+                <ScalarProperty Name="idpesquisa_condicoes" ColumnName="idpesquisa_condicoes" />
+                <ScalarProperty Name="idtipo_dado" ColumnName="idtipo_dado" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

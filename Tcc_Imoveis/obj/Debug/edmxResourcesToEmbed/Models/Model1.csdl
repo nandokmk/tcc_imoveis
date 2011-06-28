@@ -16,6 +16,7 @@
     <FunctionImport Name="InsereAtributoPesquisa" />
     <FunctionImport Name="ListaAtributosGerais" ReturnType="Collection(tcc_imoveisModel.AtributosGerais_Result)" />
     <FunctionImport Name="ListaCondicoes" ReturnType="Collection(tcc_imoveisModel.Condicoes_Result)" />
+    <FunctionImport Name="ListaTipoDadoCondicoes" ReturnType="Collection(tcc_imoveisModel.TipoDado_Result)" />
   </EntityContainer>
   <ComplexType Name="Imovel_Result">
     <Property Type="String" Name="x" Nullable="false" />
@@ -59,5 +60,9 @@
   <ComplexType Name="Condicoes_Result">
     <Property Type="String" Name="IdCondicao" Nullable="false" />
     <Property Type="String" Name="Descricao" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="TipoDado_Result">
+    <Property Type="String" Name="idpesquisa_condicoes" Nullable="true" />
+    <Property Type="String" Name="idtipo_dado" Nullable="false" />
   </ComplexType>
 </Schema>

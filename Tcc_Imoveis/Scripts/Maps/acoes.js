@@ -67,7 +67,7 @@ function exibir_pontos()
 	//caso contrario exibe imoveis num raio de 800metros a partir do centro do mapa.
 	else 
 	{
-		executar_busca("/map/DistanceResult", "distance=0.8&p="+map.getCenter())
+		executar_busca("/map/DistanceResult", "distance=0.2&p="+map.getCenter())
 	} 
             
 }
@@ -102,10 +102,16 @@ function salva_pesquisa()
 	
 	if(creator) 
 	{
-		QS["polygon"] = creator.showData();
+		QS["pl"] = creator.showData();
+	}
+	if(distanceWidget)
+	{
+
+		QS["distance"] = distanceWidget.get('distance');
+		QS["position"] = distanceWidget.get('position');
 	}
 
-    $.ajax({type: "POST", url: "/map/SavePesquisa", data: "nomePesquisa="+$("#nome_pesquisa").val() + "&polygon=" +});
+    $.ajax({type: "POST", url: "/map/SavePesquisa", data: QS});
 }
 
 

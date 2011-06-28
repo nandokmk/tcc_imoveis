@@ -3,6 +3,125 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section  Head{
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<style>
+a{text-decoration:underline;}
+#str_endereco{color:green;}
+#str_endereco i{color:gray; font-size: 12px;}
+</style>
+
+<script>
+    // PARTE PARA MAPA
+    function array_reverse(array, preserve_keys) {
+        var arr_len = array.length, newkey = 0, tmp_arr = {}, key = '';
+        preserve_keys = !!preserve_keys;
+        for (key in array) {
+            newkey = arr_len - key - 1;
+            tmp_arr[preserve_keys ? key : newkey] = array[key];
+        }
+        return tmp_arr;
+    }
+
+    function set_latlong(endereco) {
+        var ponto = null;
+        geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ address: endereco }, function (results, status) {
+            //verifica se encontrou o endereco
+            if (status == google.maps.GeocoderStatus.OK) {
+                $('#latlong').val(results[0].geometry.location);
+                str_end = new Array();
+                $.each(results[0].address_components, function (k, v) {
+                    str_end.push(v.short_name);
+                });
+                str_end = str_end.join(', ');
+                $('#str_endereco').html(endereco + ' <i>( ' + str_end + ' )</i>');
+            } else {
+                alert("Endereço não encontrado, por favor digite um novo endereço");
+            }
+        });
+    };
+    /*
+    tipo_dado['BO'] = array('=', '<>');
+    ipo_dado['NU'] = array('>=', '<=','>', '<', '=', '<>');
+    atributo_tipo = array();
+    atributo_tipo['QT'] = 'BO';
+    atributo_tipo['CH'] = 'BO'
+    */
+
+    // SELECTS DINAMICOS
+    var atributo_tipo = {
+       @Html.Raw(ViewBag.saidaJs)
+    };
+
+    var opcoes = {
+        '=': { 'name': 'Igual', 'value': '=' }, '>': { 'name': 'Maior', 'value': '&gt;' },
+        '>=': { 'name': 'Maior ou igual', 'value': '&gt;=' }, '<=': { 'name': 'Menor ou igual', 'value': '&lt;=' },
+        '<>': { 'name': 'Diferente', 'value': '&lt;&gt;' }, 'SIM': { 'name': 'Sim', 'value': 'SIM' },
+        'NAO': { 'name': 'Não', 'value': 'NAO' }, 'KM': { 'name': 'KM', 'value': '' },
+        '<': { 'name': 'Menor', 'value': '&lt;' }
+    };
+    var selects = {
+        1: { 'name': 'Banheiros', 'data': 'NU', 'active': false },
+        2: { 'name': 'Churrasqueira', 'data': 'BO', 'active': false },
+        3: { 'name': 'Piscina', 'data': 'BO', 'active': false },
+        4: { 'name': 'Metragem', 'data': 'SZ', 'active': false },
+        5: { 'name': 'Proximidades de um local', 'data': 'KM', 'active': false }
+    };
+
+    function buildSelect(id) {
+        obj = selects[id];
+        if (!obj.active) {
+            input = false;
+            endereco = false;
+            var sel = '<span id="q_' + id + '" >' + obj.name + ': <select name="condicao_' + id + '" id="condicao_' + id + '">' + "\n";
+            $.each(atributo_tipo[obj.data], function (k, v) {
+                if (!(v == 'SIM' || v == 'NAO'))
+                    input = true;
+                if (v == 8)
+                    endereco = true;
+                sel += '<option value="' + opcoes[v].value + '">' + opcoes[v].name + '</option>' + "\n";
+            });
+            sel += '</select>';
+            if (input) { sel += ' <input type="text" name="' + id + '" id="' + id + '" />' + "\n"; }
+            if (endereco) {
+                sel += '<br/>Endereço: <input type="text" name="endereco" id="endereco" value="" />';
+                sel += '<input type="hidden" name="latlong" id="latlong" />';
+                sel += ' <input type="button" onClick="set_latlong( $(\'#endereco\').val() )"  value="Marcar local central"/><br/>' + "\n";
+                sel += ' Endereço escolhido: <span id="str_endereco"></span>';
+            }
+            sel += ' <input type="button" onClick="removeSelect(' + id + ')" value="Remover da pesquisa" /></span>';
+            selects[id].active = true;
+            return sel;
+        }
+        return false
+    }
+    function removeSelect(id) {
+        $('#q_' + id).prev('br').remove();
+        $('#q_' + id).remove();
+        selects[id].active = false;
+    }
+    function callChoices(idhtml) {
+        var sel = '<select id="atribs" name="atribs" onChange="">' + "\n";
+        $.each(selects, function (k, v) {
+            sel += '<option value="' + k + '">' + v.name + "</option>";
+        });
+        sel += '</select> <input type="button" value="Adicionar +" onClick="callSelect( $(\'#atribs\').val(), \'form\')" />' + "\n";
+
+        $('#' + idhtml).html(sel);
+    }
+    function callSelect(id, idhtml) {
+        sel = buildSelect(id);
+        if (sel != false)
+            $('#' + idhtml).html($('#' + idhtml).html() + " <br/>" + sel);
+    }
+    $(document).ready(function () {
+        //chamando os selects para montar no HTML
+        callChoices('choices');
+    });
+</script>
+}
+
 @using Tcc_Imoveis.Models;
 @using System.Data.Objects;
 
@@ -28,36 +147,7 @@
         </tr>
     </thead>
     <tbody>
-    @foreach (AtributosGerais_Result atributos in ViewBag.atributos)
-    {
-        <tr>
    
-        <td>@atributos.Descricao</td>
-        <td>
-        <select id="@("condicao_" + atributos.IdImovelAtributoTipo)" name="@("condicao_" + atributos.IdImovelAtributoTipo)">
-            @foreach (Condicoes_Result condicao in ViewBag.condicoes)
-            {
-                <option value="@condicao.IdCondicao">@condicao.Descricao</option>
-            }
-        </select>
-        </td>
-        <td>
-        @if (atributos.IdTipoDado == "NU")
-        {
-            <input type="text" name="@atributos.IdImovelAtributoTipo" id="@atributos.IdImovelAtributoTipo" />
-        }
-        else if (atributos.IdTipoDado == "BO")
-        {
-            <select id="@atributos.IdImovelAtributoTipo" name="@atributos.IdImovelAtributoTipo">
-                <option value="SIM">SIM</option>
-                <option value="NÂO">NÂO</option>
-            </select>
-        }
-        </td>
-    
-        </tr>
-                
-    }
     </tbody>
 </table>
 <input type="submit" value="buscar" />

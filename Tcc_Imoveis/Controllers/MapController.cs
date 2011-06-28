@@ -14,6 +14,8 @@ using System.Data.Objects;
 using Facebook;
 using System.Web.Helpers;
 using Facebook.Web.Mvc;
+using System.Collections;
+using System.Text;
 namespace Tcc_Imoveis.Controllers
 {
     public class MapController : Controller
@@ -139,11 +141,14 @@ namespace Tcc_Imoveis.Controllers
         public JsonResult SavePesquisa(string nomePesquisa, string polygon)
         {
             tcc_imoveisEntities tcc = new tcc_imoveisEntities();
-            
 
-            if(!string.IsNullOrEmpty(User.Identity.Name)) {
+ 
+            if (FacebookWebContext.Current.IsAuthenticated())
+            {
+                var client = new FacebookWebClient();
+                dynamic me = client.Get("me");
 
-                ObjectResult<int?> insert =  tcc.InserePesquisa(User.Identity.Name, nomePesquisa);
+                ObjectResult<int?> insert = tcc.InserePesquisa(me.id, nomePesquisa);
                 List<int?> id = insert.ToList();
                 if (id.ElementAt(0) != null)
                 {
@@ -151,11 +156,8 @@ namespace Tcc_Imoveis.Controllers
                     tcc.InsereAtributoPesquisa(idPesquisa, "PL", "=", "1");
                     tcc.InserePoligono(idPesquisa, Util.ToPolygon(polygon));
                 }
-
-               
-                
             }
-            
+           
 
                             
             return Json(true);
@@ -185,8 +187,52 @@ namespace Tcc_Imoveis.Controllers
         {
             tcc_imoveisEntities tcc = new tcc_imoveisEntities();
 
-            ObjectResult<Condicoes_Result> condicoes = tcc.ListaCondicoes();
-            ViewBag.condicoes = condicoes.ToList();
+            
+            
+            ObjectResult<TipoDado_Result> listaTipoDadoCondicoes = tcc.ListaTipoDadoCondicoes();
+            
+            Hashtable grupoTipoCondicao = new Hashtable();
+            
+            List<string> tipos;
+            foreach (var tipoCondicao in listaTipoDadoCondicoes.ToList())
+            {
+                //verifica se existe o ID do tipo de dado na hashtable
+                if (grupoTipoCondicao.ContainsKey(tipoCondicao.idtipo_dado))
+                {
+                    //adiciona um item na lista de condicoes existentes para o tipo de dado acima.
+                    ((List<string>)grupoTipoCondicao[tipoCondicao.idtipo_dado]).Add(tipoCondicao.idpesquisa_condicoes);
+                }
+                else
+                {
+                    //cria uma lista temporaria
+                    tipos = new List<string>();
+
+                    //adiciona uma condicao na lista                    
+                    tipos.Add(tipoCondicao.idpesquisa_condicoes);
+
+                    //adiciona a lista na hastable
+                    grupoTipoCondicao.Add(tipoCondicao.idtipo_dado,tipos); 
+                       
+                    
+                }
+                
+            }
+            
+
+            List<string> arrayJavaScript = new List<string>();
+            foreach (string tipoDado in grupoTipoCondicao.Keys)
+            {
+                arrayJavaScript.Add(String.Format("'{0}':['{1}']",
+                    tipoDado,
+                    //junta todas as condicoes do tipo de dado em uma unica string
+                    //no formato 'condicao','condicao'
+                    String.Join("','", ((List<string>)grupoTipoCondicao[tipoDado]))).ToString()
+                );
+
+            }
+
+
+            ViewBag.saidaJs = String.Join(",\n", arrayJavaScript);
 
             ObjectResult<AtributosGerais_Result> atributos = tcc.ListaAtributosGerais();
             ViewBag.atributos = atributos.ToList();
@@ -234,21 +280,6 @@ namespace Tcc_Imoveis.Controllers
 
             
         }
-
-
-        [Authorize]
-        public ActionResult ProfileInfo()
-        {
-            var facebookId = long.Parse(User.Identity.Name);
-            var user = InMemoryUserStore.Get(facebookId);
-            var client = new FacebookClient(user.AccessToken);
-            dynamic me = client.Get("me");
-            ViewBag.Name = me.name;
-            ViewBag.facebookId = me.id;
-
-            return View();
-        }
-
-       
+              
     }
 }

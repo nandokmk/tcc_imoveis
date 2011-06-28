@@ -3,6 +3,7 @@
 $(document).ready(function () {
 
 	init();
+	exibir_pontos();
 
 	//botão de busca
 	$("#start_search_button").click(function() {
@@ -16,6 +17,10 @@ $(document).ready(function () {
 	//botão salvar busca
  	$("#salva").click(function() {
        $.ajax({type: "POST", url: "/map/SavePolygon", data: "polygon="+creator.showData()});
+   });
+
+   $("#ok_salvar_pesquisa").click(function() {
+		salva_pesquisa();
    });
 
 	criar_botoes_mapa();

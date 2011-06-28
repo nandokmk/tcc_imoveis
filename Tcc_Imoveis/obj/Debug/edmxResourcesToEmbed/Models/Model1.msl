@@ -89,5 +89,13 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ListaTipoDadoCondicoes" FunctionName="tcc_imoveisModel.Store.ListaTipoDadoCondicoes">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="tcc_imoveisModel.TipoDado_Result">
+          <ScalarProperty Name="idpesquisa_condicoes" ColumnName="idpesquisa_condicoes" />
+          <ScalarProperty Name="idtipo_dado" ColumnName="idtipo_dado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>
