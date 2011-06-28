@@ -294,6 +294,11 @@ RadiusWidget.prototype.distanceBetweenPoints_ = function (p1, p2) {
 		distancia em graus = hipotenusa do triangulo de cateto a = latitude e cateto b = longitude.
 		distancia em km = ( 2 pi R (raio da terra) / 360 ) * (distancia em graus)
 
+
+		O cálculo utilizado acima é apenas aproximado, no entanto a margem de erro é insignificante 
+		frente a necessidade de precisão que temos neste problema. Mesmo um cálculo utilizando a distância 
+		entre pontos numa esfera seria aproximado, uma vez que é sabido que a Terra não é uma esfera perfeita.
+
 		*/
 
     var dist = 111.318 * Math.sqrt(Math.pow(p2.lat() - p1.lat(),2) + Math.pow(p2.lng() - p1.lng(),2));
