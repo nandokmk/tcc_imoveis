@@ -192,6 +192,22 @@ namespace Tcc_Imoveis.Models
         {
             return base.ExecuteFunction<TipoDado_Result>("ListaTipoDadoCondicoes");
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public int InsereImovelNegado()
+        {
+            return base.ExecuteFunction("InsereImovelNegado");
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public int SalvaPesquisa()
+        {
+            return base.ExecuteFunction("SalvaPesquisa");
+        }
 
         #endregion
     }

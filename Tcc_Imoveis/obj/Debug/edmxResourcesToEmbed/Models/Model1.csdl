@@ -17,6 +17,8 @@
     <FunctionImport Name="ListaAtributosGerais" ReturnType="Collection(tcc_imoveisModel.AtributosGerais_Result)" />
     <FunctionImport Name="ListaCondicoes" ReturnType="Collection(tcc_imoveisModel.Condicoes_Result)" />
     <FunctionImport Name="ListaTipoDadoCondicoes" ReturnType="Collection(tcc_imoveisModel.TipoDado_Result)" />
+    <FunctionImport Name="InsereImovelNegado" />
+    <FunctionImport Name="SalvaPesquisa" />
   </EntityContainer>
   <ComplexType Name="Imovel_Result">
     <Property Type="String" Name="x" Nullable="false" />

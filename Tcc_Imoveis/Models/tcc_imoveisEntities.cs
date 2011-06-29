@@ -96,5 +96,26 @@ namespace Tcc_Imoveis.Models
 
                 );
         }
+
+
+        public int InsereImovelNegado(int idPesquisa, int idImovel)
+        {
+            ObjectParameter pIdPesquisa = new ObjectParameter("pIdPesquisa", idPesquisa);
+            ObjectParameter pidImovel = new ObjectParameter("pidImovel", idImovel);
+            return base.ExecuteFunction("InsereImovelNegado", pIdPesquisa, pidImovel);
+        }
+
+
+        public int SalvaPesquisa(int idPesquisa, string usuarioId, string nomePesquisa)
+        {
+            ObjectParameter pIdPesquisa = new ObjectParameter("pIdPesquisa", idPesquisa);
+            ObjectParameter pIdUsuario = new ObjectParameter("pIdUsuario", usuarioId);
+            ObjectParameter pNomePesquisa = new ObjectParameter("pNomePesquisa", nomePesquisa);
+
+            
+
+            return base.ExecuteFunction("SalvaPesquisa", pIdUsuario, pNomePesquisa, pIdPesquisa);
+        }
+
     }
 }

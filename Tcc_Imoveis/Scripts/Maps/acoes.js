@@ -92,26 +92,29 @@ function executar_busca(url, q)
 	});
 }
 
+function excluir_imovel_pesquisa(idImovel)
+{
+	$.post("/Map/ExcluirImovelPesquisa", { 'idImovel': idImovel}, 
+		function(json){
+				    
+				    reset();
+		            $.each(json, function(i, imovel){
+                        //verifica se o ponto não está vazio
+                        if(imovel['x'] != undefined) 
+                        {
+                            cria_imovel(imovel);
+                        }
+		        
+		            });
+                });
+	
+}
+
 
 function salva_pesquisa()
 {
 	//seta o nome da pesquisa.
-	var QS = Array();
-	QS["nomePesquisa"] = $("#nome_pesquisa").val();
-
-	
-	if(creator) 
-	{
-		QS["pl"] = creator.showData();
-	}
-	if(distanceWidget)
-	{
-
-		QS["distance"] = distanceWidget.get('distance');
-		QS["position"] = distanceWidget.get('position');
-	}
-
-    $.ajax({type: "POST", url: "/map/SavePesquisa", data: QS});
+   $.ajax({type: "POST", url: "/map/SavePesquisa", data: "nomePesquisa="+$("#nome_pesquisa").val() });
 }
 
 

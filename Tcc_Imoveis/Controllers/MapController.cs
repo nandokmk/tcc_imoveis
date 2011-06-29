@@ -25,16 +25,45 @@ namespace Tcc_Imoveis.Controllers
 
         public ActionResult Index()
         {
-            using (tcc_imoveisEntities tcc = new tcc_imoveisEntities())
+            tcc_imoveisEntities tcc = new tcc_imoveisEntities();
+
+            ObjectResult<TipoDado_Result> listaTipoDadoCondicoes = tcc.ListaTipoDadoCondicoes();
+
+            Hashtable grupoTipoCondicao = new Hashtable();
+
+            List<string> tipos;
+            foreach (var tipoCondicao in listaTipoDadoCondicoes.ToList())
             {
-                ObjectResult<Condicoes_Result> condicoes = tcc.ListaCondicoes();
-                ViewBag.condicoes = condicoes.ToList();
+                //verifica se existe o ID do tipo de dado na hashtable
+                if (grupoTipoCondicao.ContainsKey(tipoCondicao.idtipo_dado))
+                {
+                    //adiciona um item na lista de condicoes existentes para o tipo de dado acima.
+                    ((List<string>)grupoTipoCondicao[tipoCondicao.idtipo_dado]).Add(tipoCondicao.idpesquisa_condicoes);
+                }
+                else
+                {
+                    //cria uma lista temporaria
+                    tipos = new List<string>();
 
-                ObjectResult<AtributosGerais_Result> atributos = tcc.ListaAtributosGerais();
-                ViewBag.atributos = atributos.ToList();
+                    //adiciona uma condicao na lista                    
+                    tipos.Add(tipoCondicao.idpesquisa_condicoes);
 
-                return View();
+                    //adiciona a lista na hastable
+                    grupoTipoCondicao.Add(tipoCondicao.idtipo_dado, tipos);
+
+
+                }
+
             }
+
+            ViewBag.grupoTipoCondicao = grupoTipoCondicao;
+
+
+
+            ObjectResult<AtributosGerais_Result> atributos = tcc.ListaAtributosGerais();
+            ViewBag.atributos = atributos.ToList();
+
+            return View();
             
         }
 
@@ -84,13 +113,13 @@ namespace Tcc_Imoveis.Controllers
 
         public ActionResult PesquisaTempoReal()
         {
-            string[] keys = Request.Form.AllKeys;
+            
             tcc_imoveisEntities tcc = new tcc_imoveisEntities();
 
             ObjectResult<AtributosGerais_Result> atributos = tcc.ListaAtributosGerais();
             var listAtributos = atributos.ToList();
 
-
+            
 
             string sessionId = System.Web.HttpContext.Current.Session.SessionID;
 
@@ -101,11 +130,41 @@ namespace Tcc_Imoveis.Controllers
             {
                 int idPesquisa = Convert.ToInt32(id.ElementAt(0));
 
-                
-
+                System.Web.HttpContext.Current.Session.Add("pesquisa_id", idPesquisa);
+                               
+                //varre os atributos validos no banco de dados
                 foreach (var atributo in listAtributos)
                 {
-                    if (!string.IsNullOrEmpty(Request[atributo.IdImovelAtributoTipo.ToString()]))
+
+                    //varre as chaves vindas do post
+                    foreach (string key in Request.Form.AllKeys)
+                    {
+                        //verifica se as chaves são validas
+                        //verifica se o valor recuperado por post é referente a atributo.IdTipoDado
+                        if (Regex.IsMatch(key, @"^" + atributo.IdImovelAtributoTipo.ToString() + "_[0-2]"))
+                        {
+                            if (!string.IsNullOrEmpty(Request.Form[key]))
+                            {
+                                string valor = Request.Form[key];
+                                string condicao = Request["condicao_" + key];
+
+                                tcc.InsereAtributoPesquisa(idPesquisa,
+                                    atributo.IdImovelAtributoTipo,
+                                    HttpUtility.HtmlDecode(condicao),
+                                    valor);
+
+
+
+
+                            }
+
+                        }
+
+
+                    }
+                    //
+                    
+                    /*if (!string.IsNullOrEmpty(Request[atributo.IdImovelAtributoTipo.ToString()]))
                     {
                         string valor = Request[atributo.IdImovelAtributoTipo.ToString()];
                         string condicao = Request["condicao_" + atributo.IdImovelAtributoTipo];
@@ -120,10 +179,11 @@ namespace Tcc_Imoveis.Controllers
                         
 
                         
-                    }
+                    }*/
                     
                 }
-                if(!string.IsNullOrEmpty(Request["polygon"])) {
+                if (!string.IsNullOrEmpty(Request.Form["polygon"]) && Util.IsPolygon(Request.Form["polygon"]))
+                {
                     string poligono = Util.ToPolygon(Request["polygon"]);
                     tcc.InsereAtributoPesquisa(idPesquisa, "PL", "=", "1");
                     tcc.InserePoligono(idPesquisa, Util.ToPolygon(poligono));
@@ -138,31 +198,43 @@ namespace Tcc_Imoveis.Controllers
             
         }
 
+        public ActionResult ExcluirImovelPesquisa(int idImovel)
+        {
+            int idPesquisa = Convert.ToInt32(System.Web.HttpContext.Current.Session["pesquisa_id"]);
+
+            using (tcc_imoveisEntities tcc = new tcc_imoveisEntities())
+            {
+                tcc.InsereImovelNegado(idPesquisa, idImovel);
+            }
+
+            return RedirectToAction("ListaResult", new { id = idPesquisa });
+        }
+
 
           
-        public JsonResult SavePesquisa(string nomePesquisa, string polygon)
+        public JsonResult SavePesquisa(string nomePesquisa)
         {
-            tcc_imoveisEntities tcc = new tcc_imoveisEntities();
 
+            
  
             if (FacebookWebContext.Current.IsAuthenticated())
             {
+
+                int idPesquisa = Convert.ToInt32(System.Web.HttpContext.Current.Session["pesquisa_id"]);
+
                 var client = new FacebookWebClient();
                 dynamic me = client.Get("me");
 
-                ObjectResult<int?> insert = tcc.InserePesquisa(me.id, nomePesquisa);
-                List<int?> id = insert.ToList();
-                if (id.ElementAt(0) != null)
+                using (tcc_imoveisEntities tcc = new tcc_imoveisEntities())
                 {
-                    int idPesquisa = Convert.ToInt32(id.ElementAt(0));
-                    tcc.InsereAtributoPesquisa(idPesquisa, "PL", "=", "1");
-                    tcc.InserePoligono(idPesquisa, Util.ToPolygon(polygon));
-                }
-            }
-           
 
-                            
-            return Json(true);
+                    tcc.SalvaPesquisa(idPesquisa, me.id, nomePesquisa);
+                }
+                return Json(true);
+               
+            }
+            return Json(false);
+     
             
         }
 
@@ -187,49 +259,8 @@ namespace Tcc_Imoveis.Controllers
 
         public ActionResult BuscaGeral()
         {
-            tcc_imoveisEntities tcc = new tcc_imoveisEntities();
-
-            
-            
-            ObjectResult<TipoDado_Result> listaTipoDadoCondicoes = tcc.ListaTipoDadoCondicoes();
-            
-            Hashtable grupoTipoCondicao = new Hashtable();
-            
-            List<string> tipos;
-            foreach (var tipoCondicao in listaTipoDadoCondicoes.ToList())
-            {
-                //verifica se existe o ID do tipo de dado na hashtable
-                if (grupoTipoCondicao.ContainsKey(tipoCondicao.idtipo_dado))
-                {
-                    //adiciona um item na lista de condicoes existentes para o tipo de dado acima.
-                    ((List<string>)grupoTipoCondicao[tipoCondicao.idtipo_dado]).Add(tipoCondicao.idpesquisa_condicoes);
-                }
-                else
-                {
-                    //cria uma lista temporaria
-                    tipos = new List<string>();
-
-                    //adiciona uma condicao na lista                    
-                    tipos.Add(tipoCondicao.idpesquisa_condicoes);
-
-                    //adiciona a lista na hastable
-                    grupoTipoCondicao.Add(tipoCondicao.idtipo_dado,tipos); 
-                       
-                    
-                }
-                
-            }
-
-            ViewBag.grupoTipoCondicao = grupoTipoCondicao;
-
-            
-
-
-            
-            ObjectResult<AtributosGerais_Result> atributos = tcc.ListaAtributosGerais();
-            ViewBag.atributos = atributos.ToList();
-
             return View();
+           
         }
 
         

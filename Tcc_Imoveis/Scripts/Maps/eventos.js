@@ -23,5 +23,28 @@ $(document).ready(function () {
 		salva_pesquisa();
    });
 
+   $("#btn_buscar").click(function() {
+
+		executar_busca("/Map/PesquisaTempoReal", $("#form_pesquisa_atributos").serialize());
+		/* $("#btn_buscar").click(function () {
+                $.post("/Map/PesquisaTempoReal", $("#formulario_busca_geral").serialize(), 
+                function(json){
+				    
+				    reset();
+		            $.each(json, function(i, imovel){
+                        //verifica se o ponto não está vazio
+                        if(imovel['x'] != undefined) 
+                        {
+                            cria_imovel(imovel);
+                        }
+		        
+		            });
+                });
+
+            });*/
+   });
+
+   
+
 	criar_botoes_mapa();
 });

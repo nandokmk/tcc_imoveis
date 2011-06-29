@@ -8,9 +8,17 @@ namespace Tcc_Imoveis.Models
 {
 	public static class Util
 	{
+        public static string pattern = @"(-[0-9\.]+).*?(-[0-9\.]+)";
+
+        public static bool IsPolygon(this string query)
+        {            
+            return Regex.IsMatch(query, Util.pattern);
+        }
+
+
         public static string ToPolygon(this string query)
         {
-            Regex er = new Regex(@"(-[0-9\.]+).*?(-[0-9\.]+)");
+            Regex er = new Regex(Util.pattern);
 
 
             //verifica se a string do poligono está de acordo com o padrao esperado

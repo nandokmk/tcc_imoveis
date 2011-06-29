@@ -34,7 +34,7 @@ function adiciona_imovel_listagem(info) {
 		'<a name="'+ info['idImovel'] +'">' +
 		'<img src="images/fotinho.jpg" class="thumb1">' +
 		'<div class="texto2">' +
-		'<strong>CASA TERREA<br>' +
+		'<a href="javascript:excluir_imovel_pesquisa('+ info['idImovel'] +')">excluir da pesquisa pesquisa</a><br>' +
 		info['bairro'].toUpperCase() + ' - ' + info['cidade'] + ' - ' + info['estado'] + '<br></strong>' +
 		info['descricao'] +
 		'</div><a href="#" class="detalhes">VEJA MAIS DETALHES</a></div>';
@@ -45,6 +45,8 @@ function adiciona_imovel_listagem(info) {
 
 //limpa o mapa
 function reset() {
+
+	$("#listagem_imoveis").html("");
 
 	if(arguments.length) 
 	{

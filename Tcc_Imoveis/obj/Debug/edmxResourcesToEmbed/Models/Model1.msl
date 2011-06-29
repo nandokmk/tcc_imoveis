@@ -97,5 +97,7 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="InsereImovelNegado" FunctionName="tcc_imoveisModel.Store.InsereImovelNegado" />
+    <FunctionImportMapping FunctionImportName="SalvaPesquisa" FunctionName="tcc_imoveisModel.Store.SalvaPesquisa" />
   </EntityContainerMapping>
 </Mapping>

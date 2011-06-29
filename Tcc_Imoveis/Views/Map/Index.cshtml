@@ -4,6 +4,22 @@
 }
 @using Tcc_Imoveis.Models;
 @using System.Data.Objects;
+@using System.Collections;
+
+@{
+    List<string> arrayJavaScript = new List<string>();
+    Hashtable grupoTipoCondicao = (Hashtable)ViewBag.grupoTipoCondicao;
+    foreach (string tipoDado in grupoTipoCondicao.Keys)
+    {
+        arrayJavaScript.Add(String.Format("'{0}':['{1}']",
+            tipoDado,
+            //junta todas as condicoes do tipo de dado em uma unica string
+            //no formato 'condicao','condicao'
+            String.Join("','", ((List<string>)grupoTipoCondicao[tipoDado]))).ToString()
+        );
+
+    }
+}
 @section Head {
 <script type="text/javascript">
 
@@ -36,26 +52,135 @@
     <script src="@Url.Content("~/Scripts/Maps/widgets_mapa.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/Maps/eventos.js")" type="text/javascript"></script>
     <script>
-        $(document).ready(function () {
-            $("#btn_buscar").click(function () {
-                $.post("/Map/PesquisaTempoReal", $("#formulario_busca_geral").serialize(), 
-                function(json){
-				    
-				    reset();
-		            $.each(json, function(i, imovel){
-                        //verifica se o ponto não está vazio
-                        if(imovel['x'] != undefined) 
-                        {
-                            cria_imovel(imovel);
-                        }
-		        
-		            });
-                });
-
-            });
-        });
+      
         
     </script>
+
+    <style>
+a{text-decoration:underline;}
+#str_endereco{color:green;}
+#str_endereco i{color:gray; font-size: 12px;}
+</style>
+<script>
+    // PARTE PARA MAPA
+    function array_reverse(array, preserve_keys) {
+        var arr_len = array.length, newkey = 0, tmp_arr = {}, key = '';
+        preserve_keys = !!preserve_keys;
+        for (key in array) {
+            newkey = arr_len - key - 1;
+            tmp_arr[preserve_keys ? key : newkey] = array[key];
+        }
+        return tmp_arr;
+    }
+
+    function set_latlong(endereco) {
+        var ponto = null;
+        geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ address: endereco }, function (results, status) {
+            //verifica se encontrou o endereco
+            if (status == google.maps.GeocoderStatus.OK) {
+                $('#latlong').val(results[0].geometry.location);
+                str_end = new Array();
+                $.each(results[0].address_components, function (k, v) {
+                    str_end.push(v.short_name);
+                });
+                str_end = str_end.join(', ');
+                $('#str_endereco').html(endereco + ' <i>( ' + str_end + ' )</i>');
+            } else {
+                alert("Endereço não encontrado, por favor digite um novo endereço");
+            }
+        });
+    };
+
+    // SELECTS DINAMICOS
+    var tipo_dado = {
+       @Html.Raw(String.Join(",\n", arrayJavaScript))
+    };
+
+    var opcoes = {
+        '=': { 'name': 'Igual', 'value': '=' }, '>': { 'name': 'Maior', 'value': '&gt;' },
+        '>=': { 'name': 'Maior ou igual', 'value': '&gt;=' }, '<=': { 'name': 'Menor ou igual', 'value': '&lt;=' },
+        '<>': { 'name': 'Diferente', 'value': '&lt;&gt;' }, 'SIM': { 'name': 'Sim', 'value': 'SIM' },
+        'NAO': { 'name': 'Não', 'value': 'NAO' }, 'KM': { 'name': 'KM', 'value': '' },
+        '<': { 'name': 'Menor', 'value': '&lt;' }
+    };
+      @{
+        int i = 0;
+     }
+    var selects = {
+   
+     @foreach(AtributosGerais_Result atributos in ViewBag.atributos)     
+     {
+     
+        @Html.Raw("'"+ atributos.IdImovelAtributoTipo  + "': { 'name': '" + atributos.Descricao + "', 'data':" + "'" + atributos.IdTipoDado + "', 'active': false,'use':0 },\n")
+        
+     }
+        
+       
+    };
+
+    function buildSelect(id) {
+        obj = selects[id];
+        if (!obj.active || (obj.data == 'NU' && obj.use < 2)) {
+            input = false;
+            endereco = false;
+            selects[id].use++;
+            var sel = '<div id="q_' + id + '_' + (selects[id].use) + '" class="atributo_pesquisa">' + obj.name + ': <select name="condicao_' + id + '_'+ obj.use +'" id="condicao_' + id + '">' + "\n";
+            $.each(tipo_dado[obj.data], function (k, v) {
+                if (!(v == 'SIM' || v == 'NAO'))
+                    input = true;
+                if (v == 8)
+                    endereco = true;
+                sel += '<option value="' + opcoes[v].value + '">' + opcoes[v].name + '</option>' + "\n";
+            });
+            sel += '</select>';
+            if (input) { sel += ' <input type="text" name="' + id + '_' + obj.use + '" id="' + id + '" />' + "\n"; }
+            if (endereco) {
+                sel += '<br/>Endereço: <input type="text" name="endereco" id="endereco" value="" />';
+                sel += '<input type="hidden" name="latlong" id="latlong" />';
+                sel += ' <input type="button" onClick="set_latlong( $(\'#endereco\').val() )"  value="Marcar local central"/><br/>' + "\n";
+                sel += ' Endereço escolhido: <span id="str_endereco"></span>';
+            }
+
+            sel += ' <input type="button" onClick="removeSelect(' + id + ', ' + (selects[id].use) + ' )" value="Remover da pesquisa" /></div>';
+            selects[id].active = true;
+
+            return sel;
+        }
+        return false
+    }
+    function removeSelect(id, n) {
+        //$('#q_'+id).prev('br').remove();
+        $('#q_' + id + '_' + n).remove();
+        if (n == 0) {
+            selects[id].active = false;
+            selects[id].use--;
+        } else {
+            if (selects[id].use == 1)
+                selects[id].active = false;
+            selects[id].use--;
+        }
+    }
+    function callChoices(idhtml) {
+        var sel = '<select id="atribs" name="atribs" onChange="">' + "\n";
+        $.each(selects, function (k, v) {
+            sel += '<option value="' + k + '">' + v.name + "</option>";
+        });
+        sel += '</select> <input type="button" value="Adicionar +" onClick="callSelect( $(\'#atribs\').val(), \'form\')" />' + "\n";
+
+        $('#' + idhtml).html(sel);
+    }
+    function callSelect(id, idhtml) {
+        sel = buildSelect(id);
+        if (sel != false)
+            $('#' + idhtml).html($('#' + idhtml).html() + " " + sel);
+    }
+    $(document).ready(function () {
+        //chamando os selects para montar no HTML
+        callChoices('choices');
+    });
+
+</script>
 }
 <style>
 #map_canvas 
@@ -84,48 +209,42 @@
     </div>
     <input type="button" value="exibir" onclick="exibir_pontos();" />
 
-    <form id="formulario_busca_geral" method="post">
-<table class="tb_att">
-    <thead>
-        <tr>
-            <th class="th_attr">Atributo</th>
-            <th class="th_attr">Condição</th>
-            <th class="th_attr">Valor</th>
-        </tr>
-    </thead>
-    <tbody>
-    @foreach (AtributosGerais_Result atributos in ViewBag.atributos)
-    {
-        <tr>
-   
-        <td>@atributos.Descricao</td>
-        <td>
-        <select id="@("condicao_" + atributos.IdImovelAtributoTipo)" name="@("condicao_" + atributos.IdImovelAtributoTipo)">
-            @foreach (Condicoes_Result condicao in ViewBag.condicoes)
-            {
-                <option value="@condicao.IdCondicao">@condicao.Descricao</option>
-            }
-        </select>
-        </td>
-        <td>
-        @if (atributos.IdTipoDado == "NU")
-        {
-            <input type="text" name="@atributos.IdImovelAtributoTipo" id="@atributos.IdImovelAtributoTipo" />
-        }
-        else if (atributos.IdTipoDado == "BO")
-        {
-            <select id="@atributos.IdImovelAtributoTipo" name="@atributos.IdImovelAtributoTipo">
-                <option value="SIM">SIM</option>
-                <option value="NÂO">NÂO</option>
-            </select>
-        }
-        </td>
-    
-        </tr>
-                
-    }
-    </tbody>
+   <form id="form_pesquisa_atributos" method="post">
+Cadastre as principais características do imóvel:<div id="choices"></div>
+
+<br /><br />
+
+<table width="90%" border="0" cellspacing="2" cellpadding="2">
+
+	<tr>
+
+		<td><strong>Caracter&iacute;sticas</strong></td>
+
+	</tr>
+
+	<tr>
+
+		<td>&nbsp;</td>
+
+	</tr>
+
+	<tr>
+
+		<td align="left">
+
+			<div id="form"></div>
+
+			
+
+			<label for="select4"></label>
+
+			</td>
+
+	</tr>
+
 </table>
+
+
 </form>
 <input type="button" value="buscar" id="btn_buscar" />
    

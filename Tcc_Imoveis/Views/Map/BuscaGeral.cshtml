@@ -1,7 +1,4 @@
-﻿@{
-    ViewBag.Title = "BuscaGeral";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿
 @{
     ViewBag.Title = "BuscaGeral";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -26,7 +23,7 @@
 }
 
 @section  Head{
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    
 <style>
 a{text-decoration:underline;}
 #str_endereco{color:green;}
@@ -62,13 +59,6 @@ a{text-decoration:underline;}
             }
         });
     };
-    /*
-    tipo_dado['BO'] = array('=', '<>');
-    ipo_dado['NU'] = array('>=', '<=','>', '<', '=', '<>');
-    atributo_tipo = array();
-    atributo_tipo['QT'] = 'BO';
-    atributo_tipo['CH'] = 'BO'
-    */
 
     // SELECTS DINAMICOS
     var tipo_dado = {
@@ -89,7 +79,8 @@ a{text-decoration:underline;}
    
      @foreach(AtributosGerais_Result atributos in ViewBag.atributos)     
      {
-        @Html.Raw(++i + ": { 'name': '"+atributos.Descricao + "', 'data':"+ "'" + atributos.IdTipoDado+ "', 'active': false,'use':0 },\n")
+     
+        @Html.Raw("'"+ atributos.IdImovelAtributoTipo  + "': { 'name': '" + atributos.Descricao + "', 'data':" + "'" + atributos.IdTipoDado + "', 'active': false,'use':0 },\n")
         
      }
         
@@ -102,7 +93,7 @@ a{text-decoration:underline;}
             input = false;
             endereco = false;
             selects[id].use++;
-            var sel = '<div id="q_' + id + '_' + (selects[id].use) + '" class="atributo_pesquisa">' + obj.name + ': <select name="condicao_' + obj.data + '_'+ obj.use +'" id="condicao_' + obj.data + '">' + "\n";
+            var sel = '<div id="q_' + id + '_' + (selects[id].use) + '" class="atributo_pesquisa">' + obj.name + ': <select name="condicao_' + id + '_'+ obj.use +'" id="condicao_' + id + '">' + "\n";
             $.each(tipo_dado[obj.data], function (k, v) {
                 if (!(v == 'SIM' || v == 'NAO'))
                     input = true;
@@ -111,7 +102,7 @@ a{text-decoration:underline;}
                 sel += '<option value="' + opcoes[v].value + '">' + opcoes[v].name + '</option>' + "\n";
             });
             sel += '</select>';
-            if (input) { sel += ' <input type="text" name="' + obj.data + '_' + obj.use + '" id="' +  obj.data + '" />' + "\n"; }
+            if (input) { sel += ' <input type="text" name="' + id + '_' + obj.use + '" id="' + id + '" />' + "\n"; }
             if (endereco) {
                 sel += '<br/>Endereço: <input type="text" name="endereco" id="endereco" value="" />';
                 sel += '<input type="hidden" name="latlong" id="latlong" />';
@@ -155,8 +146,10 @@ a{text-decoration:underline;}
     $(document).ready(function () {
         //chamando os selects para montar no HTML
         callChoices('choices');
-    });
-</script>
+    });
+
+</script>
+
 }
 
 
@@ -174,23 +167,40 @@ a{text-decoration:underline;}
 <div id="column_left">
 
 <form action="/Map/PesquisaTempoReal" method="post">
-Cadastre as principais características do imóvel:<div id="choices"></div>
-<br /><br />
-<table width="90%" border="0" cellspacing="2" cellpadding="2">
-	<tr>
-		<td><strong>Caracter&iacute;sticas</strong></td>
-	</tr>
-	<tr>
-		<td>&nbsp;</td>
-	</tr>
-	<tr>
-		<td align="left">
-			<div id="form"></div>
-			
-			<label for="select4"></label>
-			</td>
-	</tr>
-</table>
+Cadastre as principais características do imóvel:<div id="choices"></div>
+
+<br /><br />
+
+<table width="90%" border="0" cellspacing="2" cellpadding="2">
+
+	<tr>
+
+		<td><strong>Caracter&iacute;sticas</strong></td>
+
+	</tr>
+
+	<tr>
+
+		<td>&nbsp;</td>
+
+	</tr>
+
+	<tr>
+
+		<td align="left">
+
+			<div id="form"></div>
+
+			
+
+			<label for="select4"></label>
+
+			</td>
+
+	</tr>
+
+</table>
+
 <input type="submit" value="buscar" />
 </form>
 </div>
