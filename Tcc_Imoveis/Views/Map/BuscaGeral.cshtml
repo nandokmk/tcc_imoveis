@@ -2,6 +2,28 @@
     ViewBag.Title = "BuscaGeral";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@{
+    ViewBag.Title = "BuscaGeral";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Tcc_Imoveis.Models;
+@using System.Data.Objects;
+@using System.Collections;
+
+@{
+    List<string> arrayJavaScript = new List<string>();
+    Hashtable grupoTipoCondicao = (Hashtable)ViewBag.grupoTipoCondicao;
+    foreach (string tipoDado in grupoTipoCondicao.Keys)
+    {
+        arrayJavaScript.Add(String.Format("'{0}':['{1}']",
+            tipoDado,
+            //junta todas as condicoes do tipo de dado em uma unica string
+            //no formato 'condicao','condicao'
+            String.Join("','", ((List<string>)grupoTipoCondicao[tipoDado]))).ToString()
+        );
+
+    }
+}
 
 @section  Head{
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
@@ -10,7 +32,6 @@ a{text-decoration:underline;}
 #str_endereco{color:green;}
 #str_endereco i{color:gray; font-size: 12px;}
 </style>
-
 <script>
     // PARTE PARA MAPA
     function array_reverse(array, preserve_keys) {
@@ -41,17 +62,17 @@ a{text-decoration:underline;}
             }
         });
     };
-    /*
-    tipo_dado['BO'] = array('=', '<>');
-    ipo_dado['NU'] = array('>=', '<=','>', '<', '=', '<>');
-    atributo_tipo = array();
-    atributo_tipo['QT'] = 'BO';
-    atributo_tipo['CH'] = 'BO'
+    /*
+    tipo_dado['BO'] = array('=', '<>');
+    ipo_dado['NU'] = array('>=', '<=','>', '<', '=', '<>');
+    atributo_tipo = array();
+    atributo_tipo['QT'] = 'BO';
+    atributo_tipo['CH'] = 'BO'
     */
 
     // SELECTS DINAMICOS
-    var atributo_tipo = {
-       @Html.Raw(ViewBag.saidaJs)
+    var tipo_dado = {
+       @Html.Raw(String.Join(",\n", arrayJavaScript))
     };
 
     var opcoes = {
@@ -61,21 +82,28 @@ a{text-decoration:underline;}
         'NAO': { 'name': 'Não', 'value': 'NAO' }, 'KM': { 'name': 'KM', 'value': '' },
         '<': { 'name': 'Menor', 'value': '&lt;' }
     };
+      @{
+        int i = 0;
+     }
     var selects = {
-        1: { 'name': 'Banheiros', 'data': 'NU', 'active': false },
-        2: { 'name': 'Churrasqueira', 'data': 'BO', 'active': false },
-        3: { 'name': 'Piscina', 'data': 'BO', 'active': false },
-        4: { 'name': 'Metragem', 'data': 'SZ', 'active': false },
-        5: { 'name': 'Proximidades de um local', 'data': 'KM', 'active': false }
+   
+     @foreach(AtributosGerais_Result atributos in ViewBag.atributos)     
+     {
+        @Html.Raw(++i + ": { 'name': '"+atributos.Descricao + "', 'data':"+ "'" + atributos.IdTipoDado+ "', 'active': false,'use':0 },\n")
+        
+     }
+        
+       
     };
 
     function buildSelect(id) {
         obj = selects[id];
-        if (!obj.active) {
+        if (!obj.active || (obj.data == 'NU' && obj.use < 2)) {
             input = false;
             endereco = false;
-            var sel = '<span id="q_' + id + '" >' + obj.name + ': <select name="condicao_' + id + '" id="condicao_' + id + '">' + "\n";
-            $.each(atributo_tipo[obj.data], function (k, v) {
+            selects[id].use++;
+            var sel = '<div id="q_' + id + '_' + (selects[id].use) + '" class="atributo_pesquisa">' + obj.name + ': <select name="condicao_' + obj.data + '_'+ obj.use +'" id="condicao_' + obj.data + '">' + "\n";
+            $.each(tipo_dado[obj.data], function (k, v) {
                 if (!(v == 'SIM' || v == 'NAO'))
                     input = true;
                 if (v == 8)
@@ -83,23 +111,32 @@ a{text-decoration:underline;}
                 sel += '<option value="' + opcoes[v].value + '">' + opcoes[v].name + '</option>' + "\n";
             });
             sel += '</select>';
-            if (input) { sel += ' <input type="text" name="' + id + '" id="' + id + '" />' + "\n"; }
+            if (input) { sel += ' <input type="text" name="' + obj.data + '_' + obj.use + '" id="' +  obj.data + '" />' + "\n"; }
             if (endereco) {
                 sel += '<br/>Endereço: <input type="text" name="endereco" id="endereco" value="" />';
                 sel += '<input type="hidden" name="latlong" id="latlong" />';
                 sel += ' <input type="button" onClick="set_latlong( $(\'#endereco\').val() )"  value="Marcar local central"/><br/>' + "\n";
                 sel += ' Endereço escolhido: <span id="str_endereco"></span>';
             }
-            sel += ' <input type="button" onClick="removeSelect(' + id + ')" value="Remover da pesquisa" /></span>';
+
+            sel += ' <input type="button" onClick="removeSelect(' + id + ', ' + (selects[id].use) + ' )" value="Remover da pesquisa" /></div>';
             selects[id].active = true;
+
             return sel;
         }
         return false
     }
-    function removeSelect(id) {
-        $('#q_' + id).prev('br').remove();
-        $('#q_' + id).remove();
-        selects[id].active = false;
+    function removeSelect(id, n) {
+        //$('#q_'+id).prev('br').remove();
+        $('#q_' + id + '_' + n).remove();
+        if (n == 0) {
+            selects[id].active = false;
+            selects[id].use--;
+        } else {
+            if (selects[id].use == 1)
+                selects[id].active = false;
+            selects[id].use--;
+        }
     }
     function callChoices(idhtml) {
         var sel = '<select id="atribs" name="atribs" onChange="">' + "\n";
@@ -113,17 +150,16 @@ a{text-decoration:underline;}
     function callSelect(id, idhtml) {
         sel = buildSelect(id);
         if (sel != false)
-            $('#' + idhtml).html($('#' + idhtml).html() + " <br/>" + sel);
+            $('#' + idhtml).html($('#' + idhtml).html() + " " + sel);
     }
     $(document).ready(function () {
         //chamando os selects para montar no HTML
         callChoices('choices');
-    });
-</script>
+    });
+</script>
 }
 
-@using Tcc_Imoveis.Models;
-@using System.Data.Objects;
+
 
 <h2>BuscaGeral</h2>
 
@@ -138,18 +174,23 @@ a{text-decoration:underline;}
 <div id="column_left">
 
 <form action="/Map/PesquisaTempoReal" method="post">
-<table class="tb_att">
-    <thead>
-        <tr>
-            <th class="th_attr">Atributo</th>
-            <th class="th_attr">Condição</th>
-            <th class="th_attr">Valor</th>
-        </tr>
-    </thead>
-    <tbody>
-   
-    </tbody>
-</table>
+Cadastre as principais características do imóvel:<div id="choices"></div>
+<br /><br />
+<table width="90%" border="0" cellspacing="2" cellpadding="2">
+	<tr>
+		<td><strong>Caracter&iacute;sticas</strong></td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td align="left">
+			<div id="form"></div>
+			
+			<label for="select4"></label>
+			</td>
+	</tr>
+</table>
 <input type="submit" value="buscar" />
 </form>
 </div>

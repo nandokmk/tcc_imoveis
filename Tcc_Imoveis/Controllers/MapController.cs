@@ -84,7 +84,7 @@ namespace Tcc_Imoveis.Controllers
 
         public ActionResult PesquisaTempoReal()
         {
-
+            string[] keys = Request.Form.AllKeys;
             tcc_imoveisEntities tcc = new tcc_imoveisEntities();
 
             ObjectResult<AtributosGerais_Result> atributos = tcc.ListaAtributosGerais();
@@ -100,6 +100,8 @@ namespace Tcc_Imoveis.Controllers
             if (id.ElementAt(0) != null)
             {
                 int idPesquisa = Convert.ToInt32(id.ElementAt(0));
+
+                
 
                 foreach (var atributo in listAtributos)
                 {
@@ -217,23 +219,13 @@ namespace Tcc_Imoveis.Controllers
                 }
                 
             }
+
+            ViewBag.grupoTipoCondicao = grupoTipoCondicao;
+
             
 
-            List<string> arrayJavaScript = new List<string>();
-            foreach (string tipoDado in grupoTipoCondicao.Keys)
-            {
-                arrayJavaScript.Add(String.Format("'{0}':['{1}']",
-                    tipoDado,
-                    //junta todas as condicoes do tipo de dado em uma unica string
-                    //no formato 'condicao','condicao'
-                    String.Join("','", ((List<string>)grupoTipoCondicao[tipoDado]))).ToString()
-                );
 
-            }
-
-
-            ViewBag.saidaJs = String.Join(",\n", arrayJavaScript);
-
+            
             ObjectResult<AtributosGerais_Result> atributos = tcc.ListaAtributosGerais();
             ViewBag.atributos = atributos.ToList();
 
