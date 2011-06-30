@@ -117,9 +117,7 @@ namespace Tcc_Imoveis.Controllers
             tcc_imoveisEntities tcc = new tcc_imoveisEntities();
 
             ObjectResult<AtributosGerais_Result> atributos = tcc.ListaAtributosGerais();
-            var listAtributos = atributos.ToList();
-
-            
+            var listAtributos = atributos.ToList();            
 
             string sessionId = System.Web.HttpContext.Current.Session.SessionID;
 
@@ -152,41 +150,33 @@ namespace Tcc_Imoveis.Controllers
                                     atributo.IdImovelAtributoTipo,
                                     HttpUtility.HtmlDecode(condicao),
                                     valor);
-
-
-
-
                             }
-
                         }
-
-
                     }
-                    //
-                    
-                    /*if (!string.IsNullOrEmpty(Request[atributo.IdImovelAtributoTipo.ToString()]))
-                    {
-                        string valor = Request[atributo.IdImovelAtributoTipo.ToString()];
-                        string condicao = Request["condicao_" + atributo.IdImovelAtributoTipo];
-
-                        
-                        
-                        tcc.InsereAtributoPesquisa(idPesquisa, 
-                            atributo.IdImovelAtributoTipo,
-                            HttpUtility.HtmlDecode(condicao),
-                            valor);
-
-                        
-
-                        
-                    }*/
-                    
+                  
                 }
+
+                //verifica se foi passado um poligono para ser gravado
+                //verifica se a string esta no formato de poligono
                 if (!string.IsNullOrEmpty(Request.Form["polygon"]) && Util.IsPolygon(Request.Form["polygon"]))
                 {
                     string poligono = Util.ToPolygon(Request["polygon"]);
-                    tcc.InsereAtributoPesquisa(idPesquisa, "PL", "=", "1");
                     tcc.InserePoligono(idPesquisa, Util.ToPolygon(poligono));
+                }
+
+                //verifica se contem um ponto central para busca por raio
+                //verifica se existeu ma distancia para busca por raio
+                if (!string.IsNullOrEmpty(Request.Form["ponto_central"]) && !string.IsNullOrEmpty(Request.Form["distancia"]))
+                {
+                    string ponto = Request.Form["ponto_central"]; //
+                    if (Util.IsPolygon(ponto))
+                    {
+                        
+                    }
+                    ponto = "POINT" + ponto.Replace(",", "");
+                    string distancia = Request.Form["distancia"];
+
+                    tcc.InsereRaio(idPesquisa, ponto, distancia);
                 }
 
 
@@ -214,7 +204,6 @@ namespace Tcc_Imoveis.Controllers
           
         public JsonResult SavePesquisa(string nomePesquisa)
         {
-
             
  
             if (FacebookWebContext.Current.IsAuthenticated())

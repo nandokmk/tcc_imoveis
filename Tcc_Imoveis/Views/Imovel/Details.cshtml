@@ -8,7 +8,7 @@
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
 <style> #map_canvas{ width:100%; height:400px; } </style>
 }
-<h2>Detalhes do imóvel</h2>
+
 @{
     GetImovel_Result r = ViewBag.imovel;   
 }
@@ -46,8 +46,10 @@ $(document).ready(function () {
 <p> @r.descricao </p>
 			
 			</div><!-- fecha texto1 -->
+
 			<div class="fotos1">
-				<a class="foto-amplia" href="#"><img src="/Content/images/foto1.jpg" /></a>
+           
+				<a class="foto-amplia" href="#"><img src="@ViewBag.ImagemPrincipal" /></a>
 			</div><!-- fecha fotos1 -->
 		</div><!-- fecha bloco1 -->
 		<div class="bloco2">
@@ -63,7 +65,8 @@ $(document).ready(function () {
             @{ int x = 0; }
             @foreach (ImovelAtributo_Result atributos in ViewBag.imovelAtributos)
             {
-                <tr @if(x++%2==0){
+                <tr @if (x++ % 2 == 0)
+                    {
                         <text>class="odd"</text>
                     } >
                     <td>@atributos.descricao</td>

@@ -60,6 +60,7 @@
 a{text-decoration:underline;}
 #str_endereco{color:green;}
 #str_endereco i{color:gray; font-size: 12px;}
+#atribs { width:80%; }
 </style>
 <script>
     // PARTE PARA MAPA
@@ -94,6 +95,7 @@ a{text-decoration:underline;}
 
     // SELECTS DINAMICOS
     var tipo_dado = {
+        'KM':['KM'],
        @Html.Raw(String.Join(",\n", arrayJavaScript))
     };
 
@@ -108,7 +110,7 @@ a{text-decoration:underline;}
         int i = 0;
      }
     var selects = {
-   
+     'R': { 'name': 'Distância do ponto marcado (KM)', 'data':'NU', 'active': false,'use':0 },
      @foreach(AtributosGerais_Result atributos in ViewBag.atributos)     
      {
      
@@ -125,11 +127,11 @@ a{text-decoration:underline;}
             input = false;
             endereco = false;
             selects[id].use++;
-            var sel = '<div id="q_' + id + '_' + (selects[id].use) + '" class="atributo_pesquisa">' + obj.name + ': <select name="condicao_' + id + '_'+ obj.use +'" id="condicao_' + id + '">' + "\n";
+            var sel = '<div id="q_' + id + '_' + (selects[id].use) + '" class="atributo_pesquisa">' + obj.name + ': <select name="condicao_' + id + '_'+ obj.use +'" id="condicao_' + id + '" style="width:100px;">' + "\n";
             $.each(tipo_dado[obj.data], function (k, v) {
                 if (!(v == 'SIM' || v == 'NAO'))
                     input = true;
-                if (v == 8)
+                if (v == 1)
                     endereco = true;
                 sel += '<option value="' + opcoes[v].value + '">' + opcoes[v].name + '</option>' + "\n";
             });
@@ -162,7 +164,7 @@ a{text-decoration:underline;}
         }
     }
     function callChoices(idhtml) {
-        var sel = '<select id="atribs" name="atribs" onChange="">' + "\n";
+        var sel = '<select id="atribs" name="atribs" onChange="" style="width:85%;">' + "\n";
         $.each(selects, function (k, v) {
             sel += '<option value="' + k + '">' + v.name + "</option>";
         });
@@ -200,7 +202,8 @@ a{text-decoration:underline;}
 
 
 <div id="column_left">
-    <input type="hidden" id="distance" value="0.25" />
+    <input type="hidden" id="default_distance" value="0.25" />
+    
     <div id="map_canvas"></div> 
     <div id="salvar_busca">
         <div><b>Nome da pesquisa</b></div>
@@ -208,17 +211,39 @@ a{text-decoration:underline;}
         <input type="button" id="ok_salvar_pesquisa" value="Ok"  />
     </div>
     <input type="button" value="exibir" onclick="exibir_pontos();" />
+<ul id="sidebar">
+<li>
+<div id="search_widget">
+<form id="form_pesquisa_atributos" method="post">
+   <input type="hidden" name="polygon" id="polygon" value="" />
+   <input type="hidden" name="distancia" id="distancia" value="" />
+   <input type="hidden" name="ponto_central" id="ponto_central" value="" />
+    <p>
+        <label class="label_type" for="for_sale">Buscar proximidade</label>
+   </p>
+   <p>
+    <input type="text" id="id_input_search" class="input_price_low" style="width:400px;" name="search_location" />
+     <select id="select_distancia" class="select_bedrooms" style="width:100px;">
+                            <option selected="selected" value="0">Selecione</option>
+                           <option selected="selected" value="0.5">500m</option>
+                           <option value="1">1KM</option>
+                           <option value="2">2KM</option>
+                           <option value="3">3KM</option>
+                           <option value="4">4KM</option>
+                           <option value="5">5KM</option>
+                        </select>
+   </p>
+   <p>
+        <label class="label_type" for="for_sale">Atributos do Imóvel:</label>
+   </p>
+   <div id="choices"></div>
 
-   <form id="form_pesquisa_atributos" method="post">
-Cadastre as principais características do imóvel:<div id="choices"></div>
-
-<br /><br />
-
+<br />
 <table width="90%" border="0" cellspacing="2" cellpadding="2">
 
 	<tr>
 
-		<td><strong>Caracter&iacute;sticas</strong></td>
+		<td><label class="label_type" for="for_sale">Atributos escolidos:</label></td>
 
 	</tr>
 
@@ -243,17 +268,19 @@ Cadastre as principais características do imóvel:<div id="choices"></div>
 	</tr>
 
 </table>
-
+ <p class="button_filter_listing">
+                        <button type="button" value="Start Searching" id="start_search_button" class="searchButton png_fix" > <span>Iniciar Busca</span> </button>
+                     </p>
 
 </form>
+</div>
+</li>
+</ul>
 <input type="button" value="buscar" id="btn_buscar" />
    
     <div id="area-site">
 		<h1 class="titulo">Encontre seu imóvel</h1>
-		<div class="topo-lista">
-		Foram encontrados <strong>45</strong> imóveis
-		<a href="#" class="bt2" onclick="alert('salvar lista');">Salvar lista</a>
-		</div>
+
         <div id="listagem_imoveis"></div>
     </div>
 </div>

@@ -91,7 +91,7 @@ function adicionar_busca_raio()
 	remover_poligono();
 	distanceWidget = new DistanceWidget({
     map: map,
-    distance: $("#distance").val(), //define o raio em km da circunferencia
+    distance: $("#default_distance").val(), //define o raio em km da circunferencia
     maxDistance: 10,
     color: '#000000',
     activeColor: '#5599bb',

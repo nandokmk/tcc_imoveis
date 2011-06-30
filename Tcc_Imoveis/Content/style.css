@@ -377,12 +377,12 @@ body { background: url(/Content/images/bg.gif) repeat-x center top; }
 .align_left { margin: 0 7px 2px 0; display: inline; float: left; }
 /**/
 
-#area-site{width:550px;float:left;height:1000px; margin:0 auto; background-color:#FFF;font-family:Arial, Helvetica, sans-serif; }
+#area-site{width:550px;float:left; margin:0 auto; background-color:#FFF;font-family:Arial, Helvetica, sans-serif; }
 #area-site .titulo{color:#4d6b81; font-size:30px; margin:0px; border-bottom:1px dotted #bcbebf; padding-bottom:15px;}
 #area-site .bloco1{height:330px; border-bottom:1px dotted #bcbebf; padding:15px 0px 15px 0px;}
 #area-site .bloco1 .texto1{width:320px; height:330px; font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#000; float:left; text-align:justify; line-height:18px;}
 #area-site .bloco1 .texto1 h2{margin:0px 0px 10px 0px; font-size:16px;}
-#area-site .bloco1 .fotos1{width:331px; height:330px; font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#000; float:right; text-align:justify; }
+#area-site .bloco1 .fotos1{ height:330px; font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#000; float:right; text-align:justify; }
 #area-site .bloco1 .fotos1 .foto-amplia img{border:1px solid #bcbebf; text-decoration:none; }
 #area-site .bloco2, #area-site .bloco3{width:682px; border-bottom:1px dotted #bcbebf; padding:15px 0px 15px 0px;}
 #area-site .bloco2 .titulo2, #area-site .bloco3 .titulo2{color:#4d6b81; font-size:18px; margin:0px; padding-bottom:15px;}

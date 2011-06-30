@@ -40,7 +40,12 @@ namespace Tcc_Imoveis.Controllers
 
             ObjectResult<ImovelImagens_Result> imagens = tcc.ListaImagensImovel(id);
 
-            ViewBag.imovelImagens = imagens.ToList();
+            List<ImovelImagens_Result> imagensImovel = imagens.ToList();
+            if (imagensImovel.Count > 0)
+            {
+                ViewBag.ImagemPrincipal = imagensImovel.ElementAt(0).imagem;
+            }
+            
             imagens.Dispose();
 
 

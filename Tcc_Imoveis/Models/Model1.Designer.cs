@@ -208,6 +208,14 @@ namespace Tcc_Imoveis.Models
         {
             return base.ExecuteFunction("SalvaPesquisa");
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public int InsereRaio()
+        {
+            return base.ExecuteFunction("InsereRaio");
+        }
 
         #endregion
     }
@@ -436,12 +444,10 @@ namespace Tcc_Imoveis.Models
         /// <summary>
         /// Create a new GetImovel_Result object.
         /// </summary>
-        /// <param name="descricao">Initial value of the descricao property.</param>
         /// <param name="nome">Initial value of the nome property.</param>
-        public static GetImovel_Result CreateGetImovel_Result(global::System.String descricao, global::System.String nome)
+        public static GetImovel_Result CreateGetImovel_Result(global::System.String nome)
         {
             GetImovel_Result getImovel_Result = new GetImovel_Result();
-            getImovel_Result.descricao = descricao;
             getImovel_Result.nome = nome;
             return getImovel_Result;
         }
@@ -452,7 +458,7 @@ namespace Tcc_Imoveis.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String descricao
         {
@@ -464,7 +470,7 @@ namespace Tcc_Imoveis.Models
             {
                 OndescricaoChanging(value);
                 ReportPropertyChanging("descricao");
-                _descricao = StructuralObject.SetValidValue(value, false);
+                _descricao = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("descricao");
                 OndescricaoChanged();
             }
@@ -566,9 +572,8 @@ namespace Tcc_Imoveis.Models
         /// <param name="bairro">Initial value of the bairro property.</param>
         /// <param name="cidade">Initial value of the cidade property.</param>
         /// <param name="estado">Initial value of the estado property.</param>
-        /// <param name="descricao">Initial value of the descricao property.</param>
         /// <param name="idImovel">Initial value of the idImovel property.</param>
-        public static Imovel_Result CreateImovel_Result(global::System.String x, global::System.String y, global::System.String bairro, global::System.String cidade, global::System.String estado, global::System.String descricao, global::System.Int32 idImovel)
+        public static Imovel_Result CreateImovel_Result(global::System.String x, global::System.String y, global::System.String bairro, global::System.String cidade, global::System.String estado, global::System.Int32 idImovel)
         {
             Imovel_Result imovel_Result = new Imovel_Result();
             imovel_Result.x = x;
@@ -576,7 +581,6 @@ namespace Tcc_Imoveis.Models
             imovel_Result.bairro = bairro;
             imovel_Result.cidade = cidade;
             imovel_Result.estado = estado;
-            imovel_Result.descricao = descricao;
             imovel_Result.idImovel = idImovel;
             return imovel_Result;
         }
@@ -707,7 +711,7 @@ namespace Tcc_Imoveis.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String descricao
         {
@@ -719,7 +723,7 @@ namespace Tcc_Imoveis.Models
             {
                 OndescricaoChanging(value);
                 ReportPropertyChanging("descricao");
-                _descricao = StructuralObject.SetValidValue(value, false);
+                _descricao = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("descricao");
                 OndescricaoChanged();
             }
@@ -967,28 +971,12 @@ namespace Tcc_Imoveis.Models
     [Serializable()]
     public partial class ImovelImagens_Result : ComplexObject
     {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new ImovelImagens_Result object.
-        /// </summary>
-        /// <param name="imagem">Initial value of the imagem property.</param>
-        /// <param name="descricao">Initial value of the descricao property.</param>
-        public static ImovelImagens_Result CreateImovelImagens_Result(global::System.String imagem, global::System.String descricao)
-        {
-            ImovelImagens_Result imovelImagens_Result = new ImovelImagens_Result();
-            imovelImagens_Result.imagem = imagem;
-            imovelImagens_Result.descricao = descricao;
-            return imovelImagens_Result;
-        }
-
-        #endregion
         #region Primitive Properties
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String imagem
         {
@@ -1000,7 +988,7 @@ namespace Tcc_Imoveis.Models
             {
                 OnimagemChanging(value);
                 ReportPropertyChanging("imagem");
-                _imagem = StructuralObject.SetValidValue(value, false);
+                _imagem = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("imagem");
                 OnimagemChanged();
             }
@@ -1012,7 +1000,7 @@ namespace Tcc_Imoveis.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String descricao
         {
@@ -1024,7 +1012,7 @@ namespace Tcc_Imoveis.Models
             {
                 OndescricaoChanging(value);
                 ReportPropertyChanging("descricao");
-                _descricao = StructuralObject.SetValidValue(value, false);
+                _descricao = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("descricao");
                 OndescricaoChanged();
             }

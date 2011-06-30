@@ -19,6 +19,7 @@
     <FunctionImport Name="ListaTipoDadoCondicoes" ReturnType="Collection(tcc_imoveisModel.TipoDado_Result)" />
     <FunctionImport Name="InsereImovelNegado" />
     <FunctionImport Name="SalvaPesquisa" />
+    <FunctionImport Name="InsereRaio" />
   </EntityContainer>
   <ComplexType Name="Imovel_Result">
     <Property Type="String" Name="x" Nullable="false" />
@@ -26,7 +27,7 @@
     <Property Type="String" Name="bairro" Nullable="false" />
     <Property Type="String" Name="cidade" Nullable="false" />
     <Property Type="String" Name="estado" Nullable="false" />
-    <Property Type="String" Name="descricao" Nullable="false" />
+    <Property Type="String" Name="descricao" Nullable="true" />
     <Property Type="String" Name="imagem" Nullable="true" />
     <Property Type="Int32" Name="idImovel" Nullable="false" />
   </ComplexType>
@@ -36,7 +37,7 @@
     <Property Type="Decimal" Name="y" Nullable="false" />
   </ComplexType>
   <ComplexType Name="GetImovel_Result">
-    <Property Type="String" Name="descricao" Nullable="false" />
+    <Property Type="String" Name="descricao" Nullable="true" />
     <Property Type="String" Name="nome" Nullable="false" />
     <Property Type="String" Name="x" Nullable="true" />
     <Property Type="String" Name="y" Nullable="true" />
@@ -46,8 +47,8 @@
     <Property Type="String" Name="descricao" Nullable="false" />
   </ComplexType>
   <ComplexType Name="ImovelImagens_Result">
-    <Property Type="String" Name="imagem" Nullable="false" />
-    <Property Type="String" Name="descricao" Nullable="false" />
+    <Property Type="String" Name="imagem" Nullable="true" />
+    <Property Type="String" Name="descricao" Nullable="true" />
   </ComplexType>
   <ComplexType Name="Pesquisa_Result">
     <Property Type="String" Name="nome" Nullable="false" />

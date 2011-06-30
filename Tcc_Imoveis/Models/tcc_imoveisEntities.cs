@@ -117,5 +117,14 @@ namespace Tcc_Imoveis.Models
             return base.ExecuteFunction("SalvaPesquisa", pIdUsuario, pNomePesquisa, pIdPesquisa);
         }
 
+        public int InsereRaio(int idPesquisa, string point, string distancia)
+        {
+            ObjectParameter pIdPesquisa = new ObjectParameter("pIdPesquisa", idPesquisa);
+            ObjectParameter pointParameter = new ObjectParameter("pPonto", point);
+            ObjectParameter distanceParameter = new ObjectParameter("pDistancia", distancia);
+            return base.ExecuteFunction("InsereRaio", pIdPesquisa, pointParameter, distanceParameter);
+        }
+
+
     }
 }

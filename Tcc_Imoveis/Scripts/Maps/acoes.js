@@ -67,7 +67,13 @@ function exibir_pontos()
 	//caso contrario exibe imoveis num raio de 800metros a partir do centro do mapa.
 	else 
 	{
-		executar_busca("/map/DistanceResult", "distance=0.2&p="+map.getCenter())
+		if($("#select_distancia").val() != 0) {
+			alert("distancia");
+			var distancia = $("#select_distancia").val()
+		} else {
+			var distancia = 0.5;
+		}
+		executar_busca("/map/DistanceResult", "distance="+  distancia +"&p="+map.getCenter())
 	} 
             
 }
@@ -95,18 +101,17 @@ function executar_busca(url, q)
 function excluir_imovel_pesquisa(idImovel)
 {
 	$.post("/Map/ExcluirImovelPesquisa", { 'idImovel': idImovel}, 
-		function(json){
-				    
-				    reset();
-		            $.each(json, function(i, imovel){
-                        //verifica se o ponto não está vazio
-                        if(imovel['x'] != undefined) 
-                        {
-                            cria_imovel(imovel);
-                        }
-		        
-		            });
-                });
+	function(json){		
+		//limpa todos os mapas
+		reset();
+		$.each(json, function(i, imovel){
+			//verifica se o ponto não está vazio
+			if(imovel['x'] != undefined) 
+			{
+				cria_imovel(imovel);
+			}
+		});
+	});
 	
 }
 
@@ -197,14 +202,3 @@ function criar_botao_desenhar_poligono()
 	
 	map.controls[google.maps.ControlPosition.TOP_RIGHT].push(btn);
 }
-
-
-
-
-
-
-
-
-
-
-

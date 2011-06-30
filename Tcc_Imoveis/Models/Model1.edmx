@@ -25,6 +25,7 @@
         <Function Name="InsereImovelNegado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="tcc_imoveis" />
         <Function Name="InserePesquisa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="tcc_imoveis" />
         <Function Name="InserePoligono" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="tcc_imoveis" />
+        <Function Name="InsereRaio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="tcc_imoveis" />
         <Function Name="InsereUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="tcc_imoveis" />
         <Function Name="InsereUsuario_compartilhado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="tcc_imoveis" />
         <Function Name="ListaAtributosGerais" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="tcc_imoveis" />
@@ -70,6 +71,7 @@
           <FunctionImport Name="ListaTipoDadoCondicoes" ReturnType="Collection(tcc_imoveisModel.TipoDado_Result)" />
           <FunctionImport Name="InsereImovelNegado" />
           <FunctionImport Name="SalvaPesquisa" />
+          <FunctionImport Name="InsereRaio" />
         </EntityContainer>
         <ComplexType Name="Imovel_Result" >
           <Property Type="String" Name="x" Nullable="false" />
@@ -77,7 +79,7 @@
           <Property Type="String" Name="bairro" Nullable="false" />
           <Property Type="String" Name="cidade" Nullable="false" />
           <Property Type="String" Name="estado" Nullable="false" />
-          <Property Type="String" Name="descricao" Nullable="false" />
+          <Property Type="String" Name="descricao" Nullable="true" />
           <Property Type="String" Name="imagem" Nullable="true" />
           <Property Type="Int32" Name="idImovel" Nullable="false" />
         </ComplexType>
@@ -87,7 +89,7 @@
           <Property Type="Decimal" Name="y" Nullable="false" />
         </ComplexType>
         <ComplexType Name="GetImovel_Result" >
-          <Property Type="String" Name="descricao" Nullable="false" />
+          <Property Type="String" Name="descricao" Nullable="true" />
           <Property Type="String" Name="nome" Nullable="false" />
           <Property Type="String" Name="x" Nullable="true" />
           <Property Type="String" Name="y" Nullable="true" />
@@ -97,8 +99,8 @@
           <Property Type="String" Name="descricao" Nullable="false" />
         </ComplexType>
         <ComplexType Name="ImovelImagens_Result" >
-          <Property Type="String" Name="imagem" Nullable="false" />
-          <Property Type="String" Name="descricao" Nullable="false" />
+          <Property Type="String" Name="imagem" Nullable="true" />
+          <Property Type="String" Name="descricao" Nullable="true" />
         </ComplexType>
         <ComplexType Name="Pesquisa_Result" >
           <Property Type="String" Name="nome" Nullable="false" />
@@ -222,6 +224,7 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="InsereImovelNegado" FunctionName="tcc_imoveisModel.Store.InsereImovelNegado" />
           <FunctionImportMapping FunctionImportName="SalvaPesquisa" FunctionName="tcc_imoveisModel.Store.SalvaPesquisa" />
+          <FunctionImportMapping FunctionImportName="InsereRaio" FunctionName="tcc_imoveisModel.Store.InsereRaio" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -32,12 +32,12 @@ function cria_marker(latLng)
 function adiciona_imovel_listagem(info) {
 	var html = '<div class="resultado1">'+
 		'<a name="'+ info['idImovel'] +'">' +
-		'<img src="images/fotinho.jpg" class="thumb1">' +
+		'<img src="'+ info['imagem']+ '" class="thumb1">' +
 		'<div class="texto2">' +
 		'<a href="javascript:excluir_imovel_pesquisa('+ info['idImovel'] +')">excluir da pesquisa pesquisa</a><br>' +
 		info['bairro'].toUpperCase() + ' - ' + info['cidade'] + ' - ' + info['estado'] + '<br></strong>' +
 		info['descricao'] +
-		'</div><a href="#" class="detalhes">VEJA MAIS DETALHES</a></div>';
+		'</div><a href="/Imovel/Details/'+ info['idImovel'] +'" class="detalhes">VEJA MAIS DETALHES</a></div>';
 
 	$("#listagem_imoveis").append(html);
 }
